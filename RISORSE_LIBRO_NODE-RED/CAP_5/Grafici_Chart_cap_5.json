@@ -1,0 +1,688 @@
+[
+    {
+        "id": "ca0cd51.f052128",
+        "type": "tab",
+        "label": "Grafici Chart",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "3197b221.2b743e",
+        "type": "ui_chart",
+        "z": "ca0cd51.f052128",
+        "name": "",
+        "group": "afaae3f3.a0bf5",
+        "order": 1,
+        "width": 8,
+        "height": 6,
+        "label": "Grafico 1",
+        "chartType": "line",
+        "legend": "true",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#992424",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "x": 500,
+        "y": 80,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "c99db714.d084c8",
+        "type": "inject",
+        "z": "ca0cd51.f052128",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "5",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "sito1",
+        "payload": "1",
+        "payloadType": "num",
+        "x": 120,
+        "y": 80,
+        "wires": [
+            [
+                "26689bbd.9f5cd4"
+            ]
+        ]
+    },
+    {
+        "id": "26689bbd.9f5cd4",
+        "type": "function",
+        "z": "ca0cd51.f052128",
+        "name": "graph generate",
+        "func": "var data=context.get(\"data\")|| [];\nlet topic=msg.topic;\nif(typeof data[0]==\"undefined\" || topic==\"clear\")\n{\ndata=[];\ndata[0]=0;\ndata[1]=0;\nmsg.payload=[];\n}\nif (topic==\"sito1\")\n{\n data[0] +=1;\n msg.payload=data[0]\n\n}\n if (topic==\"sito2\")\n {\n data[1] +=2;\nmsg.payload=data[1];\n}\ncontext.set(\"data\",data);\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 340,
+        "y": 120,
+        "wires": [
+            [
+                "3197b221.2b743e",
+                "69ffad0c.abecf4"
+            ]
+        ]
+    },
+    {
+        "id": "69ffad0c.abecf4",
+        "type": "debug",
+        "z": "ca0cd51.f052128",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 530,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "7ad3823.cf3f27c",
+        "type": "inject",
+        "z": "ca0cd51.f052128",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "5",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "value2",
+        "payload": "1",
+        "payloadType": "num",
+        "x": 120,
+        "y": 260,
+        "wires": [
+            [
+                "65fe863b.6ed5d8"
+            ]
+        ]
+    },
+    {
+        "id": "65fe863b.6ed5d8",
+        "type": "function",
+        "z": "ca0cd51.f052128",
+        "name": "graph generate",
+        "func": "var data=context.get(\"data\")|| [];\nlet topic=msg.topic;\nif(typeof data[0]==\"undefined\" || topic==\"clear\")\n{\ndata=[];\ndata[0]=0;\ndata[1]=0;\nmsg.payload=[];\n}\nif (topic==\"value1\")\n{\n data[0] +=1;\n msg.payload=data[0]\n\n}\n if (topic==\"value2\")\n {\n data[1] +=2;\nmsg.payload=data[1];\n}\nif (topic==\"value3\")\n{\n data[2] +=3;\n msg.payload=data[0]\n}\nif (topic==\"value4\")\n{\n data[0] +=4;\n msg.payload=data[0]\n}\ncontext.set(\"data\",data);\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 340,
+        "y": 280,
+        "wires": [
+            [
+                "381b87c0.835b78",
+                "dade46c2.1fccf8"
+            ]
+        ]
+    },
+    {
+        "id": "8238c9c1.545508",
+        "type": "inject",
+        "z": "ca0cd51.f052128",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "4",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "value1",
+        "payload": "1",
+        "payloadType": "num",
+        "x": 120,
+        "y": 220,
+        "wires": [
+            [
+                "65fe863b.6ed5d8"
+            ]
+        ]
+    },
+    {
+        "id": "381b87c0.835b78",
+        "type": "debug",
+        "z": "ca0cd51.f052128",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "x": 510,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "dade46c2.1fccf8",
+        "type": "ui_chart",
+        "z": "ca0cd51.f052128",
+        "name": "",
+        "group": "afaae3f3.a0bf5",
+        "order": 2,
+        "width": 8,
+        "height": 6,
+        "label": "Grafico 2",
+        "chartType": "bar",
+        "legend": "true",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#400000",
+            "#ff8000",
+            "#570fff",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "x": 520,
+        "y": 240,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "d72aaa59.31bc88",
+        "type": "inject",
+        "z": "ca0cd51.f052128",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "5",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "sito1",
+        "payload": "1",
+        "payloadType": "num",
+        "x": 120,
+        "y": 480,
+        "wires": [
+            [
+                "d0446c21.65038"
+            ]
+        ]
+    },
+    {
+        "id": "d0446c21.65038",
+        "type": "function",
+        "z": "ca0cd51.f052128",
+        "name": "graph generate",
+        "func": "var count=context.get(\"count\");\ndata=[[50,60],[55,65],[60,70],[55,65]]\nvar data_length=data.length;\nif(typeof count==\"undefined\" )\ncount=0;\nif(typeof data[0]==\"undefined\" || msg.topic==\"clear\")\n{\n\n msg.payload=[];\n msg.topic=\"\";\n node.send(msg);\n}\nelse\n{\nmsg.topic=\"Dato 1\";\nmsg.payload=data[count][0];\n node.send(msg);\n msg.topic=\"Dato 2\";\nmsg.payload=data[count][1];\n node.send(msg);\ncount+=1;\nif (count>=data_length)\n    count=0;\ncontext.set(\"count\",count);\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 320,
+        "y": 500,
+        "wires": [
+            [
+                "52b78b2a.bc4a84",
+                "b1272c67.f7ecd"
+            ]
+        ]
+    },
+    {
+        "id": "52b78b2a.bc4a84",
+        "type": "ui_chart",
+        "z": "ca0cd51.f052128",
+        "name": "",
+        "group": "afaae3f3.a0bf5",
+        "order": 14,
+        "width": 8,
+        "height": 6,
+        "label": "Grafico 3",
+        "chartType": "polar-area",
+        "legend": "true",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "0",
+        "ymax": "100",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#004080",
+            "#ff8000",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": true,
+        "x": 500,
+        "y": 460,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b1272c67.f7ecd",
+        "type": "debug",
+        "z": "ca0cd51.f052128",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 510,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "b06dbf26.5d76e",
+        "type": "ui_chart",
+        "z": "ca0cd51.f052128",
+        "name": "",
+        "group": "afaae3f3.a0bf5",
+        "order": 15,
+        "width": 8,
+        "height": 6,
+        "label": "Grafico CSV",
+        "chartType": "line",
+        "legend": "true",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": "2",
+        "removeOlderPoints": "1000",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": true,
+        "colors": [
+            "#1f77b4",
+            "#ef3447",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "x": 1190,
+        "y": 380,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "6d1ffb65.9428a4",
+        "type": "debug",
+        "z": "ca0cd51.f052128",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "x": 1170,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "3080bbdc.b4a1b4",
+        "type": "file in",
+        "z": "ca0cd51.f052128",
+        "name": "",
+        "filename": "C:\\Users\\User\\Downloads\\Log.csv",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "x": 900,
+        "y": 260,
+        "wires": [
+            [
+                "c7145335.4f664"
+            ]
+        ]
+    },
+    {
+        "id": "c7145335.4f664",
+        "type": "csv",
+        "z": "ca0cd51.f052128",
+        "name": "",
+        "sep": ",",
+        "hdrin": true,
+        "hdrout": "",
+        "multi": "mult",
+        "ret": "\\n",
+        "temp": "",
+        "skip": "0",
+        "strings": true,
+        "x": 1130,
+        "y": 260,
+        "wires": [
+            [
+                "d8edf05f.19d8a"
+            ]
+        ]
+    },
+    {
+        "id": "d8edf05f.19d8a",
+        "type": "function",
+        "z": "ca0cd51.f052128",
+        "name": "graph generate",
+        "func": "function toTimestamp(strDate){\n     var datax = Date.parse(strDate);\n     return datax/1000;\n    }\nvar payload=msg.payload;\n\nvar data_out=[];\nvar a1=[];\nvar a2=[];\n//var a3=[];\n//var a4=[];\nfor(let i=0;i<payload.length;i++)\n{\n  \nvar Data= payload[i].Data.split(\"-\");\nvar t=Data[2]+\"/\"+Data[1]+\"/\"+Data[0];\nvar timestamp=toTimestamp(t+\" \"+payload[i][\"Ora\"]);\n\nvar temp1={ \"x\": timestamp, \"y\":parseInt( payload[i][\"Temp\"]) };\nvar temp2={ \"x\": timestamp, \"y\":parseInt( payload[i][\"Hum\"]) };\n\na1.push(temp1);\na2.push(temp2);\n}\n\ndata_out=[a1,a2];\nmsg.payload=[{\n\"series\": [\"Temperatura\",\"Umidità\"],\n\"data\":data_out,\n\"labels\": [\"Temperatura\",\"Umidità\"] // le etichette\n}];\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 920,
+        "y": 360,
+        "wires": [
+            [
+                "6d1ffb65.9428a4",
+                "b06dbf26.5d76e"
+            ]
+        ]
+    },
+    {
+        "id": "6a5464eb.f13c2c",
+        "type": "ui_button",
+        "z": "ca0cd51.f052128",
+        "name": "",
+        "group": "afaae3f3.a0bf5",
+        "order": 25,
+        "width": 4,
+        "height": 1,
+        "passthru": false,
+        "label": "CSV",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "1",
+        "payloadType": "num",
+        "topic": "start",
+        "topicType": "str",
+        "x": 690,
+        "y": 260,
+        "wires": [
+            [
+                "3080bbdc.b4a1b4"
+            ]
+        ]
+    },
+    {
+        "id": "3b7c6d25.0f1d42",
+        "type": "inject",
+        "z": "ca0cd51.f052128",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "5",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "sito2",
+        "payload": "1",
+        "payloadType": "num",
+        "x": 120,
+        "y": 120,
+        "wires": [
+            [
+                "26689bbd.9f5cd4"
+            ]
+        ]
+    },
+    {
+        "id": "efac7847.ec6108",
+        "type": "ui_button",
+        "z": "ca0cd51.f052128",
+        "name": "",
+        "group": "afaae3f3.a0bf5",
+        "order": 10,
+        "width": 4,
+        "height": 1,
+        "passthru": false,
+        "label": "Clear",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "1",
+        "payloadType": "str",
+        "topic": "clear",
+        "topicType": "str",
+        "x": 90,
+        "y": 160,
+        "wires": [
+            [
+                "26689bbd.9f5cd4"
+            ]
+        ]
+    },
+    {
+        "id": "991ed29c.0d806",
+        "type": "ui_button",
+        "z": "ca0cd51.f052128",
+        "name": "",
+        "group": "afaae3f3.a0bf5",
+        "order": 12,
+        "width": 4,
+        "height": 1,
+        "passthru": false,
+        "label": "Clear",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "1",
+        "payloadType": "str",
+        "topic": "clear",
+        "topicType": "str",
+        "x": 90,
+        "y": 380,
+        "wires": [
+            [
+                "65fe863b.6ed5d8"
+            ]
+        ]
+    },
+    {
+        "id": "bb461cf5.32f4e",
+        "type": "ui_button",
+        "z": "ca0cd51.f052128",
+        "name": "",
+        "group": "afaae3f3.a0bf5",
+        "order": 23,
+        "width": 4,
+        "height": 1,
+        "passthru": false,
+        "label": "Clear",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "1",
+        "payloadType": "str",
+        "topic": "clear",
+        "topicType": "str",
+        "x": 90,
+        "y": 520,
+        "wires": [
+            [
+                "d0446c21.65038"
+            ]
+        ]
+    },
+    {
+        "id": "1ae93d8c.6ef372",
+        "type": "inject",
+        "z": "ca0cd51.f052128",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "5",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "value3",
+        "payload": "1",
+        "payloadType": "num",
+        "x": 120,
+        "y": 300,
+        "wires": [
+            [
+                "65fe863b.6ed5d8"
+            ]
+        ]
+    },
+    {
+        "id": "bfe98f97.13b51",
+        "type": "inject",
+        "z": "ca0cd51.f052128",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "5",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "value4",
+        "payload": "1",
+        "payloadType": "num",
+        "x": 120,
+        "y": 340,
+        "wires": [
+            [
+                "65fe863b.6ed5d8"
+            ]
+        ]
+    },
+    {
+        "id": "afaae3f3.a0bf5",
+        "type": "ui_group",
+        "name": "Charts",
+        "tab": "9c56f894.95a178",
+        "order": 1,
+        "disp": true,
+        "width": "18",
+        "collapse": false
+    },
+    {
+        "id": "9c56f894.95a178",
+        "type": "ui_tab",
+        "name": "Grafici",
+        "icon": "dashboard",
+        "order": 9,
+        "disabled": false,
+        "hidden": false
+    }
+]

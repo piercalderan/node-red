@@ -1,0 +1,156 @@
+[
+    {
+        "id": "d0539540.dd3668",
+        "type": "tab",
+        "label": "Flow 2",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "e36406f2.8ef798",
+        "type": "inject",
+        "z": "d0539540.dd3668",
+        "name": "",
+        "props": [
+            {
+                "p": "payload",
+                "v": "",
+                "vt": "str"
+            },
+            {
+                "p": "topic",
+                "v": "",
+                "vt": "string"
+            }
+        ],
+        "repeat": "300",
+        "crontab": "",
+        "once": false,
+        "topic": "",
+        "payload": "",
+        "payloadType": "str",
+        "x": 350,
+        "y": 200,
+        "wires": [
+            [
+                "c3c50023.3bbed"
+            ]
+        ]
+    },
+    {
+        "id": "c3c50023.3bbed",
+        "type": "http request",
+        "z": "d0539540.dd3668",
+        "name": "Terremoti recenti",
+        "method": "GET",
+        "paytoqs": "ignore",
+        "url": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/significant_month.csv",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "x": 530,
+        "y": 200,
+        "wires": [
+            [
+                "8afc6cac.e0812"
+            ]
+        ]
+    },
+    {
+        "id": "8afc6cac.e0812",
+        "type": "csv",
+        "z": "d0539540.dd3668",
+        "name": "",
+        "sep": ",",
+        "hdrin": true,
+        "hdrout": "",
+        "multi": "one",
+        "ret": "\\n",
+        "temp": "",
+        "skip": 0,
+        "strings": true,
+        "x": 690,
+        "y": 200,
+        "wires": [
+            [
+                "44779781.4190f8",
+                "6f0eb546.9e208c"
+            ]
+        ]
+    },
+    {
+        "id": "44779781.4190f8",
+        "type": "debug",
+        "z": "d0539540.dd3668",
+        "name": "",
+        "active": true,
+        "complete": false,
+        "x": 850,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "6f0eb546.9e208c",
+        "type": "switch",
+        "z": "d0539540.dd3668",
+        "name": "",
+        "property": "payload.mag",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "gte",
+                "v": "6",
+                "vt": "num"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 730,
+        "y": 260,
+        "wires": [
+            [
+                "d78d4aa8.8c8208"
+            ]
+        ]
+    },
+    {
+        "id": "d78d4aa8.8c8208",
+        "type": "change",
+        "z": "d0539540.dd3668",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "PANICO!",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 880,
+        "y": 260,
+        "wires": [
+            [
+                "72fddece.fac0d"
+            ]
+        ]
+    },
+    {
+        "id": "72fddece.fac0d",
+        "type": "debug",
+        "z": "d0539540.dd3668",
+        "name": "",
+        "active": true,
+        "complete": false,
+        "x": 1050,
+        "y": 260,
+        "wires": []
+    }
+]

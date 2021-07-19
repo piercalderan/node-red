@@ -1,0 +1,1236 @@
+[
+    {
+        "id": "885be883.51c658",
+        "type": "tab",
+        "label": "VARIE NODE-RED",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "22b96541.91dd0a",
+        "type": "group",
+        "z": "885be883.51c658",
+        "name": "HHTP POST",
+        "style": {
+            "label": true
+        },
+        "nodes": [
+            "3e1c5107.c1e3ae",
+            "cf679478.309868",
+            "f3c1a3f0.0c3e6",
+            "6ceb930a.93146c",
+            "bba61009.4459f",
+            "5b98a8ac.a46758"
+        ],
+        "x": 654,
+        "y": 839,
+        "w": 572,
+        "h": 162
+    },
+    {
+        "id": "48a93c4b.603ad4",
+        "type": "group",
+        "z": "885be883.51c658",
+        "name": "HTTP file locale",
+        "style": {
+            "label": true
+        },
+        "nodes": [
+            "c7e341a0.381cc",
+            "2fb1c354.d04e3c",
+            "c9e28681.361d78",
+            "88974243.7768c"
+        ],
+        "x": 654,
+        "y": 59,
+        "w": 652,
+        "h": 202
+    },
+    {
+        "id": "b5258cf9.afa3e",
+        "type": "group",
+        "z": "885be883.51c658",
+        "name": "GRUPPO COOKIES",
+        "style": {
+            "stroke": "#ff0000",
+            "fill": "#ffff00",
+            "label": true
+        },
+        "nodes": [
+            "76b548e4.605398",
+            "f0d89860.662e58"
+        ],
+        "x": 388,
+        "y": 393,
+        "w": 864,
+        "h": 394
+    },
+    {
+        "id": "f0d89860.662e58",
+        "type": "group",
+        "z": "885be883.51c658",
+        "g": "b5258cf9.afa3e",
+        "name": "Cookie",
+        "style": {
+            "label": true
+        },
+        "nodes": [
+            "c362b989.954ae8",
+            "21ddf71f.d00518",
+            "f3aa98c1.befc18",
+            "f52e2880.180968",
+            "9a2a9a4.0fc0768",
+            "afefb90.53dcf48",
+            "d5205a2c.db9018",
+            "fda60c66.04975",
+            "35285a76.1f8636"
+        ],
+        "x": 414,
+        "y": 419,
+        "w": 812,
+        "h": 162
+    },
+    {
+        "id": "76b548e4.605398",
+        "type": "group",
+        "z": "885be883.51c658",
+        "g": "b5258cf9.afa3e",
+        "name": "Cookie 2",
+        "style": {
+            "label": true
+        },
+        "nodes": [
+            "52eea141.65a0f",
+            "66d6ca85.b38b64",
+            "1139ae4a.f28562",
+            "d8b98b5e.d4ef38",
+            "2d1683ca.006dcc",
+            "a7faa6a5.03af28",
+            "d2bc2eb0.cde0d",
+            "96824dc7.f37c3",
+            "68f6ea5a.285f34"
+        ],
+        "x": 414,
+        "y": 599,
+        "w": 812,
+        "h": 162
+    },
+    {
+        "id": "c9f14f12.35747",
+        "type": "group",
+        "z": "885be883.51c658",
+        "name": "JSONATA",
+        "style": {
+            "label": true
+        },
+        "nodes": [
+            "d001dc53.264018",
+            "a631ad2e.febf2",
+            "9e173897.ccab38",
+            "588f9990.21743",
+            "3f38369a.fed952",
+            "249e58ed.5231b8",
+            "6d5ef611.7e4c9",
+            "799e8f63.f79ab8",
+            "ea873589.6832e8",
+            "cc133563.e5759",
+            "c19fefdd.daac4",
+            "b4e556b5.138678"
+        ],
+        "x": 494,
+        "y": 1019,
+        "w": 892,
+        "h": 262
+    },
+    {
+        "id": "d7a33b6b.8d6c28",
+        "type": "group",
+        "z": "885be883.51c658",
+        "name": "JSON",
+        "style": {
+            "label": true
+        },
+        "nodes": [
+            "634256b7.2d6818",
+            "a2fe0fc8.095e1",
+            "9a4ce2b8.47698",
+            "80032e2.7c92cd",
+            "cd40a0f4.4f5ac",
+            "478b4106.4fd7c"
+        ],
+        "x": 34,
+        "y": 259,
+        "w": 552,
+        "h": 122
+    },
+    {
+        "id": "f6606aec.a08e88",
+        "type": "group",
+        "z": "885be883.51c658",
+        "name": "Catch error",
+        "style": {
+            "label": true
+        },
+        "nodes": [
+            "2bd6810d.e22ece",
+            "2c94a22c.91012e",
+            "d16b9fac.8212a",
+            "c5ee9670.5dbbd8"
+        ],
+        "x": 34,
+        "y": 79,
+        "w": 412,
+        "h": 142
+    },
+    {
+        "id": "2bd6810d.e22ece",
+        "type": "catch",
+        "z": "885be883.51c658",
+        "g": "f6606aec.a08e88",
+        "name": "",
+        "scope": [
+            "2c94a22c.91012e"
+        ],
+        "uncaught": false,
+        "x": 170,
+        "y": 180,
+        "wires": [
+            [
+                "d16b9fac.8212a"
+            ]
+        ]
+    },
+    {
+        "id": "2c94a22c.91012e",
+        "type": "function",
+        "z": "885be883.51c658",
+        "g": "f6606aec.a08e88",
+        "name": "Funzione",
+        "func": "var payload = \"Ciao\"\nnode.error(\"Errore: \", msg);   \nreturn payload\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 360,
+        "y": 120,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "d16b9fac.8212a",
+        "type": "debug",
+        "z": "885be883.51c658",
+        "g": "f6606aec.a08e88",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "error",
+        "targetType": "msg",
+        "x": 340,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "c5ee9670.5dbbd8",
+        "type": "inject",
+        "z": "885be883.51c658",
+        "g": "f6606aec.a08e88",
+        "name": "Trigger error",
+        "props": [
+            {
+                "p": "payload",
+                "v": "",
+                "vt": "date"
+            },
+            {
+                "p": "topic",
+                "v": "",
+                "vt": "string"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 150,
+        "y": 120,
+        "wires": [
+            [
+                "2c94a22c.91012e"
+            ]
+        ]
+    },
+    {
+        "id": "634256b7.2d6818",
+        "type": "inject",
+        "z": "885be883.51c658",
+        "g": "d7a33b6b.8d6c28",
+        "name": "JSON String",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"a\":1,\"b\":2}",
+        "payloadType": "str",
+        "x": 150,
+        "y": 300,
+        "wires": [
+            [
+                "a2fe0fc8.095e1"
+            ]
+        ]
+    },
+    {
+        "id": "a2fe0fc8.095e1",
+        "type": "json",
+        "z": "885be883.51c658",
+        "g": "d7a33b6b.8d6c28",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 310,
+        "y": 300,
+        "wires": [
+            [
+                "9a4ce2b8.47698"
+            ]
+        ]
+    },
+    {
+        "id": "9a4ce2b8.47698",
+        "type": "debug",
+        "z": "885be883.51c658",
+        "g": "d7a33b6b.8d6c28",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 470,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "80032e2.7c92cd",
+        "type": "inject",
+        "z": "885be883.51c658",
+        "g": "d7a33b6b.8d6c28",
+        "name": "Object",
+        "props": [
+            {
+                "p": "payload",
+                "v": "{\"a\":1}",
+                "vt": "json"
+            },
+            {
+                "p": "topic",
+                "v": "",
+                "vt": "string"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"a\":1}",
+        "payloadType": "json",
+        "x": 130,
+        "y": 340,
+        "wires": [
+            [
+                "cd40a0f4.4f5ac"
+            ]
+        ]
+    },
+    {
+        "id": "cd40a0f4.4f5ac",
+        "type": "json",
+        "z": "885be883.51c658",
+        "g": "d7a33b6b.8d6c28",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 310,
+        "y": 340,
+        "wires": [
+            [
+                "478b4106.4fd7c"
+            ]
+        ]
+    },
+    {
+        "id": "478b4106.4fd7c",
+        "type": "debug",
+        "z": "885be883.51c658",
+        "g": "d7a33b6b.8d6c28",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 470,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "c7e341a0.381cc",
+        "type": "http in",
+        "z": "885be883.51c658",
+        "g": "48a93c4b.603ad4",
+        "name": "",
+        "url": "/hello",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 740,
+        "y": 100,
+        "wires": [
+            [
+                "2fb1c354.d04e3c"
+            ]
+        ]
+    },
+    {
+        "id": "2fb1c354.d04e3c",
+        "type": "file in",
+        "z": "885be883.51c658",
+        "g": "48a93c4b.603ad4",
+        "name": "",
+        "filename": "C:\\Users\\User\\Downloads\\node-red-icon.png",
+        "format": "",
+        "x": 1020,
+        "y": 100,
+        "wires": [
+            [
+                "c9e28681.361d78"
+            ]
+        ]
+    },
+    {
+        "id": "c9e28681.361d78",
+        "type": "change",
+        "z": "885be883.51c658",
+        "g": "48a93c4b.603ad4",
+        "name": "Set Headers",
+        "rules": [
+            {
+                "t": "set",
+                "p": "headers",
+                "pt": "msg",
+                "to": "{}",
+                "tot": "json"
+            },
+            {
+                "t": "set",
+                "p": "headers.content-type",
+                "pt": "msg",
+                "to": "image/png",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1150,
+        "y": 160,
+        "wires": [
+            [
+                "88974243.7768c"
+            ]
+        ]
+    },
+    {
+        "id": "88974243.7768c",
+        "type": "http response",
+        "z": "885be883.51c658",
+        "g": "48a93c4b.603ad4",
+        "name": "",
+        "x": 1230,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "c362b989.954ae8",
+        "type": "http in",
+        "z": "885be883.51c658",
+        "g": "f0d89860.662e58",
+        "name": "",
+        "url": "/hello-cookie",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 530,
+        "y": 460,
+        "wires": [
+            [
+                "21ddf71f.d00518"
+            ]
+        ]
+    },
+    {
+        "id": "21ddf71f.d00518",
+        "type": "function",
+        "z": "885be883.51c658",
+        "g": "f0d89860.662e58",
+        "name": "Format cookies",
+        "func": "msg.payload = JSON.stringify(msg.req.cookies,null,4);\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 740,
+        "y": 460,
+        "wires": [
+            [
+                "f3aa98c1.befc18"
+            ]
+        ]
+    },
+    {
+        "id": "f3aa98c1.befc18",
+        "type": "template",
+        "z": "885be883.51c658",
+        "g": "f0d89860.662e58",
+        "name": "HTML",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "<html>\n    <head></head>\n    <body>\n<style>\nh1 {\n  color: blue;\n  font-family: verdana;\n  font-size: 250%;\n}\np {\n  color: red;\n  font-family: verdana;\n  font-size: 200%;\n}\n</style>\n\n        <h1>Test Cookies</h1>\n        <p><a href=\"hello-cookie/add\">Aggiungi un cookie</a> &bull; \n        <a href=\"hello-cookie/clear\">Cancella i cookies</a></p>\n        <pre>{{ payload }}</pre>\n    </body>\n</html>",
+        "x": 990,
+        "y": 480,
+        "wires": [
+            [
+                "f52e2880.180968"
+            ]
+        ]
+    },
+    {
+        "id": "f52e2880.180968",
+        "type": "http response",
+        "z": "885be883.51c658",
+        "g": "f0d89860.662e58",
+        "name": "",
+        "x": 1150,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "9a2a9a4.0fc0768",
+        "type": "change",
+        "z": "885be883.51c658",
+        "g": "f0d89860.662e58",
+        "name": "Redirect to /hello-cookie",
+        "rules": [
+            {
+                "t": "set",
+                "p": "statusCode",
+                "pt": "msg",
+                "to": "302",
+                "tot": "num"
+            },
+            {
+                "t": "set",
+                "p": "headers",
+                "pt": "msg",
+                "to": "{}",
+                "tot": "json"
+            },
+            {
+                "t": "set",
+                "p": "headers.location",
+                "pt": "msg",
+                "to": "/hello-cookie",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1010,
+        "y": 540,
+        "wires": [
+            [
+                "f52e2880.180968"
+            ]
+        ]
+    },
+    {
+        "id": "afefb90.53dcf48",
+        "type": "function",
+        "z": "885be883.51c658",
+        "g": "f0d89860.662e58",
+        "name": "Aggiungi un cookie",
+        "func": "msg.cookies = { };\nvar obj = { date : new Date() };\nvar json = JSON.stringify(obj);\nvar p=JSON.parse(json)\n\nmsg.cookies[\"Data: \" + p.date] = Date.now();\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 750,
+        "y": 500,
+        "wires": [
+            [
+                "9a2a9a4.0fc0768"
+            ]
+        ]
+    },
+    {
+        "id": "d5205a2c.db9018",
+        "type": "function",
+        "z": "885be883.51c658",
+        "g": "f0d89860.662e58",
+        "name": "Cancella i cookies",
+        "func": "var cookieNames = Object.keys(msg.req.cookies).filter(function(cookieName) { return /^Data: /.test(cookieName);});\nmsg.cookies = {};\n\ncookieNames.forEach(function(cookieName) {\n    msg.cookies[cookieName] = null;\n});\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 750,
+        "y": 540,
+        "wires": [
+            [
+                "9a2a9a4.0fc0768"
+            ]
+        ]
+    },
+    {
+        "id": "fda60c66.04975",
+        "type": "http in",
+        "z": "885be883.51c658",
+        "g": "f0d89860.662e58",
+        "name": "",
+        "url": "/hello-cookie/add",
+        "method": "get",
+        "swaggerDoc": "",
+        "x": 540,
+        "y": 500,
+        "wires": [
+            [
+                "afefb90.53dcf48"
+            ]
+        ]
+    },
+    {
+        "id": "35285a76.1f8636",
+        "type": "http in",
+        "z": "885be883.51c658",
+        "g": "f0d89860.662e58",
+        "name": "",
+        "url": "/hello-cookie/clear",
+        "method": "get",
+        "swaggerDoc": "",
+        "x": 540,
+        "y": 540,
+        "wires": [
+            [
+                "d5205a2c.db9018"
+            ]
+        ]
+    },
+    {
+        "id": "52eea141.65a0f",
+        "type": "http in",
+        "z": "885be883.51c658",
+        "g": "76b548e4.605398",
+        "name": "",
+        "url": "/hello-cookie2",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 530,
+        "y": 640,
+        "wires": [
+            [
+                "66d6ca85.b38b64"
+            ]
+        ]
+    },
+    {
+        "id": "66d6ca85.b38b64",
+        "type": "function",
+        "z": "885be883.51c658",
+        "g": "76b548e4.605398",
+        "name": "Format cookies",
+        "func": "msg.payload = JSON.stringify(msg.req.cookies,null,4);\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 740,
+        "y": 640,
+        "wires": [
+            [
+                "1139ae4a.f28562"
+            ]
+        ]
+    },
+    {
+        "id": "1139ae4a.f28562",
+        "type": "template",
+        "z": "885be883.51c658",
+        "g": "76b548e4.605398",
+        "name": "HTML",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "<html>\n    <head></head>\n    <body>\n<style>\nh1 {\n  color: blue;\n  font-family: verdana;\n  font-size: 250%;\n}\np {\n  color: red;\n  font-family: verdana;\n  font-size: 200%;\n}\n</style>\n\n        <h1>Test Cookies 2</h1>\n        <p><a href=\"hello-cookie2/add\">Aggiungi un cookie</a> &bull; \n        <a href=\"hello-cookie2/clear\">Cancella i cookies</a></p>\n        <pre>{{ payload }}</pre>\n    </body>\n</html>",
+        "x": 990,
+        "y": 660,
+        "wires": [
+            [
+                "d8b98b5e.d4ef38"
+            ]
+        ]
+    },
+    {
+        "id": "d8b98b5e.d4ef38",
+        "type": "http response",
+        "z": "885be883.51c658",
+        "g": "76b548e4.605398",
+        "name": "",
+        "x": 1150,
+        "y": 640,
+        "wires": []
+    },
+    {
+        "id": "2d1683ca.006dcc",
+        "type": "change",
+        "z": "885be883.51c658",
+        "g": "76b548e4.605398",
+        "name": "Redirect to /hello-cookie",
+        "rules": [
+            {
+                "t": "set",
+                "p": "statusCode",
+                "pt": "msg",
+                "to": "302",
+                "tot": "num"
+            },
+            {
+                "t": "set",
+                "p": "headers",
+                "pt": "msg",
+                "to": "{}",
+                "tot": "json"
+            },
+            {
+                "t": "set",
+                "p": "headers.location",
+                "pt": "msg",
+                "to": "/hello-cookie2",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1070,
+        "y": 720,
+        "wires": [
+            [
+                "d8b98b5e.d4ef38"
+            ]
+        ]
+    },
+    {
+        "id": "a7faa6a5.03af28",
+        "type": "function",
+        "z": "885be883.51c658",
+        "g": "76b548e4.605398",
+        "name": "Aggiungi un cookie",
+        "func": "msg.cookies = {\n    name: \"pippo\",\n    session: {\n        value: \"1234\",\n        maxAge: 900000\n    }\n}\n\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 750,
+        "y": 680,
+        "wires": [
+            [
+                "2d1683ca.006dcc"
+            ]
+        ]
+    },
+    {
+        "id": "d2bc2eb0.cde0d",
+        "type": "function",
+        "z": "885be883.51c658",
+        "g": "76b548e4.605398",
+        "name": "Cancella i cookies",
+        "func": "var cookieNames = Object.keys(msg.req.cookies).filter(function(cookieName) { return /^name/.test(cookieName);});\nmsg.cookies = {};\n\ncookieNames.forEach(function(cookieName) {\n    msg.cookies[cookieName] = null;\n});\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 790,
+        "y": 720,
+        "wires": [
+            [
+                "2d1683ca.006dcc"
+            ]
+        ]
+    },
+    {
+        "id": "96824dc7.f37c3",
+        "type": "http in",
+        "z": "885be883.51c658",
+        "g": "76b548e4.605398",
+        "name": "",
+        "url": "/hello-cookie2/add",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 540,
+        "y": 680,
+        "wires": [
+            [
+                "a7faa6a5.03af28"
+            ]
+        ]
+    },
+    {
+        "id": "68f6ea5a.285f34",
+        "type": "http in",
+        "z": "885be883.51c658",
+        "g": "76b548e4.605398",
+        "name": "",
+        "url": "/hello-cookie2/clear",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 550,
+        "y": 720,
+        "wires": [
+            [
+                "d2bc2eb0.cde0d"
+            ]
+        ]
+    },
+    {
+        "id": "3e1c5107.c1e3ae",
+        "type": "http in",
+        "z": "885be883.51c658",
+        "g": "22b96541.91dd0a",
+        "name": "",
+        "url": "/hello-txt",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 760,
+        "y": 960,
+        "wires": [
+            [
+                "cf679478.309868"
+            ]
+        ]
+    },
+    {
+        "id": "cf679478.309868",
+        "type": "template",
+        "z": "885be883.51c658",
+        "g": "22b96541.91dd0a",
+        "name": "HTML txt",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "<html>\n    <head></head>\n    <body>\n        <h1>Ciao {{ payload }}!</h1>\n    </body>\n</html>",
+        "x": 940,
+        "y": 960,
+        "wires": [
+            [
+                "f3c1a3f0.0c3e6"
+            ]
+        ]
+    },
+    {
+        "id": "f3c1a3f0.0c3e6",
+        "type": "http response",
+        "z": "885be883.51c658",
+        "g": "22b96541.91dd0a",
+        "name": "",
+        "x": 1150,
+        "y": 960,
+        "wires": []
+    },
+    {
+        "id": "6ceb930a.93146c",
+        "type": "http response",
+        "z": "885be883.51c658",
+        "g": "22b96541.91dd0a",
+        "name": "",
+        "x": 1150,
+        "y": 880,
+        "wires": []
+    },
+    {
+        "id": "bba61009.4459f",
+        "type": "template",
+        "z": "885be883.51c658",
+        "g": "22b96541.91dd0a",
+        "name": "HTML JSON",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "<html>\n    <head></head>\n    <body>\n        <h1>Ciao {{ payload.name }}!</h1>\n    </body>\n</html>",
+        "x": 950,
+        "y": 880,
+        "wires": [
+            [
+                "6ceb930a.93146c"
+            ]
+        ]
+    },
+    {
+        "id": "5b98a8ac.a46758",
+        "type": "http in",
+        "z": "885be883.51c658",
+        "g": "22b96541.91dd0a",
+        "name": "",
+        "url": "/hello-json",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 760,
+        "y": 880,
+        "wires": [
+            [
+                "bba61009.4459f"
+            ]
+        ]
+    },
+    {
+        "id": "d001dc53.264018",
+        "type": "template",
+        "z": "885be883.51c658",
+        "g": "c9f14f12.35747",
+        "name": "",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "yaml",
+        "syntax": "mustache",
+        "template": "Italia:\n    frutta:\n        - arance\n        - fragole\n    legumi:\n        - verze\n        - broccoli\nSpagna:\n    frutta:\n        - ciliege\n        - pompelmi\n    legumi:\n        - patate\n        - pomodori",
+        "output": "str",
+        "x": 780,
+        "y": 1060,
+        "wires": [
+            [
+                "9e173897.ccab38"
+            ]
+        ]
+    },
+    {
+        "id": "a631ad2e.febf2",
+        "type": "inject",
+        "z": "885be883.51c658",
+        "g": "c9f14f12.35747",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 600,
+        "y": 1060,
+        "wires": [
+            [
+                "d001dc53.264018"
+            ]
+        ]
+    },
+    {
+        "id": "9e173897.ccab38",
+        "type": "yaml",
+        "z": "885be883.51c658",
+        "g": "c9f14f12.35747",
+        "name": "",
+        "x": 910,
+        "y": 1060,
+        "wires": [
+            [
+                "588f9990.21743"
+            ]
+        ]
+    },
+    {
+        "id": "588f9990.21743",
+        "type": "change",
+        "z": "885be883.51c658",
+        "g": "c9f14f12.35747",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "alimenti",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1080,
+        "y": 1060,
+        "wires": [
+            [
+                "b4e556b5.138678"
+            ]
+        ]
+    },
+    {
+        "id": "3f38369a.fed952",
+        "type": "debug",
+        "z": "885be883.51c658",
+        "g": "c9f14f12.35747",
+        "name": "",
+        "active": true,
+        "console": "false",
+        "complete": "false",
+        "x": 1030,
+        "y": 1160,
+        "wires": []
+    },
+    {
+        "id": "249e58ed.5231b8",
+        "type": "inject",
+        "z": "885be883.51c658",
+        "g": "c9f14f12.35747",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": "",
+        "topic": "",
+        "payload": "Italia",
+        "payloadType": "str",
+        "x": 590,
+        "y": 1100,
+        "wires": [
+            [
+                "6d5ef611.7e4c9"
+            ]
+        ]
+    },
+    {
+        "id": "6d5ef611.7e4c9",
+        "type": "change",
+        "z": "885be883.51c658",
+        "g": "c9f14f12.35747",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "$lookup($flowContext('alimenti'), payload)",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 760,
+        "y": 1120,
+        "wires": [
+            [
+                "3f38369a.fed952"
+            ]
+        ]
+    },
+    {
+        "id": "799e8f63.f79ab8",
+        "type": "inject",
+        "z": "885be883.51c658",
+        "g": "c9f14f12.35747",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": "",
+        "topic": "",
+        "payload": "Spagna",
+        "payloadType": "str",
+        "x": 590,
+        "y": 1140,
+        "wires": [
+            [
+                "6d5ef611.7e4c9"
+            ]
+        ]
+    },
+    {
+        "id": "ea873589.6832e8",
+        "type": "inject",
+        "z": "885be883.51c658",
+        "g": "c9f14f12.35747",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": "",
+        "topic": "",
+        "payload": "[\"Italia\",\"frutta\"]",
+        "payloadType": "json",
+        "x": 620,
+        "y": 1200,
+        "wires": [
+            [
+                "cc133563.e5759"
+            ]
+        ]
+    },
+    {
+        "id": "cc133563.e5759",
+        "type": "change",
+        "z": "885be883.51c658",
+        "g": "c9f14f12.35747",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "$lookup($flowContext('food'), payload[0]) ~> $lookup(payload[1])",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 820,
+        "y": 1220,
+        "wires": [
+            [
+                "3f38369a.fed952"
+            ]
+        ]
+    },
+    {
+        "id": "c19fefdd.daac4",
+        "type": "inject",
+        "z": "885be883.51c658",
+        "g": "c9f14f12.35747",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": "",
+        "topic": "",
+        "payload": "[\"Spagna\",\"legumi\"]",
+        "payloadType": "json",
+        "x": 630,
+        "y": 1240,
+        "wires": [
+            [
+                "cc133563.e5759"
+            ]
+        ]
+    },
+    {
+        "id": "b4e556b5.138678",
+        "type": "debug",
+        "z": "885be883.51c658",
+        "g": "c9f14f12.35747",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1270,
+        "y": 1060,
+        "wires": []
+    }
+]

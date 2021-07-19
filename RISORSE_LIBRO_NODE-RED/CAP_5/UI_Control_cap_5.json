@@ -1,0 +1,602 @@
+[
+    {
+        "id": "e1fde12c.9db918",
+        "type": "tab",
+        "label": "UI CONTROL",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "4b02a21d.5e018c",
+        "type": "group",
+        "z": "e1fde12c.9db918",
+        "name": "Gruppo Admin1",
+        "style": {
+            "label": true
+        },
+        "nodes": [
+            "9e98ca1.3c01338",
+            "f66f66b4.8cedd8",
+            "c163987e.08b788",
+            "c669f6f.cbf9808",
+            "1efeded2.c32161",
+            "86a8e36.dd22f2",
+            "d5ecb787.1beb98"
+        ],
+        "x": 394,
+        "y": 259,
+        "w": 592,
+        "h": 242
+    },
+    {
+        "id": "94a1592b.5a7e68",
+        "type": "group",
+        "z": "e1fde12c.9db918",
+        "name": "Gruppo Admin Control",
+        "style": {
+            "label": true
+        },
+        "nodes": [
+            "cd36436d.6c672",
+            "9d00ec54.1bcdf",
+            "eb6bb9b4.b50a9",
+            "b96eb4f0.2b926",
+            "f19c719f.97fac",
+            "c7e8af31.5e0208",
+            "a3c3662e.b51e58"
+        ],
+        "x": 314,
+        "y": 39,
+        "w": 732,
+        "h": 202
+    },
+    {
+        "id": "edaf56f8.ea6898",
+        "type": "group",
+        "z": "e1fde12c.9db918",
+        "name": "Gruppo Admin2",
+        "style": {
+            "label": true
+        },
+        "nodes": [
+            "2a93bab8.36b096",
+            "ccd27b21.7da788",
+            "5c1d73ca.9edb8c",
+            "caae7990.fddda8",
+            "4dfb29a7.d6a7c8"
+        ],
+        "x": 414,
+        "y": 539,
+        "w": 532,
+        "h": 142
+    },
+    {
+        "id": "cd36436d.6c672",
+        "type": "ui_ui_control",
+        "z": "e1fde12c.9db918",
+        "g": "94a1592b.5a7e68",
+        "name": "",
+        "events": "all",
+        "x": 580,
+        "y": 140,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "9d00ec54.1bcdf",
+        "type": "ui_button",
+        "z": "e1fde12c.9db918",
+        "g": "94a1592b.5a7e68",
+        "name": "Admin1",
+        "group": "5fcb0776.c461c8",
+        "order": 1,
+        "width": 3,
+        "height": 1,
+        "passthru": false,
+        "label": "Gruppo 1",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "{\"group\":{\"hide\":[\"Admin_admin2\"],\"show\":[\"Admin_Control\",\"Admin_admin1\"]}}",
+        "payloadType": "json",
+        "topic": "",
+        "topicType": "str",
+        "x": 400,
+        "y": 80,
+        "wires": [
+            [
+                "cd36436d.6c672"
+            ]
+        ]
+    },
+    {
+        "id": "eb6bb9b4.b50a9",
+        "type": "ui_button",
+        "z": "e1fde12c.9db918",
+        "g": "94a1592b.5a7e68",
+        "name": "Admin2",
+        "group": "5fcb0776.c461c8",
+        "order": 2,
+        "width": 3,
+        "height": 1,
+        "passthru": false,
+        "label": "Gruppo 2",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "{\"group\":{\"hide\":[\"Admin_admin1\"],\"show\":[\"Admin_Control\",\"Admin_admin2\"]}}",
+        "payloadType": "json",
+        "topic": "",
+        "topicType": "str",
+        "x": 400,
+        "y": 140,
+        "wires": [
+            [
+                "cd36436d.6c672"
+            ]
+        ]
+    },
+    {
+        "id": "2a93bab8.36b096",
+        "type": "ui_date_picker",
+        "z": "e1fde12c.9db918",
+        "g": "edaf56f8.ea6898",
+        "name": "",
+        "label": "date",
+        "group": "7f74a584.dea814",
+        "order": 3,
+        "width": 12,
+        "height": 1,
+        "passthru": true,
+        "topic": "",
+        "x": 490,
+        "y": 640,
+        "wires": [
+            [
+                "5c1d73ca.9edb8c"
+            ]
+        ]
+    },
+    {
+        "id": "b96eb4f0.2b926",
+        "type": "ui_button",
+        "z": "e1fde12c.9db918",
+        "g": "94a1592b.5a7e68",
+        "name": "Admin3",
+        "group": "5fcb0776.c461c8",
+        "order": 3,
+        "width": 3,
+        "height": 1,
+        "passthru": false,
+        "label": "2 Gruppi",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "black",
+        "icon": "",
+        "payload": "{\"group\":{\"hide\":[],\"show\":[\"Admin_Control\",\"Admin_admin2\",\"Admin_admin1\"]}}",
+        "payloadType": "json",
+        "topic": "",
+        "topicType": "str",
+        "x": 400,
+        "y": 200,
+        "wires": [
+            [
+                "cd36436d.6c672"
+            ]
+        ]
+    },
+    {
+        "id": "f19c719f.97fac",
+        "type": "ui_button",
+        "z": "e1fde12c.9db918",
+        "g": "94a1592b.5a7e68",
+        "name": "Grafici",
+        "group": "5fcb0776.c461c8",
+        "order": 4,
+        "width": 3,
+        "height": 1,
+        "passthru": false,
+        "label": "tab Grafici",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "{\"tab\":\"Grafici\"}",
+        "payloadType": "json",
+        "topic": "",
+        "topicType": "str",
+        "x": 770,
+        "y": 100,
+        "wires": [
+            [
+                "a3c3662e.b51e58"
+            ]
+        ]
+    },
+    {
+        "id": "c7e8af31.5e0208",
+        "type": "ui_button",
+        "z": "e1fde12c.9db918",
+        "g": "94a1592b.5a7e68",
+        "name": "Home",
+        "group": "5fcb0776.c461c8",
+        "order": 5,
+        "width": 3,
+        "height": 1,
+        "passthru": false,
+        "label": "tab Home",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "{\"tab\":\"Home\"}",
+        "payloadType": "json",
+        "topic": "",
+        "topicType": "str",
+        "x": 774,
+        "y": 161,
+        "wires": [
+            [
+                "a3c3662e.b51e58"
+            ]
+        ]
+    },
+    {
+        "id": "a3c3662e.b51e58",
+        "type": "ui_ui_control",
+        "z": "e1fde12c.9db918",
+        "g": "94a1592b.5a7e68",
+        "name": "",
+        "events": "all",
+        "x": 960,
+        "y": 120,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "9e98ca1.3c01338",
+        "type": "inject",
+        "z": "e1fde12c.9db918",
+        "g": "4b02a21d.5e018c",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "5",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "value2",
+        "payload": "1",
+        "payloadType": "num",
+        "x": 500,
+        "y": 340,
+        "wires": [
+            [
+                "f66f66b4.8cedd8"
+            ]
+        ]
+    },
+    {
+        "id": "f66f66b4.8cedd8",
+        "type": "function",
+        "z": "e1fde12c.9db918",
+        "g": "4b02a21d.5e018c",
+        "name": "graph generate",
+        "func": "var data=context.get(\"data\")|| [];\nlet topic=msg.topic;\nif(typeof data[0]==\"undefined\" || topic==\"clear\")\n{\ndata=[];\ndata[0]=0;\ndata[1]=0;\nmsg.payload=[];\n}\nif (topic==\"value1\")\n{\n data[0] +=1;\n msg.payload=data[0]\n\n}\n if (topic==\"value2\")\n {\n data[1] +=2;\nmsg.payload=data[1];\n}\nif (topic==\"value3\")\n{\n data[2] +=3;\n msg.payload=data[0]\n}\nif (topic==\"value4\")\n{\n data[0] +=4;\n msg.payload=data[0]\n}\ncontext.set(\"data\",data);\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 720,
+        "y": 360,
+        "wires": [
+            [
+                "c669f6f.cbf9808"
+            ]
+        ]
+    },
+    {
+        "id": "c163987e.08b788",
+        "type": "inject",
+        "z": "e1fde12c.9db918",
+        "g": "4b02a21d.5e018c",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "4",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "value1",
+        "payload": "1",
+        "payloadType": "num",
+        "x": 500,
+        "y": 300,
+        "wires": [
+            [
+                "f66f66b4.8cedd8"
+            ]
+        ]
+    },
+    {
+        "id": "c669f6f.cbf9808",
+        "type": "ui_chart",
+        "z": "e1fde12c.9db918",
+        "g": "4b02a21d.5e018c",
+        "name": "",
+        "group": "fc657953.1b728",
+        "order": 1,
+        "width": 12,
+        "height": 6,
+        "label": "Grafico",
+        "chartType": "bar",
+        "legend": "true",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#400000",
+            "#ff8000",
+            "#570fff",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "x": 900,
+        "y": 360,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "1efeded2.c32161",
+        "type": "ui_button",
+        "z": "e1fde12c.9db918",
+        "g": "4b02a21d.5e018c",
+        "name": "",
+        "group": "fc657953.1b728",
+        "order": 2,
+        "width": 12,
+        "height": 1,
+        "passthru": false,
+        "label": "Clear",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "1",
+        "payloadType": "str",
+        "topic": "clear",
+        "topicType": "str",
+        "x": 470,
+        "y": 460,
+        "wires": [
+            [
+                "f66f66b4.8cedd8"
+            ]
+        ]
+    },
+    {
+        "id": "86a8e36.dd22f2",
+        "type": "inject",
+        "z": "e1fde12c.9db918",
+        "g": "4b02a21d.5e018c",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "5",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "value3",
+        "payload": "1",
+        "payloadType": "num",
+        "x": 500,
+        "y": 380,
+        "wires": [
+            [
+                "f66f66b4.8cedd8"
+            ]
+        ]
+    },
+    {
+        "id": "d5ecb787.1beb98",
+        "type": "inject",
+        "z": "e1fde12c.9db918",
+        "g": "4b02a21d.5e018c",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "5",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "value4",
+        "payload": "1",
+        "payloadType": "num",
+        "x": 500,
+        "y": 420,
+        "wires": [
+            [
+                "f66f66b4.8cedd8"
+            ]
+        ]
+    },
+    {
+        "id": "ccd27b21.7da788",
+        "type": "ui_text",
+        "z": "e1fde12c.9db918",
+        "g": "edaf56f8.ea6898",
+        "group": "7f74a584.dea814",
+        "order": 4,
+        "width": 12,
+        "height": 1,
+        "name": "",
+        "label": "Data",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "x": 870,
+        "y": 640,
+        "wires": []
+    },
+    {
+        "id": "5c1d73ca.9edb8c",
+        "type": "function",
+        "z": "e1fde12c.9db918",
+        "g": "edaf56f8.ea6898",
+        "name": "Date",
+        "func": "var date = new Date(msg.payload);\nmsg.payload = date.toString();\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 690,
+        "y": 640,
+        "wires": [
+            [
+                "ccd27b21.7da788"
+            ]
+        ]
+    },
+    {
+        "id": "caae7990.fddda8",
+        "type": "ui_gauge",
+        "z": "e1fde12c.9db918",
+        "g": "edaf56f8.ea6898",
+        "name": "",
+        "group": "7f74a584.dea814",
+        "order": 1,
+        "width": 12,
+        "height": 4,
+        "gtype": "gage",
+        "title": "Temperatura",
+        "label": "units",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "x": 690,
+        "y": 580,
+        "wires": []
+    },
+    {
+        "id": "4dfb29a7.d6a7c8",
+        "type": "ui_slider",
+        "z": "e1fde12c.9db918",
+        "g": "edaf56f8.ea6898",
+        "name": "",
+        "label": "Valore",
+        "tooltip": "",
+        "group": "7f74a584.dea814",
+        "order": 2,
+        "width": 12,
+        "height": 1,
+        "passthru": true,
+        "outs": "end",
+        "topic": "topic",
+        "topicType": "msg",
+        "min": "0",
+        "max": "100",
+        "step": 1,
+        "x": 490,
+        "y": 580,
+        "wires": [
+            [
+                "caae7990.fddda8"
+            ]
+        ]
+    },
+    {
+        "id": "5fcb0776.c461c8",
+        "type": "ui_group",
+        "name": "Control",
+        "tab": "7dfaf7ff.8d5ae",
+        "order": 1,
+        "disp": true,
+        "width": 30,
+        "collapse": false
+    },
+    {
+        "id": "7f74a584.dea814",
+        "type": "ui_group",
+        "name": "admin2",
+        "tab": "7dfaf7ff.8d5ae",
+        "order": 4,
+        "disp": false,
+        "width": 12,
+        "collapse": false
+    },
+    {
+        "id": "fc657953.1b728",
+        "type": "ui_group",
+        "name": "admin1",
+        "tab": "7dfaf7ff.8d5ae",
+        "order": 3,
+        "disp": false,
+        "width": 12,
+        "collapse": false
+    },
+    {
+        "id": "7dfaf7ff.8d5ae",
+        "type": "ui_tab",
+        "name": "Admin",
+        "icon": "dashboard",
+        "order": 10,
+        "disabled": false,
+        "hidden": false
+    }
+]

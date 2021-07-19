@@ -1,0 +1,137 @@
+[
+    {
+        "id": "39a33474.4b7d8c",
+        "type": "tab",
+        "label": "Notification",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "cccd455f.58cc68",
+        "type": "ui_toast",
+        "z": "39a33474.4b7d8c",
+        "position": "prompt",
+        "displayTime": "3",
+        "highlight": "",
+        "sendall": true,
+        "outputs": 1,
+        "ok": "OK",
+        "cancel": "Annulla",
+        "raw": false,
+        "topic": "",
+        "name": "",
+        "x": 1050,
+        "y": 220,
+        "wires": [
+            [
+                "748e1e3.064b2e"
+            ]
+        ]
+    },
+    {
+        "id": "3a8315a0.9fb94a",
+        "type": "ui_button",
+        "z": "39a33474.4b7d8c",
+        "name": "",
+        "group": "c92d8730.c94ae8",
+        "order": 11,
+        "width": "0",
+        "height": "0",
+        "passthru": false,
+        "label": "Nome",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "Inserisci il tuo nome",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 870,
+        "y": 220,
+        "wires": [
+            [
+                "cccd455f.58cc68"
+            ]
+        ]
+    },
+    {
+        "id": "748e1e3.064b2e",
+        "type": "ui_text",
+        "z": "39a33474.4b7d8c",
+        "group": "c92d8730.c94ae8",
+        "order": 9,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "NOME",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "x": 1230,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "9accd202.6eb63",
+        "type": "ui_toast",
+        "z": "39a33474.4b7d8c",
+        "position": "top right",
+        "displayTime": "30",
+        "highlight": "",
+        "sendall": true,
+        "outputs": 0,
+        "ok": "OK",
+        "cancel": "Annulla",
+        "raw": false,
+        "topic": "",
+        "name": "",
+        "x": 1070,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "65b01df8.1ecc44",
+        "type": "ui_button",
+        "z": "39a33474.4b7d8c",
+        "name": "",
+        "group": "c92d8730.c94ae8",
+        "order": 26,
+        "width": "0",
+        "height": "0",
+        "passthru": false,
+        "label": "Notifica",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "Clicca sul pulsante Nome per inserire il tuo nome",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 880,
+        "y": 280,
+        "wires": [
+            [
+                "9accd202.6eb63"
+            ]
+        ]
+    },
+    {
+        "id": "c92d8730.c94ae8",
+        "type": "ui_group",
+        "name": "Notification",
+        "tab": "56a34fa2.a6e26",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "56a34fa2.a6e26",
+        "type": "ui_tab",
+        "name": "Notification",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    }
+]

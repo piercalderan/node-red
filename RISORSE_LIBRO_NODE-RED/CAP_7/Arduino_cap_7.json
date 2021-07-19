@@ -1,0 +1,628 @@
+[
+    {
+        "id": "1a228fdc.40aa",
+        "type": "tab",
+        "label": "Flow Arduino",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "42362254.f0775c",
+        "type": "group",
+        "z": "1a228fdc.40aa",
+        "style": {
+            "stroke": "#999999",
+            "stroke-opacity": "1",
+            "fill": "none",
+            "fill-opacity": "1",
+            "label": true,
+            "label-position": "nw",
+            "color": "#a4a4a4"
+        },
+        "nodes": [
+            "819c510.7b85fb",
+            "b8a82a5d.0614e8",
+            "de922ac1.b5fcb8",
+            "233f1560.dee7ca",
+            "6e5812ca.f3cc1c",
+            "4e1ba320.77c37c",
+            "2ed75745.3a45d8"
+        ],
+        "x": 654,
+        "y": 179,
+        "w": 592,
+        "h": 202
+    },
+    {
+        "id": "62ef6804.ce8098",
+        "type": "group",
+        "z": "1a228fdc.40aa",
+        "style": {
+            "stroke": "#999999",
+            "stroke-opacity": "1",
+            "fill": "none",
+            "fill-opacity": "1",
+            "label": true,
+            "label-position": "nw",
+            "color": "#a4a4a4"
+        },
+        "nodes": [
+            "f3368ca6.b7f87",
+            "ec63f4f8.67f728",
+            "a0bd27b.9a034d8",
+            "3ea5ef3c.d4d2",
+            "546aef29.a8929",
+            "9f3af74.1307008",
+            "f72bb7b0.e5bc08",
+            "17d58e81.3fb781",
+            "df7f1288.b39c6",
+            "87a2cadc.590ad8"
+        ],
+        "x": 94,
+        "y": 99,
+        "w": 552,
+        "h": 282
+    },
+    {
+        "id": "6ae45c44.ba0194",
+        "type": "group",
+        "z": "1a228fdc.40aa",
+        "style": {
+            "stroke": "#999999",
+            "stroke-opacity": "1",
+            "fill": "none",
+            "fill-opacity": "1",
+            "label": true,
+            "label-position": "nw",
+            "color": "#a4a4a4"
+        },
+        "nodes": [
+            "3dca13e.d2dbcec",
+            "ab75a971.d2a8e8",
+            "5a295ab9.55df74"
+        ],
+        "x": 354,
+        "y": 419,
+        "w": 532,
+        "h": 82
+    },
+    {
+        "id": "819c510.7b85fb",
+        "type": "ui_text",
+        "z": "1a228fdc.40aa",
+        "g": "42362254.f0775c",
+        "group": "d237c821.18d178",
+        "order": 3,
+        "width": 12,
+        "height": 1,
+        "name": "",
+        "label": "Serial In",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "x": 920,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "b8a82a5d.0614e8",
+        "type": "serial in",
+        "z": "1a228fdc.40aa",
+        "g": "42362254.f0775c",
+        "name": "",
+        "serial": "7f5b134c.ffdc4c",
+        "x": 730,
+        "y": 260,
+        "wires": [
+            [
+                "233f1560.dee7ca",
+                "2ed75745.3a45d8",
+                "819c510.7b85fb"
+            ]
+        ]
+    },
+    {
+        "id": "f3368ca6.b7f87",
+        "type": "serial out",
+        "z": "1a228fdc.40aa",
+        "g": "62ef6804.ce8098",
+        "name": "",
+        "serial": "7f5b134c.ffdc4c",
+        "x": 560,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "de922ac1.b5fcb8",
+        "type": "ui_gauge",
+        "z": "1a228fdc.40aa",
+        "g": "42362254.f0775c",
+        "name": "",
+        "group": "d237c821.18d178",
+        "order": 13,
+        "width": 6,
+        "height": 5,
+        "gtype": "gage",
+        "title": "Temp",
+        "label": "°C",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "50",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "x": 1170,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "233f1560.dee7ca",
+        "type": "function",
+        "z": "1a228fdc.40aa",
+        "g": "42362254.f0775c",
+        "name": "Hum temp split",
+        "func": "var dht=msg.payload.split(\",\");\nhum={}\ntemp={}\nif (dht[0] < 200) \nhum={payload:dht[0]}\n\nif (dht[1] < 200) \ntemp={payload:dht[1]}\n\nreturn [hum,temp];",
+        "outputs": 2,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 940,
+        "y": 300,
+        "wires": [
+            [
+                "6e5812ca.f3cc1c"
+            ],
+            [
+                "de922ac1.b5fcb8"
+            ]
+        ]
+    },
+    {
+        "id": "6e5812ca.f3cc1c",
+        "type": "ui_gauge",
+        "z": "1a228fdc.40aa",
+        "g": "42362254.f0775c",
+        "name": "",
+        "group": "d237c821.18d178",
+        "order": 14,
+        "width": 6,
+        "height": 5,
+        "gtype": "wave",
+        "title": "Hum",
+        "label": "%",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "x": 1170,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "4e1ba320.77c37c",
+        "type": "ui_led",
+        "z": "1a228fdc.40aa",
+        "g": "42362254.f0775c",
+        "order": 2,
+        "group": "d237c821.18d178",
+        "width": 3,
+        "height": 1,
+        "label": "BUTTON STATUS",
+        "labelPlacement": "left",
+        "labelAlignment": "left",
+        "colorForValue": [
+            {
+                "color": "#ff0000",
+                "value": "false",
+                "valueType": "bool"
+            },
+            {
+                "color": "#008000",
+                "value": "true",
+                "valueType": "bool"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "circle",
+        "showGlow": true,
+        "name": "button",
+        "x": 1170,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "2ed75745.3a45d8",
+        "type": "function",
+        "z": "1a228fdc.40aa",
+        "g": "42362254.f0775c",
+        "name": "flow set get button status",
+        "func": "var status=flow.get(\"status\")\nmsg1={payload:status}\n\nif (msg.payload==200){\nflow.set(\"status\",true)\nmsg1={payload:true}\n}\n\nif (msg.payload==300){\nflow.set(\"status\",false)\nmsg1={payload:false}\n}\n\n\nreturn msg1;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 970,
+        "y": 260,
+        "wires": [
+            [
+                "4e1ba320.77c37c"
+            ]
+        ]
+    },
+    {
+        "id": "ec63f4f8.67f728",
+        "type": "ui_switch",
+        "z": "1a228fdc.40aa",
+        "g": "62ef6804.ce8098",
+        "name": "",
+        "label": "LED 1",
+        "tooltip": "",
+        "group": "d237c821.18d178",
+        "order": 4,
+        "width": 3,
+        "height": 1,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "topic",
+        "topicType": "msg",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "animate": false,
+        "x": 170,
+        "y": 180,
+        "wires": [
+            [
+                "546aef29.a8929",
+                "17d58e81.3fb781"
+            ]
+        ]
+    },
+    {
+        "id": "a0bd27b.9a034d8",
+        "type": "ui_switch",
+        "z": "1a228fdc.40aa",
+        "g": "62ef6804.ce8098",
+        "name": "",
+        "label": "LED 2",
+        "tooltip": "",
+        "group": "d237c821.18d178",
+        "order": 7,
+        "width": 3,
+        "height": 1,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "topic",
+        "topicType": "msg",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "animate": false,
+        "x": 170,
+        "y": 260,
+        "wires": [
+            [
+                "9f3af74.1307008",
+                "df7f1288.b39c6"
+            ]
+        ]
+    },
+    {
+        "id": "3ea5ef3c.d4d2",
+        "type": "ui_switch",
+        "z": "1a228fdc.40aa",
+        "g": "62ef6804.ce8098",
+        "name": "",
+        "label": "LED 3",
+        "tooltip": "",
+        "group": "d237c821.18d178",
+        "order": 10,
+        "width": 3,
+        "height": 1,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "topic",
+        "topicType": "str",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "animate": false,
+        "x": 170,
+        "y": 340,
+        "wires": [
+            [
+                "f72bb7b0.e5bc08",
+                "87a2cadc.590ad8"
+            ]
+        ]
+    },
+    {
+        "id": "546aef29.a8929",
+        "type": "function",
+        "z": "1a228fdc.40aa",
+        "g": "62ef6804.ce8098",
+        "name": "ON OFF LED 1",
+        "func": "if (msg.payload==true)\nmsg.payload=1\nif (msg.payload==false)\nmsg.payload=2\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 360,
+        "y": 180,
+        "wires": [
+            [
+                "f3368ca6.b7f87"
+            ]
+        ]
+    },
+    {
+        "id": "9f3af74.1307008",
+        "type": "function",
+        "z": "1a228fdc.40aa",
+        "g": "62ef6804.ce8098",
+        "name": "ON OFF LED 2",
+        "func": "if (msg.payload==true)\nmsg.payload=3\nif (msg.payload==false)\nmsg.payload=4\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 360,
+        "y": 260,
+        "wires": [
+            [
+                "f3368ca6.b7f87"
+            ]
+        ]
+    },
+    {
+        "id": "f72bb7b0.e5bc08",
+        "type": "function",
+        "z": "1a228fdc.40aa",
+        "g": "62ef6804.ce8098",
+        "name": "ON OFF LED 3",
+        "func": "if (msg.payload==true)\nmsg.payload=5\nif (msg.payload==false)\nmsg.payload=6\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 360,
+        "y": 340,
+        "wires": [
+            [
+                "f3368ca6.b7f87"
+            ]
+        ]
+    },
+    {
+        "id": "17d58e81.3fb781",
+        "type": "ui_led",
+        "z": "1a228fdc.40aa",
+        "g": "62ef6804.ce8098",
+        "order": 6,
+        "group": "d237c821.18d178",
+        "width": 3,
+        "height": 1,
+        "label": "LED 1 STATUS",
+        "labelPlacement": "left",
+        "labelAlignment": "left",
+        "colorForValue": [
+            {
+                "color": "#ff0000",
+                "value": "false",
+                "valueType": "bool"
+            },
+            {
+                "color": "#008000",
+                "value": "true",
+                "valueType": "bool"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "circle",
+        "showGlow": true,
+        "name": "led1",
+        "x": 290,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "df7f1288.b39c6",
+        "type": "ui_led",
+        "z": "1a228fdc.40aa",
+        "g": "62ef6804.ce8098",
+        "order": 9,
+        "group": "d237c821.18d178",
+        "width": 3,
+        "height": 1,
+        "label": "LED 2 STATUS",
+        "labelPlacement": "left",
+        "labelAlignment": "left",
+        "colorForValue": [
+            {
+                "color": "#ff0000",
+                "value": "false",
+                "valueType": "bool"
+            },
+            {
+                "color": "#008000",
+                "value": "true",
+                "valueType": "bool"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "circle",
+        "showGlow": true,
+        "name": "led2",
+        "x": 290,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "87a2cadc.590ad8",
+        "type": "ui_led",
+        "z": "1a228fdc.40aa",
+        "g": "62ef6804.ce8098",
+        "order": 12,
+        "group": "d237c821.18d178",
+        "width": 3,
+        "height": 1,
+        "label": "LED 3 STATUS",
+        "labelPlacement": "left",
+        "labelAlignment": "left",
+        "colorForValue": [
+            {
+                "color": "#ff0000",
+                "value": "false",
+                "valueType": "bool"
+            },
+            {
+                "color": "#008000",
+                "value": "true",
+                "valueType": "bool"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "circle",
+        "showGlow": true,
+        "name": "led3",
+        "x": 290,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "3dca13e.d2dbcec",
+        "type": "inject",
+        "z": "1a228fdc.40aa",
+        "g": "6ae45c44.ba0194",
+        "name": "Blink",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "2",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 450,
+        "y": 460,
+        "wires": [
+            [
+                "ab75a971.d2a8e8"
+            ]
+        ]
+    },
+    {
+        "id": "ab75a971.d2a8e8",
+        "type": "trigger",
+        "z": "1a228fdc.40aa",
+        "g": "6ae45c44.ba0194",
+        "name": "",
+        "op1": "1",
+        "op2": "0",
+        "op1type": "num",
+        "op2type": "num",
+        "duration": "1",
+        "extend": false,
+        "overrideDelay": false,
+        "units": "s",
+        "reset": "",
+        "bytopic": "all",
+        "topic": "topic",
+        "outputs": 1,
+        "x": 630,
+        "y": 460,
+        "wires": [
+            [
+                "5a295ab9.55df74"
+            ]
+        ]
+    },
+    {
+        "id": "5a295ab9.55df74",
+        "type": "serial out",
+        "z": "1a228fdc.40aa",
+        "g": "6ae45c44.ba0194",
+        "name": "",
+        "serial": "7f5b134c.ffdc4c",
+        "x": 800,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "d237c821.18d178",
+        "type": "ui_group",
+        "name": "Arduino Control",
+        "tab": "92d64174.216c1",
+        "order": 1,
+        "disp": true,
+        "width": 12,
+        "collapse": false
+    },
+    {
+        "id": "7f5b134c.ffdc4c",
+        "type": "serial-port",
+        "serialport": "COM46",
+        "serialbaud": "57600",
+        "databits": "8",
+        "parity": "none",
+        "stopbits": "1",
+        "waitfor": "",
+        "dtr": "none",
+        "rts": "none",
+        "cts": "none",
+        "dsr": "none",
+        "newline": "\\n",
+        "bin": "false",
+        "out": "char",
+        "addchar": "",
+        "responsetimeout": "10000"
+    },
+    {
+        "id": "92d64174.216c1",
+        "type": "ui_tab",
+        "name": "Arduino Home",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    }
+]

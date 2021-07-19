@@ -1,0 +1,254 @@
+[
+    {
+        "id": "fc39dfc3.779ef",
+        "type": "tab",
+        "label": "WIFI SCAN",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "3649fc0c.357a94",
+        "type": "ui_text",
+        "z": "fc39dfc3.779ef",
+        "group": "57d5b8ae.7b80c8",
+        "order": 10,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "SSID",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "x": 1090,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "8a4dd026.b4ba6",
+        "type": "ui_text",
+        "z": "fc39dfc3.779ef",
+        "group": "57d5b8ae.7b80c8",
+        "order": 10,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "BSSID",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "x": 1090,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "2ddbed24.916262",
+        "type": "ui_text",
+        "z": "fc39dfc3.779ef",
+        "group": "57d5b8ae.7b80c8",
+        "order": 10,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Frequency MHz",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "x": 1120,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "37a3b921.340c06",
+        "type": "ui_text",
+        "z": "fc39dfc3.779ef",
+        "group": "57d5b8ae.7b80c8",
+        "order": 10,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "RSSI",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "x": 1090,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "f69ee70a.e04108",
+        "type": "ui_text",
+        "z": "fc39dfc3.779ef",
+        "group": "57d5b8ae.7b80c8",
+        "order": 10,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Timestamp",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "x": 1110,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "6f0e1e28.ea74a",
+        "type": "ui_text",
+        "z": "fc39dfc3.779ef",
+        "group": "57d5b8ae.7b80c8",
+        "order": 10,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Channel bandwidth MHz",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "x": 1150,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "ee6ee4f0.0e3348",
+        "type": "function",
+        "z": "fc39dfc3.779ef",
+        "name": "JSON Stringify WIFI",
+        "func": "var element;\nvar entries;\n    element = msg.payload;\n    entries = Object.entries(element).map(([key, value]) => \n    ({ topic: key,payload: value }));\n\nmsg.payload=entries[0].payload;\n\nvar data = msg.payload;\nmsg.payload=JSON.stringify(data);\np=JSON.parse(msg.payload);\n\nmsg1={payload:p.ssid}\nmsg2={payload:p.bssid}\nmsg3={payload:p.frequency_mhz}\nmsg4={payload:p.rssi}\nmsg5={payload:p.timestamp}\nmsg6={payload:p.channel_bandwidth_mhz}\n\nreturn [msg1,msg2,msg3,msg4,msg5,msg6];\n\n",
+        "outputs": 6,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 860,
+        "y": 160,
+        "wires": [
+            [
+                "3649fc0c.357a94"
+            ],
+            [
+                "8a4dd026.b4ba6"
+            ],
+            [
+                "2ddbed24.916262"
+            ],
+            [
+                "37a3b921.340c06"
+            ],
+            [
+                "f69ee70a.e04108"
+            ],
+            [
+                "6f0e1e28.ea74a"
+            ]
+        ]
+    },
+    {
+        "id": "5b1fe5b5.a3a00c",
+        "type": "termux-wifi-scaninfo",
+        "z": "fc39dfc3.779ef",
+        "name": "",
+        "topic": "",
+        "x": 680,
+        "y": 240,
+        "wires": [
+            [
+                "ee6ee4f0.0e3348"
+            ]
+        ]
+    },
+    {
+        "id": "cab294ff.bceb78",
+        "type": "ui_button",
+        "z": "fc39dfc3.779ef",
+        "name": "",
+        "group": "57d5b8ae.7b80c8",
+        "order": 11,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "SSID: {{msg.payload}}",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "topic": "",
+        "x": 590,
+        "y": 140,
+        "wires": [
+            [
+                "5b1fe5b5.a3a00c"
+            ]
+        ]
+    },
+    {
+        "id": "99e2d011.05f0a",
+        "type": "function",
+        "z": "fc39dfc3.779ef",
+        "name": "Extract SSID",
+        "func": "var element;\nvar entries;\n    element = msg.payload;\n    entries = Object.entries(element).map(([key, value]) => \n    ({ topic: key,payload: value }));\n\nmsg.payload=entries[0].payload;\n\nvar data = msg.payload;\nmsg.payload=JSON.stringify(data);\np=JSON.parse(msg.payload);\nmsg1={payload:p.ssid}\n\nreturn msg1;\n\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 470,
+        "y": 240,
+        "wires": [
+            [
+                "cab294ff.bceb78"
+            ]
+        ]
+    },
+    {
+        "id": "92a70984.5c22b8",
+        "type": "termux-wifi-scaninfo",
+        "z": "fc39dfc3.779ef",
+        "name": "",
+        "topic": "",
+        "x": 380,
+        "y": 140,
+        "wires": [
+            [
+                "99e2d011.05f0a"
+            ]
+        ]
+    },
+    {
+        "id": "100e111e.28586f",
+        "type": "ui_button",
+        "z": "fc39dfc3.779ef",
+        "name": "",
+        "group": "57d5b8ae.7b80c8",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "WIFI SCAN",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "",
+        "x": 270,
+        "y": 200,
+        "wires": [
+            [
+                "92a70984.5c22b8"
+            ]
+        ]
+    },
+    {
+        "id": "57d5b8ae.7b80c8",
+        "type": "ui_group",
+        "name": "WIFI SCAN",
+        "tab": "ca6875e8.69b758",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "ca6875e8.69b758",
+        "type": "ui_tab",
+        "name": "WIFI SCAN",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    }
+]

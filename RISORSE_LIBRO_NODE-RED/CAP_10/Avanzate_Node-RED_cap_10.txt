@@ -1,0 +1,818 @@
+Funzionalità varie di Node-RED
+In questo Capitolo parliamo di alcune funzionalità di Node-RED che possono diventare utili.
+
+ Attenzione!
+Per poter usufruire da ora in poi degli esempi da copiare e incollare in file HTML o altro, viene fornito il file txt dei prossimi paragrafi, risultando altrimenti impossibile ricopiarli dalla pagine cartacee.
+ Varie_Node-RED.txt
+Tutti i flow sono contenuti in un file.
+ Varie_Node-RED_cap_10.json
+
+Intercettare gli errori
+Utilizzare il nodo Catch configurato per rilevare errori da nodi specifici nel flow o da qualsiasi nodo. Ciò consente di creare flow di gestione degli errori diversi per nodi diversi.
+Il nodo Catch invia il messaggio che è stato registrato con l'errore. Imposta anche msg.error con i dettagli dell'errore e quale nodo lo ha attivato.
+Esempio
+Scrivere nel nodo "Funzione" una funzione che contiene un errore:
+var payload = "Ciao"
+node.error("Errore:", msg);   
+return payload
+
+Nell'editor del nodo Catch selezionare il nodo da controllare o tutti i nodi.
+
+
+Convertire in/da JSON
+Convertire una proprietà del messaggio tra una stringa JSON e l'oggetto JavaScript che rappresenta.
+Il nodo JSON può essere utilizzato per convertire tra i due formati.
+Esempio
+
+Il primo flow inietta la stringa JSON {"a":1}
+Il nodo JSON converte la stringa nell'oggetto JavaScript equivalente.
+Il secondo flow fa il contrario, iniettando l'oggetto JSON { a: 1 } e convertendolo in stringa JSON.
+Il nodo JSON, per impostazione predefinita, rileverà ciò che viene dato per convertire. Può anche essere configurato per garantire che la proprietà sia un oggetto o una stringa.
+
+
+
+NOTA
+Nella finestra di debug la differenza fra oggetto e stringa è che la stringa è sempre visualizzata in colore rossiccio e fra apici "stringa" mentre l'oggetto è di colore blu e ha sempre un icona triangolo per mostrare la coppia o le coppie chiave:valore.
+
+Utilizzo di JSONATA
+Come abbiamo avuto modo di vedere, nell'editor di molti nodi è possibile scrivere espressioni JSONATA.
+Il simbolo dell'espressione deriva dal logo del linguaggio che riguarda quello di una chiave musicale, da qui il nome che richiama il termine "sonata".
+Nel sito ufficiale sono disponibili tutte le informazione ed esercizi per l'utilizzo di questo linguaggio le cui caratteristiche si possono riassumere così:
+Linguaggio leggero di query e trasformazione per dati JSON
+Ispirato alla semantica del percorso di posizione di XPath 3.1
+Espressioni di query sofisticate con sintassi minima
+Operatori e funzioni integrati per la manipolazione e la combinazione dei dati
+Crea funzioni definite dall'utente
+Formatta i risultati della query in qualsiasi struttura di output JSON
+
+
+Questo esempio mostra come è possibile memorizzare un oggetto in una variabile di flow e quindi interrogarlo utilizzando JSONATA. Ciò richiederebbe normalmente vari nodi funzione, ma è possibile fare questo utilizzando un linguaggio facile e intuitivo.
+
+Procedura passo passo
+Aggiungere un nodo Inject e collegarlo a un nodo Template che contiene, per esempio, il seguente codice di una semplice lista di alimenti suddivisi per nazione e tipologia:
+Italia:
+    frutta:
+       : arance
+       : fragole
+    legumi:
+       : verze
+       : broccoli
+Spagna:
+    frutta:
+       : ciliege
+       : pompelmi
+    legumi:
+       : patate
+       : pomodori
+Aggiungere un nodo YAML e collegarlo a un nodo Change con i seguenti parametri:
+Set -> flow.alimenti
+To -> msg.payload
+Aggiungere un nodo Debug.
+
+NOTA
+YAML (sito ufficiale https://yaml.org) è una collaborazione internazionale per creare un linguaggio di serializzazione dei dati che sia leggibile dall'uomo e potente dal punto di vista computazionale. 
+
+Il nodo Inject inietta il Template al nodo YAML che lo rende leggibile (fare una prova senza) che lo passa al Change che memorizza il payload nel flow.
+
+Aggiungere un nodo Inject con payload stringa = "Italia".
+Aggiungere un nodo Inject con payload stringa = "Spagna".
+Aggiungere un nodo Change e collegare entrambi i nodi Inject all'ingresso.
+Scrivere la seguente funzione JSONATA nel nodo Change:
+$lookup($flowContext('alimenti'), payload)
+Aggiungere un nodo Inject con il seguente payload JSON:
+[
+    "Italia",
+    "frutta"
+]
+Aggiungere un nodo Inject con il seguente payload JSON:
+[
+    "Spagna",
+    "legumi"
+]
+Aggiungere un nodo Change e collegare entrambi i nodi Inject all'ingresso.
+Scrivere la seguente funzione JSONATA nel nodo Change:
+$lookup($flowContext('alimenti'), payload[0]) ~> $lookup(payload[1])
+
+Premendo il primo nodo Inject (timestamp) si vedrà la lista degli alimenti formattata in YAML nella finestra di debug e il payload verrà memorizzato nel contesto del flow:
+
+A questo punto, con i relativi nodi Inject si può filtrare la lista con JSONATA che, nel primo caso, filtra gli alimenti per nazione (Italia e Spagna) e, nel secondo caso, filtra gli alimenti per nazione e tipologia:
+
+
+Function reference di JSONATA
+All'interno dell'editor di JSONATA è disponibile un menu a tendina con l'elenco di tutte le funzioni inseribili nel codice con il tasto Insert.
+
+
+C'è anche un tab per il Test del codice di input, che non verifica la sintassi della funzione, ma il risultato del codice formattato JSON in ingresso.
+Per esempio, scriviamo il codice JSON nella finestra "Example message" in questo modo:
+{
+  "numero": 144
+}
+Inseriamo, per esempio, una funzione presa dall'elenco:
+$sqrt(number)
+Basta cambiare l'argomento della funzione con la nostra chiave "numero" del codice JSON:
+$sqrt(numero)
+Nella finestra di test, otteniamo il risultato:
+12 (che è la radice quadrata di 144)
+
+
+
+Endpoint HTTP con un file locale
+Creare un endpoint HTTP che risponda alle richieste GET con contenuto da un file locale, come un'immagine png. Utilizzare il nodo File In per caricare il contenuto e impostare il valore Content-Type appropriato per il tipo di file restituito con un nodo Change.
+Esempio
+
+Quando si carica un file non di testo come un'immagine, il nodo File In deve essere configurato per restituire un oggetto Buffer. Il nodo HTTP in è impostato come GET e URL /hello.
+Affinché il destinatario sappia come gestire il file, l'intestazione Content-Type deve essere impostata sul tipo MIME appropriato. L'esempio sopra, che restituisce un file .png, imposta tramite un nodo Change l'intestazione Content-Type su image/png.
+
+
+Digitando l'URL locale http://127.0.0.1:1880/hello (o <IP_remoto>/hello) si vedrà l'immagine caricata:
+
+Lavorare con i cookie
+Creare un flow HTTP che utilizzi i cookie.
+I messaggi inviati dal nodo HTTP In includono la proprietà msg.req.cookies che elenca i cookie impostati sulla richiesta corrente.
+Il nodo HTTP Response utilizzerà la proprietà msg.cookies per impostare o cancellare i cookie.
+Il nodo HTTP Request accetterà una proprietà di input msg.cookies contenente i cookie da inviare con quella richiesta.
+Esempio
+
+Questo esempio fornisce tre endpoint HTTP ovvero tre nodi HTTP in impostati su GET e i seguenti URL:
+/hello-cookie: restituisce una pagina che elenca i cookie attualmente impostati
+/hello-cookie/add: aggiunge un nuovo cookie e reindirizza a /hello-cookie
+/hello-cookie/clear: cancella tutti i cookie creati dall'esempio e reindirizza a /hello-cookie
+
+La proprietà msg.req.cookies è un oggetto di coppie chiave:valore contenente i cookie impostati sulla richiesta corrente.
+Per impostare un cookie nella risposta, la proprietà msg.cookies deve essere impostata su un oggetto chiave:valore simile.
+Il valore può essere una stringa per impostare il valore del cookie con opzioni predefinite, oppure può essere un oggetto di opzioni.
+La funzione Format cookies contiene il seguente codice quando viene chiamato l'URL /hello:
+msg.payload = JSON.stringify(msg.req.cookies,null,4);
+return msg;
+L'uscita della funzione va alla pagina HTML che contiene questo codice di esempio (compreso un foglio stile interno):
+<html>
+    <head></head>
+    <body>
+<style>
+h1 {
+  color: blue;
+  font-family: verdana;
+  font-size: 250%;
+}
+p {
+  color: red;
+  font-family: verdana;
+  font-size: 200%;
+}
+</style>
+
+        <h1>Test Cookies</h1>
+        <p><a href="hello-cookie/add">Aggiungi un cookie</a> &bull; 
+        <a href="hello-cookie/clear">Cancella i cookies</a></p>
+        <pre>{{ payload }}</pre>
+    </body>
+</html>
+
+Dopo il deploy, digitando l'URL http://127.0.0.1:1880/hello-cookie, si vedrà qualcosa di simile a questo:
+ 
+Premendo sul link "Aggiungi un cookie" verrà effettuata la richiesta al link http://127.0.0.1:1880/hello-cookie/add che attiverà la funzione "Aggiungi un cookie", che contiene il seguente codice:
+msg.cookies = { };
+var obj = { date : new Date() };
+var json = JSON.stringify(obj);
+var p=JSON.parse(json)
+
+msg.cookies["Data: " + p.date] = Date.now();
+return msg;
+
+Si fa notare che il cookie è formato dal nome [Data :] + la data corrente + il timestamp in formato Epoch.
+Nella pagina HTML, ogni volta che si preme sul link Aggiungi un cookie, si vedrà qualcosa di simile a questo:
+
+
+La funzione "Cancella i cookies" contiene il seguente codice:
+var cookieNames = Object.keys(msg.req.cookies).filter(function(cookieName) 
+{ return /^Data: /.test(cookieName);});
+msg.cookies = {};
+
+cookieNames.forEach(function(cookieName) {
+    msg.cookies[cookieName] = null;
+});
+
+return msg;
+
+Si fa notare che il filtro è stato impostato sul nome e quindi la funzione cercherà il nome [Data: ].
+Per cui, premendo sul link "Cancella i cookies" apparirà qualcosa di simile a questo:
+
+L'esempio seguente imposta due cookie: uno chiamato "name" con un valore "pippo", l'altro chiamato "session" con un valore di 1234 e una scadenza impostata su 15 minuti (900000 ms).
+msg.cookies = {
+    name: 'nick',
+    session: {
+        value: '1234',
+        maxAge: 900000
+    }
+}
+Le opzioni valide includono:
+domain: (Stringa) nome di dominio per il cookie.
+expires: (Data) data di scadenza in GMT. Se non specificato o impostato a 0, crea un cookie di sessione.
+maxAge: (Stringa) data di scadenza rispetto all'ora corrente in millisecondi.
+path: (Stringa) percorso per il cookie. Il valore predefinito è /
+value: (Stringa) il valore da utilizzare per il cookie.
+
+La funzione "Aggiungi un cookie" ora diventa:
+msg.cookies = {
+    name: "pippo",
+    session: {
+        value: "1234",
+        maxAge: 900000
+    }
+}
+return msg;
+
+La funzione "Cancella un cookie" ora diventa:
+var cookieNames = Object.keys(msg.req.cookies).filter(function(cookieName)
+{ return /^name/.test(cookieName);});
+msg.cookies = {};
+cookieNames.forEach(function(cookieName) {
+    msg.cookies[cookieName] = null;
+});
+return msg;
+
+Si fa notare che il cookie ricercato è "name" e verrà cancellato solo quello.
+
+NOTA
+Dopo il refresh della pagina nona cambierà nulla affiNché i cookies rimangono in vita, ovvero il tempo di "expires" non sia trascorso. Se si vogliono eliminare prima, bisogna cancellare i dati di navigazione dalle impostazioni del browser.
+
+HHTP POST di un flow
+Per pubblicare dati di testo o JSON in un flow usare il nodo HTTP In per ascoltare le richieste POST che hanno il loro Content-Type impostato su text/plain o Content-Type impostato su application/json  e accedono ai dati POST come msg.payload.
+Esempio
+
+
+I due nodi HTTP in sono impostati su metodo POST e gli URL seguenti:
+/hello-json
+/hello-txt
+I nodi HTML contengono il seguente codice (molto semplificato):
+Primo nodo HTML:
+<html>
+    <head></head>
+    <body>
+        <h1>Ciao {{ payload.name }}!</h1>
+    </body>
+</html>
+Secondo nodo HTML:
+<html>
+    <head></head>
+    <body>
+        <h1>Ciao {{ payload }}!</h1>
+    </body>
+</html>
+
+Notare che il codice del primo nodo HTML legge la proprietà payload.name dell'oggetto JSON mentre il secondo legge solamente il payload così com'è.
+
+Per l'invio di un oggetto JSON, aprire una finestra del terminale e digitare la seguente riga curl:
+curl -X POST -d "{"\"name"\":"\"Pippo"\"}" -H "Content-type: application/json" http://localhost:1880/hello-json
+
+Per l'invio di un testo quyalsi non formattato, aprire una finestra del terminale e digitare la seguente riga curl:
+curl -X POST -d Pippo -H "Content-type: text/plain" http://localhost:1880/hello-txt
+
+
+Avvio di Node-RED all'avvio
+Esistono molti metodi per avviare, arrestare e monitorare le applicazioni all'avvio. Questa guida mette in evidenza alcuni dei possibili modi per farlo, in base alla piattaforma usata.
+
+Raspberry Pi, Debian, Ubuntu
+Se si vuole che Node-RED venga eseguito quando il Raspberry Pi (Raspberry Pi OS o altra distribuzione Linux) viene acceso o riavviato, si può abilitare il servizio per l'avvio automatico eseguendo il comando:
+sudo systemctl enable nodered.service
+
+Per disabilitare il servizio, eseguire il comando:
+sudo systemctl disable nodered.service
+
+Altre distribuzioni Linux, OSX
+La guida seguente illustra ciò che riteniamo essere il più semplice per la maggior parte degli utenti. 
+PM2 è un gestore di processi per Node.js. Semplifica l'esecuzione delle applicazioni all'avvio e assicura che vengano riavviate se necessario.
+Installare PM2
+sudo npm install -g pm2
+
+Determinare la posizione esatta del comando node-red.
+Se si è eseguita un'installazione globale di node-red, su Linux/OS X il node-red comando sarà probabilmente: /usr/bin/node-redo /usr/local/bin/node-red. Il comando which node-red può essere utilizzato per confermare la posizione.
+Se si è eseguita un'installazione locale, sarà node_modules/node-red/bin/node-red, relativa a dove è stato eseguito npm install.
+Impostare PM2 per l'esecuzione di Node-RED.
+Il comando seguente indica a PM2 di eseguire Node-RED, assumendo /usr/bin/node-red come posizione del comando node-red.
+L' argomento -- deve apparire prima di qualsiasi argomento che vuoi passare a node-red.
+
+pm2 start /usr/bin/node-red -- -v
+
+Questo avvierà Node-RED in background. È possibile visualizzare le informazioni sul processo e accedere all'output del registro utilizzando i comandi:
+pm2 info node-red
+pm2 logs node-red
+
+NOTA
+Se si sta eseguendo su un dispositivo come Raspberry Pi o BeagleBone Black che ha una quantità limitata di memoria, bisogna passare un argomento aggiuntivo:
+pm2 start /usr/bin/node-red --node-args="--max-old-space-size=128" -- -v
+
+NOTA
+Se si vuol eseguire come utente root, bisogna usare l'opzione "--userDir" per specificare dove Node-RED dovrebbe memorizzare i dati.
+
+Dire a PM2 di funzionare all'avvio
+PM2 è in grado di generare e configurare uno script di avvio adatto alla piattaforma su cui viene eseguito.
+Eseguire questi comandi e seguire le istruzioni fornite sul terminale:
+pm2 save
+pm2 startup
+
+Per i sistemi Linux più recenti usare il comando seguente:
+pm2 startup systemd
+
+Windows
+PM2 non viene eseguito automaticamente come servizio su Windows. Un'opzione alternativa consiste nell'utilizzare NSSM, un esempio del quale è disponibile della community di seguito.
+
+Esecuzione di Node-RED come servizio su Windows utilizzando NSSM 
+https://gist.github.com/dceejay/576b4847f0a17dc066db
+
+Queste istruzioni presuppongono che Node-RED sia stato installato da un prompt dei comandi abilitato dall'amministratore utilizzando il comando npm install -g node-red per farlo.
+Come amministratore, installare nssm da questo link:
+https://nssm.cc/download
+
+Scaricare l'ultima release e scompattare il file zip in una directory qualsiasi
+Dalla directory in cui è stato scompattato nssm, enterare nelle sotto directory fino a trovare l'eseguibile nssm.exe, per esempio:
+C:\Users\User\Downloads\nssm-2.24\nssm-2.24\win64 
+
+Eseguire i comandi:
+mkdir c:\temp
+nssm install Node-RED "c:\Users\\"%USERNAME%"\AppData\Roaming\npm\node-red.cmd"
+
+Apparirà il messaggio: Servizio "Node-RED" installato correttamente!
+
+nssm set Node-RED AppDirectory "c:\Users\\"%USERNAME%"\.node-red"
+
+Apparirà il messaggio: Configurazione del parametro "AppDirectory" del servizio "Node-RED"
+
+nssm set Node-RED AppParameters "-u c:\Users\\"%USERNAME%"\.node-red > c:\temp\node-red.log"
+
+Apparirà il messaggio: Configurazione del parametro "AppParameters" del servizio "Node-RED".
+
+nssm set Node-RED Description "Una descrizione qualsiasi"
+
+Apparirà il messaggio: Configurazione del parametro "Description" del servizio "Node-RED".
+
+Riavviare Windows.
+Si può modificare il servizio utilizzando la GUI per la configurazione, aggiungere parametri extra, ecc.
+nssm edit Node-RED
+
+Il log verrà scritto su c:\temp\node-red.log
+Per ulteriori opzioni leggere la pagina di utilizzo di nssm: https://nssm.cc/usage.
+
+Sicurezza Node-RED
+Per impostazione predefinita, Node-RED non è protetto: chiunque possa accedere al suo indirizzo IP può accedere all'editor e distribuire le modifiche.
+Questo ovviamente può andare bene solo se si sta utilizzando una rete affidabile o in locale. In tutti gli altri casi, soprattutto se ci si collega da remoto, si consiglia di usare le cautele di sicurezza
+
+NOTA
+Il file settings.js si trova nella cartella di installazione di .node-red.
+
+Abilitazione dell'accesso HTTPS
+Questo tutorial è diviso in tre parti:
+Protezione dell'editor e dell'Admin API
+Protezione dei nodi HTTP e del dashboard di Node-RED
+Abilitazione dell'accesso HTTPS
+
+Per abilitare l'accesso all'editor Node-RED su HTTPS, anziché all'HTTP predefinito, è possibile utilizzare l'opzione https di configurazione nel file settings.js.
+L'opzione https può essere un insieme statico di opzioni di configurazione o una funzione che restituisce le opzioni.
+L'intero set di opzioni è documentato a questo link:
+https://nodejs.org/api/tls.html#tls_tls_createsecurecontext_options
+
+Le opzioni dovrebbero includere:
+key: chiave privata in formato PEM, fornita come String o Buffer
+cert: catena di certificati in formato PEM, fornita come String o Buffer
+
+Per una guida su come generare certificati, è possibile seguire la guida a questo link:
+https://it.knightnet.org.uk/kb/nr-qa/https-valid-certificates/
+
+Il file settings.js di Node-RED predefinito include una sezione https commentata che può essere utilizzata per caricare i certificati dai file locali.
+
+https: {
+    key: require("fs").readFileSync('privkey.pem'),
+    cert: require("fs").readFileSync('cert.pem')
+},
+
+Se la proprietà https è una funzione, può essere utilizzata per restituire l'oggetto options. La funzione può facoltativamente restituire un Promise che si risolverà nell'oggetto options, consentendone il completamento in modo asincrono.
+https: function() {
+    return new Promise((resolve, reject) => {
+        var key, cert;
+        // Do some work to obtain valid certificates
+        // ...
+        resolve({
+            key: key
+            cert: ccert
+        })
+    });
+}
+
+Aggiornamento dei certificati HTTPS
+È possibile configurare Node-RED per aggiornare periodicamente i suoi certificati HTTPS senza dover riavviare Node-RED. Per farlo:
+È necessario utilizzare Node.js 11 o successivo
+L'impostazione https deve essere una Funzione che può essere chiamata per ottenere i certificati aggiornati
+Impostare frequenza la httpsRefreshInterval (in ore) con cui Node-RED deve chiamare la funzione https per ottenere i dettagli aggiornati.
+
+La funzione https dovrebbe determinare se i certificati correnti scadranno entro il periodo di RefreshInterval successivo e, in tal caso, generare un nuovo set di certificati. Se non è richiesto alcun aggiornamento, la funzione può restituire undefined o null.
+
+Sicurezza dell'editor e dell'amministratore API
+L'Editor e Admin API supportano due tipi di autenticazione:
+autenticazione basata su credenziali nome utente/password
+autenticazione contro qualsiasi provider OAuth/OpenID come Twitter o GitHub
+
+Autenticazione basata su nome utente/password
+Per abilitare l'autenticazione dell'utente sull'editor e sull'amministrazione API, decommentare la proprietà adminAuth nel file settings.js:
+adminAuth: {
+    type: "credentials",
+    users: [
+        {
+            username: "admin",
+            password: "$2a$08$zZWtXTja0fB1pzD4sHCMyOCMYz2Z6dNbM6tl8sJogENOMcxWV9DN.",
+            permissions: "*"
+        },
+        {
+            username: "pippo",
+            password: "$2b$08$wuAqPiKJlVN27eF5qJp.RuQYuy6ZYONW7a/UWYxDTtwKFCdB8F19y",
+            permissions: "read"
+        }
+    ]
+}
+La proprietà users è un array di oggetti utente. Ciò consente di definire più utenti, ognuno dei quali può disporre di autorizzazioni diverse.
+La configurazione di esempio qui sopra definisce due utenti. Uno chiamato admin che ha il permesso di fare tutto all'interno dell'editor e ha una password di password. L'altro chiamato pippo a cui viene concesso l'accesso in sola lettura.
+Si noti che le password vengono crittografate in modo sicuro utilizzando l'algoritmo bcrypt.
+
+Generazione dell'hash della password
+Per la generazione dell'hash della password è possibile usare il comando:
+node-red admin hash-pw
+
+Oppure, individuare la directory in cui è stato installato Node-RED e utilizzare il comando:
+node -e "console.log(require('bcryptjs').hashSync(process.argv[1], 8));" your-password-here
+
+In tutti i casi, si otterrà la versione con hash della password da incollare nel file settings.js.
+
+Procedura passo passo
+Aprire il file setting.js.
+Decommentare la sezione seguente:
+   adminAuth: {
+        type: "credentials",
+        users: [{
+            username: "admin",
+            password: "$2a$08$zZWtXTja0fB1pzD4sHCMyOCMYz2Z6dNbM6tl8sJogENOMcxWV9DN.",
+            permissions: "*"
+        }]
+    },
+Dal terminale (cmd per Windows) digitare il comando seguente:
+node-red admin hash-pw
+
+Al prompt Password: digitare una password facile da ricordare ma abbastanza complessa, per esempio, AdGjMptW30101958.
+Apparirà l'hash per la password, che assomiglierà a qualcosa simile a questo:
+$2b$08$2OUYUMk62TIBij2uXcwC5uxD09eC7OlG56Xq1RQuZq.o4SJhAwDae
+
+Copiare l'hash e incollarlo nel file settings.js alla riga password sovrascrivendo quella esistente:
+password: "$2b$08$2OUYUMk62TIBij2uXcwC5uxD09eC7OlG56Xq1RQuZq.o4SJhAwDae"
+
+Modificare opzionalmente il nome utente.
+Salvare e chiudere il file settings.js.
+Lanciare il server Node-RED.
+0	Aprire l'editor in locale o da remoto e apparirà qualsosa di simile a questo:
+
+q	Immettere la password che avete scelto, per esempio, AdGjMptW30101958.
+w	L'editor si aprirà e il browser vi chiederà di salvare o meno la password.
+
+Se si vuole aggiungere un utente in sola lettura modificare in questo modo, ripetendo l'operazione di generazione del'hash e creando una password apposita per l'utente e scrivendo "read" alla riga permissions:
+adminAuth: {
+    type: "credentials",
+    users: [
+        {
+            username: "admin",
+            password: "$2a$08$zZWtXTja0fB1pzD4sHCMyOCMYz2Z6dNbM6tl8sJogENOMcxWV9DN.",
+            permissions: "*"
+        },
+        {
+            username: "pippo",
+            password: "$2b$08$wuAqPiKJlVN27eF5qJp.RuQYuy6ZYONW7a/UWYxDTtwKFCdB8F19y",
+            permissions: "read"
+        }
+    ]
+}
+
+Autenticazione basata su OAuth/OpenID
+Per utilizzare una fonte di autenticazione esterna, Node-RED può utilizzare un'ampia gamma di strategie fornite da Passport per Node-RED. I dettagli a questo link:
+https://www.passportjs.org/
+
+I moduli di autenticazione Node-RED sono disponibili sia per Twitter che per GitHub. Racchiudono alcuni dettagli specifici della strategia per renderla più facile da usare. Ma possono anche essere usati come modello per l'autenticazione con altre strategie simili.
+L'esempio seguente mostra come configurare l'autenticazione su Twitter senza utilizzare il modulo di autenticazione che vien fornita.
+adminAuth: {
+    type:"strategy",
+    strategy: {
+        name: "twitter",
+        label: 'Sign in with Twitter',
+        icon:"fa-twitter",
+        strategy: require("passport-twitter").Strategy,
+        options: {
+            consumerKey: TWITTER_APP_CONSUMER_KEY,
+            consumerSecret: TWITTER_APP_CONSUMER_SECRET,
+            callbackURL: "http://example.com/auth/strategy/callback",
+            verify: function(token, tokenSecret, profile, done) {
+                done(null, profile);
+            }
+        },
+    },
+    users: [
+       { username: "knolleary",permissions: ["*"]}
+    ]
+}
+
+La struttura strategy accetta le seguenti opzioni:
+name: il nome della strategia di passaporto utilizzata
+strategy: il modulo della strategia del passaporto
+label/icon: utilizzato nella pagina di accesso. icon può essere qualsiasi nome di icona FontAwesome.
+options: un oggetto options passato alla strategia del passaporto quando viene creato. Fare riferimento alla documentazione della strategia per ciò che richiede. Vedi sotto per un nodo su callbackURL.
+verify: la funzione di verifica utilizzata dalla strategia. Deve chiamare done con un profilo utente come secondo argomento se l'utente è valido. Questo dovrebbe avere una proprietà username che viene utilizzata per controllare l'elenco di utenti validi. Passport tenta di standardizzare l'oggetto profilo utente, quindi la maggior parte delle strategie fornisce questa proprietà.
+
+Il callbackURL usato da una strategia è il punto in cui il provider di autenticazione reindirizzerà a seguito di un tentativo di autenticazione.
+Deve essere l'URL del proprio editor Node-RED con aggiunto /auth/strategy/callback al percorso.
+Per esempio, se si accedi all'editor da... 
+http://localhost:1880
+
+... bisognerà utilizzere
+http://localhost:1880/auth/strategy/callback.
+
+Impostazione di un utente predefinito
+La configurazione di esempio sopra impedirà a chiunque di accedere all'editor a meno che effettui il login.
+In alcuni casi, è desiderabile consentire a tutti un certo livello di accesso. In genere, questo darà accesso in sola lettura all'editor. Per fare ciò, è possibile aggiungere la proprietà default all'impostazione adminAuth per definire l'utente predefinito:
+adminAuth: {
+    type: "credentials",
+    users: [ /* list of users */ ],
+    default: {
+        permissions: "read"
+    }
+}
+
+Permessi utente
+I permessi possono essere molto più dettagliati e per supportarli, la proprietà può essere una singola stringa come prima, o un array contenente più permessi.
+Ciascun metodo dell'Admin API definisce quale livello di autorizzazione è necessario per accedervi. Il modello di autorizzazione è basato sulle risorse. Per esempio, per ottenere la configurazione del flow corrente, un utente richiederà l' autorizzazione flows.read. Ma per l'aggiornamento (deploy) i flow richiederanno l'autorizzazione flows.write.
+
+Scadenza del token
+Per impostazione predefinita, i token di accesso scadono dopo 7 giorni dalla creazione. Al momento non è supportato l'aggiornamento del token per estendere questo periodo.
+L'ora di scadenza può essere personalizzata impostando la proprietà sessionExpiryTime dell'impostazione adminAuth. Questo definisce, in secondi, per quanto tempo è valido un token. Per esempio, per impostare la scadenza dei token dopo 1 giorno:
+adminAuth: {
+    sessionExpiryTime: 86400,
+    ... }
+
+Accesso all'Admin API
+Con il set di proprietà adminAuth, la documentazione dell'Admin API descrive come accedere all'API al seguente link:
+https://nodered.org/docs/api/admin/oauth
+
+Autenticazione utente personalizzata
+Anziché codificare gli utenti nel file settings.js, è anche possibile inserire codice personalizzato per autenticare gli utenti. Ciò rende possibile l'integrazione con gli schemi di autenticazione esistenti.
+L'esempio seguente mostra come è possibile utilizzare un modulo esterno per fornire il codice di autenticazione personalizzato.
+Salvare quanto segue in un file chiamato <node-red>/user-authentication.js
+module.exports = {
+   type: "credentials",
+   users: function(username) {
+       return new Promise(function(resolve) {
+           // Do whatever work is needed to check username is a valid
+           // user.
+if (valid) {// Resolve with the user object. It must contain properties 'username' and 'permissions'
+               var user = { username: "admin", permissions: "*" };
+               resolve(user);
+           } else {
+               // Resolve with null to indicate this user does not exist
+               resolve(null);
+           }
+       });
+   },
+   authenticate: function(username,password) {
+       return new Promise(function(resolve) {
+           // Do whatever work is needed to validate the username/password combination.
+           if (valid) {
+               // Resolve with the user object. Equivalent to having called users(username);
+               var user = { username: "admin", permissions: "*" };
+               resolve(user);
+           } else {
+               // Resolve with null to indicate the username/password pair were not valid.
+               resolve(null);
+           }
+       });
+   },
+   default: function() {
+       return new Promise(function(resolve) {
+// Resolve with the user object for the default user. If no default user exists, resolve with null.
+           resolve({anonymous: true, permissions:"read"});
+       });
+   }
+}
+
+Impostare la proprietà adminAuth in settings.js per caricare questo modulo:
+adminAuth: require("./user-authentication")
+
+Token di autenticazione personalizzati
+In alcune circostanze potrebbe essere necessario utilizzare i propri token di autenticazione e non utilizzare quelli generati da Node-RED. Per esempio, si desidera utilizzare l'autenticazione utente basata su OAuth, ma è anche necessario l'accesso automatico all'Admin API che non può eseguire i passaggi di autenticazione interattiva richiesti da OAuth.
+Si vuole integrare Node-RED in un sistema esistente in cui gli utenti saranno già registrati e non si vuole che debbano effettuare nuovamente il login quando accedono all'editor
+L'impostazione adminAuth può includere una funzione tokens. Questa funzione verrà chiamata se una richiesta all'Admin API non contiene un token di autenticazione che Node-RED riconosce come uno dei suoi. Viene passato il token fornito nella richiesta e dovrebbe restituire un Promise che si risolve con l'utente autenticato o null se il token non è valido.
+adminAuth: {
+    ...
+    tokens: function(token) {
+        return new Promise(function(resolve, reject) {
+            // Do whatever work is needed to check token is valid
+            if (valid) {
+                // Resolve with the user object. It must contain
+                // properties 'username' and 'permissions'
+                var user = { username: 'admin', permissions: '*' };
+                resolve(user);
+            } else {
+                // Resolve with null as this user does not exist
+                resolve(null);
+            }
+        });
+    },
+    ...
+}
+
+Per impostazione predefinita, utilizzerà l' intestazione http Authorization e si aspetterà un token di tipo Bearer, passando solo il valore del token alla funzione. Se non è un token di tipo Bearer, Authorization verrà passato alla funzione il valore completo dell'intestazione, contenente sia il tipo che il valore.
+Per utilizzare un'intestazione HTTP diversa, è possibile utilizzare tokenHeader per l'impostazione per identificare quale intestazione utilizzare:
+
+adminAuth: {
+    ...
+    tokens: function(token) {
+        ...
+    },
+    tokenHeader: "x-my-custom-token"
+}
+
+Accesso all'editor con un token personalizzato
+Per accedere all'editor utilizzando un token personalizzato senza la richiesta di accesso, aggiungere
+?access_token=<ACCESS_TOKEN> all'URL. 
+L'editor memorizzerà quel token localmente e lo utilizzerà per tutte le richieste future.
+
+Sicurezza del nodo HTTP
+I route esposti dai nodi HTTP In possono essere protetti utilizzando l'autenticazione di base.
+La proprietà httpNodeAuth nel file settings.js può essere utilizzata per definire un singolo nome utente e password che saranno autorizzati ad accedere ai route.
+
+httpNodeAuth: {user:"user",pass:"$2a$08$zZWtXTja0fB1pzD4sHCMyOCMYz2Z6dNbM6tl8sJogENOMcxWV9DN."},
+
+La proprietà pass utilizza lo stesso formato di adminAuth. Vedere il precedente "Generazione dell'hash della password" per ulteriori informazioni.
+L'accesso a qualsiasi contenuto statico definito dalla proprietà httpStatic può essere protetto utilizzando la proprietà httpStaticAuth, che utilizza lo stesso formato.
+Creare un proprio nodo
+Se vi piace il mondo della programmazione, questa guida può essere utile a creare un proprio nodo personalizzato e magari anche utile alla community.
+Ad ogni modo, può servire a capire come sono fatti i nodi e come funzionano.
+
+Un semplice nodo maiuscolo-minuscolo
+Quello che segue è un semplice tutorial per creare un nodo che converte i payload dei messaggi in caratteri minuscoli.
+I nodi sono costituiti da questi tre file:
+un file JavaScript che definisce cosa fa il nodo.
+un file html che definisce le proprietà del nodo, la finestra di dialogo di modifica e il testo della guida.
+un package.jsonfile viene utilizzato per impacchettare tutto insieme come modulo npm.
+
+Creare una directory in cui sviluppare il codice, per esempio, mio_nodo.
+All'interno di quella directory, creare i seguenti file:
+package.json
+lower-case.js
+lower-case.html
+
+Il file package.json
+Questo è un file standard utilizzato dai moduli Node.js per descrivere il loro contenuto.
+Per generare un file package.json standard è possibile usare il comando:
+npm init
+
+Questo porrà una serie di domande per aiutare a creare il contenuto iniziale per il file, usando impostazioni predefinite dove possibile. 
+Quando richiesto, assegnare come prima cosa il nome:
+node-red-contrib-example-lower-case
+
+Si può rispondere alla richieste fra parentesi con invio.
+Per esempio, al prompt dei comandi inserire qualcosa di simile a questo, ma cambiando ovviamente le informazioni su github, autore, test command, eccetera:
+package name: (mio_nodo) node-red-contrib-example-lower-case
+version: (1.0.0)
+description: Nodo di esempio per convertire i caratteri a minuscolo.
+entry point: (index.js)
+test command: ctrl+l
+git repository: https://github.com/piercalderan
+keywords:
+author: Pier Calderan
+license: (ISC)
+About to write to C:\Users\User\Downloads\FLOWS PER IL LIBRO\mio_nodo\package.json:
+{
+  "name": "node-red-contrib-example-lower-case",
+  "version": "1.0.0",
+  "description": "Nodo di esempio per convertire i caratteri a minuscolo.",
+  "main": "index.js",
+  "scripts": {
+    "test": "ctrl+l"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/piercalderan"
+  },
+  "author": "Pier Calderan",
+  "license": "ISC"
+}
+Is this OK? (yes)
+
+Una volta generato il file package.json, aprirlo con un notepad (Programmer's Notepad, Notepad ++,...) e aggiungere una sezione node-red (contrassegnata in rosso) dopo aver inserito una virgola alla fine della riga "license": "ISC":
+{
+    "name" : "node-red-contrib-example-lower-case",
+    ...
+	"license": "ISC",
+    "node-red" : {
+        "nodes": {
+            "lower-case": "lower-case.js"
+        }
+    }
+}
+
+NOTA
+Se non si è sicuri di aver inserito correttamente i dati JSON, perovare a incollare il codice in uno dei tanti JSON Checker online, per esempio, https://jsonformatter.org.
+
+Il file package.json dice al runtime quali file di nodo contiene il modulo.
+Per ulteriori informazioni su come impacchettare il nodo, inclusi i requisiti sulla denominazione e altre proprietà che dovrebbero essere impostate prima di pubblicare il nodo, fare riferimento alla guida al pacchetto a questo link:
+https://nodered.org/docs/creating-nodes/packaging
+
+ Attenzione!
+Non pubblicare questo nodo di esempio su npm!
+
+Il file lower-case.js
+Con un notepad adatto creare il file lower-case.js e scrivere il seguente codice JavaScript:
+module.exports = function(RED) {
+    function LowerCaseNode(config) {
+        RED.nodes.createNode(this,config);
+        var node = this;
+        node.on('input', function(msg) {
+            msg.payload = msg.payload.toLowerCase();
+            node.send(msg);
+        });
+    }
+    RED.nodes.registerType("lower-case",LowerCaseNode);
+}
+
+Il nodo è "wrapped" come modulo Node.js. Il modulo esporta una funzione che viene chiamata quando il runtime carica il nodo all'avvio. La funzione viene chiamata con un singolo argomento (RED) che fornisce al modulo l'accesso all'API di runtime di Node-RED.
+Il nodo stesso è definito da una funzione "LowerCaseNode" che viene chiamata ogni volta che viene creata una nuova istanza del nodo. Viene passato un oggetto contenente le proprietà specifiche del nodo impostate nell'editor del flow.
+La funzione LowerCaseNode chiama RED.nodes.createNode per inizializzare le funzionalità condivise da tutti i nodi.
+In questo caso, il nodo registra un ascoltatore inputdell'evento che viene chiamato ogni volta che un messaggio arriva al nodo. All'interno di questo listener, cambia il payload in minuscolo, quindi chiama la sendfunzione per passare il messaggio nel flusso.
+Infine, la funzione LowerCaseNode viene registrata con il runtime utilizzando il nome del nodo, lower-case.
+
+Se il nodo ha dipendenze da moduli esterni, queste devono essere incluse nella sezione dependencies del relativo file package.json.
+Per ulteriori informazioni sulla parte di runtime del nodo, vedere la guida a questo link:
+https://nodered.org/docs/creating-nodes/node-js
+
+Il file lower-case.html
+Con un notepad adatto creare il file lower-case.html e scrivere il seguente codice:
+<script type="text/javascript">
+    RED.nodes.registerType('lower-case',{
+        category: 'function',
+        color: '#a6bbcf',
+        defaults: {
+            name: {value:""}
+        },
+        inputs:1,
+        outputs:1,
+        icon: "file.png",
+        label: function() {
+            return this.name||"lower-case";
+        }
+    });
+</script>
+
+<script type="text/html" data-template-name="lower-case">
+    <div class="form-row">
+        <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+</script>
+
+<script type="text/html" data-help-name="lower-case">
+    <p>Un semplice nodo che converte i payload dei messaggi in tutti i caratteri minuscoli</p>
+</script>
+
+Il file HTML di un nodo fornisce le seguenti cose:
+la definizione del nodo principale che è registrata con l'editor
+il modello di modifica
+il testo di aiuto
+
+In questo esempio, si possono modificare "name":
+per esempio, "Mio lower-case"
+
+... e la descrizione per l'help che apparirà nella finestra Info:
+per esempio, "Un semplice nodo che converte i payload dei messaggi in tutti i caratteri minuscoli"
+
+NOTA
+Sebbene non sia necessario, esiste una convenzione ampiamente utilizzata per queste proprietà per aiutare a distinguere tra più istanze di un nodo in un singolo flow.
+Per ulteriori informazioni sulla parte dell'editor del nodo, vedere la guida a questo link.
+https://nodered.org/docs/creating-nodes/node-html
+
+Testare il nodo in Node-RED
+Dopo aver creato un modulo del nodo di base come descritto sopra, è possibile installarlo nel runtime di Node-RED.
+Per testare un modulo nodo localmente è possibile utilizzare il comando:
+npm install <percorso_della_cartella>
+Per esempio:
+npm install C:\Users\User\Downloads\mio_nodo
+Posizionarsi sul percorso di node-red:
+Linux
+cd ~/.node-red
+Windows
+cd C:\Users\User\.node_red
+
+Notare che npm aggiungerà automaticamente una voce per il modulo nel file package.json che si trova nella directory node-red.
+Ecco cosa dovrebbe apparire durante l'installazione:
+
+... e dopo l'installazione:
+
+Dopo l'avvio di Node-RED si può aprire l'editor nel browser e dovrebbe apparire il nodo lower-case fra i nodi della categoria Function.
+
+In un flow nuovo aggiungere un nodo Inject con payload stringa e una frase tutta in maiuscolo, per esempio, "IL MIO NODO", collegarlo al nodo lower-case e aggiungere un nodo debug.
+Dopo il deploy, facendo clic sul nodo Inject, si vedrà il payload tutto in minuscolo.
+Notare che il nome del nodo è quello che è stato messo nel file lower-case.html.
+
+
+Evidenziando il nodo e facendo clic sul tab Info, si vedrà la frase scelta per l'help:

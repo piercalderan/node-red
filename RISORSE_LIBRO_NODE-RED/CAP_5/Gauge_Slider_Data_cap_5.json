@@ -1,0 +1,433 @@
+[
+    {
+        "id": "ca7237a6.dfb1d8",
+        "type": "tab",
+        "label": "Gauge Slider Data",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "d963fdd1.e8773",
+        "type": "ui_gauge",
+        "z": "ca7237a6.dfb1d8",
+        "name": "",
+        "group": "dd36f3c2.25448",
+        "order": 1,
+        "width": 6,
+        "height": 5,
+        "gtype": "gage",
+        "title": "Temperatura",
+        "label": "units",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "x": 670,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "d1515073.36297",
+        "type": "ui_slider",
+        "z": "ca7237a6.dfb1d8",
+        "name": "",
+        "label": "slider 1",
+        "tooltip": "",
+        "group": "dd36f3c2.25448",
+        "order": 5,
+        "width": 6,
+        "height": 1,
+        "passthru": true,
+        "outs": "end",
+        "topic": "topic",
+        "topicType": "msg",
+        "min": "0",
+        "max": "100",
+        "step": 1,
+        "x": 500,
+        "y": 140,
+        "wires": [
+            [
+                "d963fdd1.e8773",
+                "d72783b8.3b152"
+            ]
+        ]
+    },
+    {
+        "id": "496dc99.ffbda38",
+        "type": "ui_slider",
+        "z": "ca7237a6.dfb1d8",
+        "name": "",
+        "label": "slider 2",
+        "tooltip": "",
+        "group": "dd36f3c2.25448",
+        "order": 6,
+        "width": 6,
+        "height": 1,
+        "passthru": true,
+        "outs": "end",
+        "topic": "topic",
+        "topicType": "msg",
+        "min": "0",
+        "max": "100",
+        "step": 1,
+        "x": 500,
+        "y": 200,
+        "wires": [
+            [
+                "c74cc3d3.2fc2",
+                "c801b498.2034c8"
+            ]
+        ]
+    },
+    {
+        "id": "6a0d1dba.3d67d4",
+        "type": "ui_slider",
+        "z": "ca7237a6.dfb1d8",
+        "name": "",
+        "label": "slider 3",
+        "tooltip": "",
+        "group": "dd36f3c2.25448",
+        "order": 7,
+        "width": 6,
+        "height": 1,
+        "passthru": true,
+        "outs": "end",
+        "topic": "topic",
+        "topicType": "msg",
+        "min": "0",
+        "max": "100",
+        "step": 1,
+        "x": 500,
+        "y": 260,
+        "wires": [
+            [
+                "a8da488c.1f2018",
+                "44f1c12a.0dd6c"
+            ]
+        ]
+    },
+    {
+        "id": "6bd4d80b.328818",
+        "type": "ui_slider",
+        "z": "ca7237a6.dfb1d8",
+        "name": "",
+        "label": "slider 4",
+        "tooltip": "",
+        "group": "dd36f3c2.25448",
+        "order": 8,
+        "width": 6,
+        "height": 1,
+        "passthru": true,
+        "outs": "end",
+        "topic": "topic",
+        "topicType": "msg",
+        "min": "0",
+        "max": "100",
+        "step": 1,
+        "x": 500,
+        "y": 320,
+        "wires": [
+            [
+                "86ed1b0e.e2cf78",
+                "4340112.84317f"
+            ]
+        ]
+    },
+    {
+        "id": "86ed1b0e.e2cf78",
+        "type": "ui_gauge",
+        "z": "ca7237a6.dfb1d8",
+        "name": "",
+        "group": "dd36f3c2.25448",
+        "order": 4,
+        "width": 6,
+        "height": 5,
+        "gtype": "wave",
+        "title": "Umidità",
+        "label": "units",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "x": 660,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "a8da488c.1f2018",
+        "type": "ui_gauge",
+        "z": "ca7237a6.dfb1d8",
+        "name": "",
+        "group": "dd36f3c2.25448",
+        "order": 3,
+        "width": 6,
+        "height": 5,
+        "gtype": "compass",
+        "title": "Orientamento",
+        "label": "units",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "x": 680,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "c74cc3d3.2fc2",
+        "type": "ui_gauge",
+        "z": "ca7237a6.dfb1d8",
+        "name": "",
+        "group": "dd36f3c2.25448",
+        "order": 2,
+        "width": 6,
+        "height": 5,
+        "gtype": "donut",
+        "title": "Pressione",
+        "label": "units",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "x": 660,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "d72783b8.3b152",
+        "type": "function",
+        "z": "ca7237a6.dfb1d8",
+        "name": "Flow set slider 1",
+        "func": "flow.set(\"slider1\", msg.payload);\n\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 680,
+        "y": 80,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "c801b498.2034c8",
+        "type": "function",
+        "z": "ca7237a6.dfb1d8",
+        "name": "Flow set slider 2",
+        "func": "flow.set(\"slider2\", msg.payload);\n\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 680,
+        "y": 160,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "44f1c12a.0dd6c",
+        "type": "function",
+        "z": "ca7237a6.dfb1d8",
+        "name": "Flow set slider 3",
+        "func": "flow.set(\"slider3\", msg.payload);\n\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 680,
+        "y": 240,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "4340112.84317f",
+        "type": "function",
+        "z": "ca7237a6.dfb1d8",
+        "name": "Flow set slider 4",
+        "func": "flow.set(\"slider4\", msg.payload);\n\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 680,
+        "y": 320,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "43edbdce.84bb84",
+        "type": "ui_date_picker",
+        "z": "ca7237a6.dfb1d8",
+        "name": "",
+        "label": "date",
+        "group": "5d687e56.9e5ce",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 410,
+        "y": 460,
+        "wires": [
+            [
+                "8dd2517f.3027e"
+            ]
+        ]
+    },
+    {
+        "id": "716108f7.8640c8",
+        "type": "ui_text",
+        "z": "ca7237a6.dfb1d8",
+        "group": "5d687e56.9e5ce",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Data",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "x": 770,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "8dd2517f.3027e",
+        "type": "function",
+        "z": "ca7237a6.dfb1d8",
+        "name": "Flow get all slider",
+        "func": "var date = new Date(msg.payload);\n\nmsg.payload = date.toString();\n\nvar res1 = \"Temperatura: \" + flow.get(\"slider1\");\nvar res2 = \"Pressione: \" + flow.get(\"slider2\");\nvar res3 = \"Orientamento: \" + flow.get(\"slider3\");\nvar res4 = \"Umidità: \" + flow.get(\"slider4\") ;\n\nmsg1 = {payload: res1};\nmsg2 = {payload: res2};\nmsg3 = {payload: res3};\nmsg4 = {payload: res4};\nmsg5 = {payload: \"\\n\"};\n\nreturn [msg1,msg2,msg3,msg4,msg,msg5];\n",
+        "outputs": 6,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 570,
+        "y": 460,
+        "wires": [
+            [
+                "19b33e58.75e232"
+            ],
+            [
+                "19b33e58.75e232"
+            ],
+            [
+                "19b33e58.75e232"
+            ],
+            [
+                "19b33e58.75e232"
+            ],
+            [
+                "19b33e58.75e232",
+                "716108f7.8640c8"
+            ],
+            [
+                "19b33e58.75e232"
+            ]
+        ]
+    },
+    {
+        "id": "bfa6bc86.6b902",
+        "type": "ui_button",
+        "z": "ca7237a6.dfb1d8",
+        "name": "",
+        "group": "5d687e56.9e5ce",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "label": "Esporta",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "date",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 260,
+        "y": 460,
+        "wires": [
+            [
+                "43edbdce.84bb84"
+            ]
+        ]
+    },
+    {
+        "id": "19b33e58.75e232",
+        "type": "file",
+        "z": "ca7237a6.dfb1d8",
+        "name": "",
+        "filename": "C:\\Users\\User\\Downloads\\Export_data.txt",
+        "appendNewline": true,
+        "createDir": false,
+        "overwriteFile": "false",
+        "encoding": "none",
+        "x": 880,
+        "y": 460,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "dd36f3c2.25448",
+        "type": "ui_group",
+        "name": "Slider",
+        "tab": "943c8933.cff6f8",
+        "order": 2,
+        "disp": true,
+        "width": "24",
+        "collapse": false
+    },
+    {
+        "id": "5d687e56.9e5ce",
+        "type": "ui_group",
+        "name": "Data",
+        "tab": "943c8933.cff6f8",
+        "order": 2,
+        "disp": true,
+        "width": 6,
+        "collapse": false
+    },
+    {
+        "id": "943c8933.cff6f8",
+        "type": "ui_tab",
+        "name": "Slider",
+        "icon": "dashboard",
+        "order": 1,
+        "disabled": false,
+        "hidden": false
+    }
+]

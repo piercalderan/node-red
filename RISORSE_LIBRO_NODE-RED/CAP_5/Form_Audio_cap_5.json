@@ -1,0 +1,207 @@
+[
+    {
+        "id": "c61aa4cd.bd3b98",
+        "type": "tab",
+        "label": "Form Audio",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "ea59230e.dfd48",
+        "type": "ui_form",
+        "z": "c61aa4cd.bd3b98",
+        "name": "",
+        "label": "",
+        "group": "b8f89d28.7101c",
+        "order": 28,
+        "width": "0",
+        "height": "0",
+        "options": [
+            {
+                "label": "Frase",
+                "value": "Frase",
+                "type": "text",
+                "required": true,
+                "rows": null
+            }
+        ],
+        "formValue": {
+            "Frase": ""
+        },
+        "payload": "",
+        "submit": "submit",
+        "cancel": "cancel",
+        "topic": "topic",
+        "topicType": "msg",
+        "splitLayout": "",
+        "x": 470,
+        "y": 200,
+        "wires": [
+            [
+                "74debc59.750ac4",
+                "af00759e.14ec78"
+            ]
+        ]
+    },
+    {
+        "id": "74debc59.750ac4",
+        "type": "ui_text",
+        "z": "c61aa4cd.bd3b98",
+        "group": "b8f89d28.7101c",
+        "order": 24,
+        "width": "0",
+        "height": "0",
+        "name": "form",
+        "label": "text",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "x": 610,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "c00d1e1e.6395c",
+        "type": "ui_audio",
+        "z": "c61aa4cd.bd3b98",
+        "name": "",
+        "group": "b8f89d28.7101c",
+        "voice": "Microsoft Elsa - Italian (Italy)",
+        "always": true,
+        "x": 940,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "455769df.9f79c8",
+        "type": "function",
+        "z": "c61aa4cd.bd3b98",
+        "name": "",
+        "func": "var json = msg.payload;\nvar obj = JSON.parse(json);\n// expected output: true\nmsg.payload = obj.Frase;\n//msg.payload = json;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 760,
+        "y": 260,
+        "wires": [
+            [
+                "c00d1e1e.6395c"
+            ]
+        ]
+    },
+    {
+        "id": "af00759e.14ec78",
+        "type": "json",
+        "z": "c61aa4cd.bd3b98",
+        "name": "",
+        "property": "payload",
+        "action": "str",
+        "pretty": false,
+        "x": 610,
+        "y": 260,
+        "wires": [
+            [
+                "455769df.9f79c8"
+            ]
+        ]
+    },
+    {
+        "id": "fcfc676e.0daa48",
+        "type": "ui_text_input",
+        "z": "c61aa4cd.bd3b98",
+        "name": "",
+        "label": "PASSWORD",
+        "tooltip": "",
+        "group": "b8f89d28.7101c",
+        "order": 7,
+        "width": "0",
+        "height": "0",
+        "passthru": true,
+        "mode": "password",
+        "delay": "300",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 510,
+        "y": 320,
+        "wires": [
+            [
+                "2087719c.5d590e"
+            ]
+        ]
+    },
+    {
+        "id": "2087719c.5d590e",
+        "type": "ui_text",
+        "z": "c61aa4cd.bd3b98",
+        "group": "b8f89d28.7101c",
+        "order": 14,
+        "width": 6,
+        "height": 1,
+        "name": "password",
+        "label": "text",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "x": 760,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "1b4a17e2.695ee8",
+        "type": "ui_text_input",
+        "z": "c61aa4cd.bd3b98",
+        "name": "",
+        "label": "COLOR PICKER",
+        "tooltip": "",
+        "group": "b8f89d28.7101c",
+        "order": 5,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "mode": "color",
+        "delay": 300,
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 570,
+        "y": 420,
+        "wires": [
+            [
+                "a84d3652.1591d8"
+            ]
+        ]
+    },
+    {
+        "id": "a84d3652.1591d8",
+        "type": "ui_text",
+        "z": "c61aa4cd.bd3b98",
+        "group": "b8f89d28.7101c",
+        "order": 6,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "COLOR",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "x": 770,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "b8f89d28.7101c",
+        "type": "ui_group",
+        "name": "Form Audio",
+        "tab": "ada6d3db.7535b",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "ada6d3db.7535b",
+        "type": "ui_tab",
+        "name": "Form Audio",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    }
+]

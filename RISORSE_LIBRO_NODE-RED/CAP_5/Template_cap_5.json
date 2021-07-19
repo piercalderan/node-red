@@ -1,0 +1,160 @@
+[
+    {
+        "id": "8e0bd78c.431738",
+        "type": "tab",
+        "label": "TEMPLATE",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "7d946f60.6c0ab",
+        "type": "ui_template",
+        "z": "8e0bd78c.431738",
+        "group": "2624713b.8812be",
+        "name": "",
+        "order": 37,
+        "width": 0,
+        "height": 0,
+        "format": "<div layout=\"row\" layout-align=\"space-between\">\n  <p>Il numero è {{msg.payload}} ed è </p>\n  <font color=\"{{((msg.payload || 0) % 2 === 0) ? 'green' : 'red'}}\">\n    {{(msg.payload || 0) % 2 === 0 ? 'pari' : 'dispari'}}\n  </font>\n</div>\n",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "x": 640,
+        "y": 280,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "30bef5e3.14499a",
+        "type": "ui_button",
+        "z": "8e0bd78c.431738",
+        "name": "",
+        "group": "2624713b.8812be",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Numero",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "123",
+        "payloadType": "num",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 480,
+        "y": 280,
+        "wires": [
+            [
+                "7d946f60.6c0ab"
+            ]
+        ]
+    },
+    {
+        "id": "b732d9c.ce70528",
+        "type": "ui_template",
+        "z": "8e0bd78c.431738",
+        "group": "2624713b.8812be",
+        "name": "",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "format": "<div id=\"{{'my_'+$id}}\" style=\"{{'color:'+theme.base_color}}\">Un testo dal payload del pulsante</div>\n<script>\n(function(scope) {\n  scope.$watch('msg', function(msg) {\n    if (msg) {\n\n      $(\"#my_\"+scope.$id).html(msg.payload);\n    }\n  });\n})(scope);\n</script>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "x": 640,
+        "y": 360,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "e2b468e6.f18df8",
+        "type": "ui_button",
+        "z": "8e0bd78c.431738",
+        "name": "",
+        "group": "2624713b.8812be",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Messaggio",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "Ciao mondo",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 490,
+        "y": 360,
+        "wires": [
+            [
+                "b732d9c.ce70528"
+            ]
+        ]
+    },
+    {
+        "id": "29444f85.4fba6",
+        "type": "ui_template",
+        "z": "8e0bd78c.431738",
+        "group": "2624713b.8812be",
+        "name": "",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "format": "<script>\nvar value = \"Ciao mondo\";\n// o sovrascrivi il valore nella funzione di callback ...\nthis.scope.action = function() { return value; }\n</script>\n<md-button ng-click=\"send({payload:action()})\">\n    Cliccare per mandare Ciao mondo\n</md-button>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "x": 480,
+        "y": 420,
+        "wires": [
+            [
+                "2453adc4.19f0a2"
+            ]
+        ]
+    },
+    {
+        "id": "2453adc4.19f0a2",
+        "type": "ui_text",
+        "z": "8e0bd78c.431738",
+        "group": "2624713b.8812be",
+        "order": 6,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "text",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "x": 630,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "2624713b.8812be",
+        "type": "ui_group",
+        "name": "Template",
+        "tab": "6ff6a9cb.369938",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "6ff6a9cb.369938",
+        "type": "ui_tab",
+        "name": "Template",
+        "icon": "dashboard",
+        "order": 11,
+        "disabled": false,
+        "hidden": false
+    }
+]

@@ -1,0 +1,425 @@
+[
+    {
+        "id": "857406e6.729868",
+        "type": "tab",
+        "label": "BATTERY LOCATION",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "f7bbbcc2.f3f8d",
+        "type": "group",
+        "z": "857406e6.729868",
+        "style": {
+            "stroke": "#999999",
+            "stroke-opacity": "1",
+            "fill": "none",
+            "fill-opacity": "1",
+            "label": true,
+            "label-position": "nw",
+            "color": "#a4a4a4"
+        },
+        "nodes": [
+            "922b6654.04cc78",
+            "2aad4656.3c77ca",
+            "606c89f9.ac5748",
+            "a1e23208.e95ce",
+            "a8ca2aa0.55cb48",
+            "f13d03d3.6304a",
+            "c316160e.a2f708",
+            "466e0b7f.930e64",
+            "55511bf4.26b1e4",
+            "ccdabc0a.8916a",
+            "525e0975.901778"
+        ],
+        "x": 114,
+        "y": 39,
+        "w": 1022,
+        "h": 302
+    },
+    {
+        "id": "922b6654.04cc78",
+        "type": "termux-battery-status",
+        "z": "857406e6.729868",
+        "g": "f7bbbcc2.f3f8d",
+        "name": "",
+        "topic": "",
+        "x": 460,
+        "y": 220,
+        "wires": [
+            [
+                "c316160e.a2f708",
+                "a1e23208.e95ce"
+            ]
+        ]
+    },
+    {
+        "id": "2aad4656.3c77ca",
+        "type": "ui_text",
+        "z": "857406e6.729868",
+        "g": "f7bbbcc2.f3f8d",
+        "group": "70c1396e.323dd8",
+        "order": 4,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "PERCENTAGE",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "x": 1030,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "606c89f9.ac5748",
+        "type": "ui_button",
+        "z": "857406e6.729868",
+        "g": "f7bbbcc2.f3f8d",
+        "name": "",
+        "group": "70c1396e.323dd8",
+        "order": 5,
+        "width": 3,
+        "height": 1,
+        "passthru": false,
+        "label": "BATTERY STATUS",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "topic": "",
+        "x": 230,
+        "y": 120,
+        "wires": [
+            [
+                "922b6654.04cc78"
+            ]
+        ]
+    },
+    {
+        "id": "7d1f5e6.d7cc2a",
+        "type": "termux-location",
+        "z": "857406e6.729868",
+        "name": "",
+        "topic": "",
+        "provider": "gps",
+        "request": "once",
+        "x": 400,
+        "y": 440,
+        "wires": [
+            [
+                "da5cf993.0d1468",
+                "fcbb32b7.509e4"
+            ]
+        ]
+    },
+    {
+        "id": "d24367a3.21aca8",
+        "type": "ui_text",
+        "z": "857406e6.729868",
+        "group": "70c1396e.323dd8",
+        "order": 16,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "LATITUDE",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "x": 750,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "b4cdf1bb.8c073",
+        "type": "ui_button",
+        "z": "857406e6.729868",
+        "name": "",
+        "group": "70c1396e.323dd8",
+        "order": 14,
+        "width": 3,
+        "height": 1,
+        "passthru": false,
+        "label": "LOCATION",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "topic": "",
+        "x": 210,
+        "y": 420,
+        "wires": [
+            [
+                "7d1f5e6.d7cc2a"
+            ]
+        ]
+    },
+    {
+        "id": "a1e23208.e95ce",
+        "type": "function",
+        "z": "857406e6.729868",
+        "g": "f7bbbcc2.f3f8d",
+        "name": "JSON Stringify",
+        "func": "var data = msg.payload;\nmsg.payload=JSON.stringify(data);\np=JSON.parse(msg.payload);\n\nmsg1={payload:p.percentage}\nmsg2={payload:p.health}\nmsg3={payload:p.plugged}\nmsg4={payload:p.status}\nmsg5={payload:p.temperature}\nmsg6={payload:p.current}\n\nreturn [msg1,msg2,msg3,msg4,msg5,msg6];",
+        "outputs": 6,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 680,
+        "y": 200,
+        "wires": [
+            [
+                "a8ca2aa0.55cb48"
+            ],
+            [
+                "2aad4656.3c77ca"
+            ],
+            [
+                "466e0b7f.930e64"
+            ],
+            [
+                "55511bf4.26b1e4"
+            ],
+            [
+                "ccdabc0a.8916a"
+            ],
+            [
+                "525e0975.901778"
+            ]
+        ]
+    },
+    {
+        "id": "a8ca2aa0.55cb48",
+        "type": "ui_text",
+        "z": "857406e6.729868",
+        "g": "f7bbbcc2.f3f8d",
+        "group": "70c1396e.323dd8",
+        "order": 2,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "HEALTH",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "x": 1010,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "fcbb32b7.509e4",
+        "type": "function",
+        "z": "857406e6.729868",
+        "name": "",
+        "func": "var data = msg.payload;\nmsg.payload=JSON.stringify(data);\np=JSON.parse(msg.payload);\n\nmsg1={payload:p.latitude}\nmsg2={payload:p.longitude}\n\nreturn [msg1,msg2];",
+        "outputs": 2,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 560,
+        "y": 420,
+        "wires": [
+            [
+                "d24367a3.21aca8"
+            ],
+            [
+                "ce471b40.72ce18"
+            ]
+        ]
+    },
+    {
+        "id": "ce471b40.72ce18",
+        "type": "ui_text",
+        "z": "857406e6.729868",
+        "group": "70c1396e.323dd8",
+        "order": 18,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "LONGITUDE",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "x": 750,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "f13d03d3.6304a",
+        "type": "inject",
+        "z": "857406e6.729868",
+        "g": "f7bbbcc2.f3f8d",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 240,
+        "y": 300,
+        "wires": [
+            [
+                "922b6654.04cc78"
+            ]
+        ]
+    },
+    {
+        "id": "c316160e.a2f708",
+        "type": "debug",
+        "z": "857406e6.729868",
+        "g": "f7bbbcc2.f3f8d",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 670,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "466e0b7f.930e64",
+        "type": "ui_text",
+        "z": "857406e6.729868",
+        "g": "f7bbbcc2.f3f8d",
+        "group": "70c1396e.323dd8",
+        "order": 7,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "PLUGGED",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "x": 1020,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "55511bf4.26b1e4",
+        "type": "ui_text",
+        "z": "857406e6.729868",
+        "g": "f7bbbcc2.f3f8d",
+        "group": "70c1396e.323dd8",
+        "order": 9,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "STATUS",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "x": 1010,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "5c68c9b3.b0e638",
+        "type": "inject",
+        "z": "857406e6.729868",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 220,
+        "y": 460,
+        "wires": [
+            [
+                "7d1f5e6.d7cc2a"
+            ]
+        ]
+    },
+    {
+        "id": "da5cf993.0d1468",
+        "type": "debug",
+        "z": "857406e6.729868",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 570,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "ccdabc0a.8916a",
+        "type": "ui_text",
+        "z": "857406e6.729868",
+        "g": "f7bbbcc2.f3f8d",
+        "group": "70c1396e.323dd8",
+        "order": 11,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "TEMPERATURE",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "x": 1030,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "525e0975.901778",
+        "type": "ui_text",
+        "z": "857406e6.729868",
+        "g": "f7bbbcc2.f3f8d",
+        "group": "70c1396e.323dd8",
+        "order": 13,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "CURRENT",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "x": 1020,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "70c1396e.323dd8",
+        "type": "ui_group",
+        "name": "Home Smartphone",
+        "tab": "4e96b3b5.f831fc",
+        "order": 1,
+        "disp": true,
+        "width": "10",
+        "collapse": false
+    },
+    {
+        "id": "4e96b3b5.f831fc",
+        "type": "ui_tab",
+        "name": "Home Battery",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    }
+]

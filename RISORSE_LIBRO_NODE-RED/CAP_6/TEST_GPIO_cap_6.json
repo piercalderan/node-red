@@ -1,0 +1,669 @@
+[
+    {
+        "id": "a2afbee5.cf55a",
+        "type": "tab",
+        "label": "TEST GPIO",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "54c16d9a.cb9ba4",
+        "type": "rpi-gpio out",
+        "z": "a2afbee5.cf55a",
+        "name": "",
+        "pin": "16",
+        "set": true,
+        "level": "0",
+        "freq": "",
+        "out": "out",
+        "x": 740,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "ddee28b2.a86648",
+        "type": "trigger",
+        "z": "a2afbee5.cf55a",
+        "name": "",
+        "op1": "true",
+        "op2": "false",
+        "op1type": "bool",
+        "op2type": "bool",
+        "duration": "1",
+        "extend": false,
+        "overrideDelay": false,
+        "units": "s",
+        "reset": "",
+        "bytopic": "all",
+        "topic": "topic",
+        "outputs": 1,
+        "x": 500,
+        "y": 280,
+        "wires": [
+            [
+                "54c16d9a.cb9ba4",
+                "fd0c3881.0f7118"
+            ]
+        ]
+    },
+    {
+        "id": "b9f2ad6a.37e9f",
+        "type": "ui_led",
+        "z": "a2afbee5.cf55a",
+        "order": 8,
+        "group": "5e4336fd.55cee8",
+        "width": 1,
+        "height": 1,
+        "label": "",
+        "labelPlacement": "left",
+        "labelAlignment": "left",
+        "colorForValue": [
+            {
+                "color": "red",
+                "value": "false",
+                "valueType": "bool"
+            },
+            {
+                "color": "green",
+                "value": "true",
+                "valueType": "bool"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "name": "ledacceso1",
+        "x": 1490,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "7efbb039.7bb33",
+        "type": "ui_led",
+        "z": "a2afbee5.cf55a",
+        "order": 14,
+        "group": "5e4336fd.55cee8",
+        "width": 1,
+        "height": 1,
+        "label": "",
+        "labelPlacement": "left",
+        "labelAlignment": "left",
+        "colorForValue": [
+            {
+                "color": "red",
+                "value": "false",
+                "valueType": "bool"
+            },
+            {
+                "color": "green",
+                "value": "true",
+                "valueType": "bool"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "name": "ledacceso2",
+        "x": 1490,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "fe27d61f.3396c8",
+        "type": "ui_led",
+        "z": "a2afbee5.cf55a",
+        "order": 20,
+        "group": "5e4336fd.55cee8",
+        "width": 1,
+        "height": 1,
+        "label": "",
+        "labelPlacement": "left",
+        "labelAlignment": "left",
+        "colorForValue": [
+            {
+                "color": "red",
+                "value": "false",
+                "valueType": "bool"
+            },
+            {
+                "color": "green",
+                "value": "true",
+                "valueType": "bool"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "name": "ledacceso3",
+        "x": 1490,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "e5dec2a1.061ba",
+        "type": "ui_led",
+        "z": "a2afbee5.cf55a",
+        "order": 26,
+        "group": "5e4336fd.55cee8",
+        "width": 1,
+        "height": 1,
+        "label": "",
+        "labelPlacement": "left",
+        "labelAlignment": "left",
+        "colorForValue": [
+            {
+                "color": "red",
+                "value": "false",
+                "valueType": "bool"
+            },
+            {
+                "color": "green",
+                "value": "true",
+                "valueType": "bool"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "name": "ledacceso4",
+        "x": 1490,
+        "y": 720,
+        "wires": []
+    },
+    {
+        "id": "f301405a.fec51",
+        "type": "ui_led",
+        "z": "a2afbee5.cf55a",
+        "order": 32,
+        "group": "5e4336fd.55cee8",
+        "width": 1,
+        "height": 1,
+        "label": "",
+        "labelPlacement": "left",
+        "labelAlignment": "left",
+        "colorForValue": [
+            {
+                "color": "red",
+                "value": "false",
+                "valueType": "bool"
+            },
+            {
+                "color": "green",
+                "value": "true",
+                "valueType": "bool"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "name": "ledacceso5",
+        "x": 1450,
+        "y": 960,
+        "wires": []
+    },
+    {
+        "id": "cfd9d9fb.811f38",
+        "type": "ui_led",
+        "z": "a2afbee5.cf55a",
+        "order": 38,
+        "group": "5e4336fd.55cee8",
+        "width": 1,
+        "height": 1,
+        "label": "",
+        "labelPlacement": "left",
+        "labelAlignment": "left",
+        "colorForValue": [
+            {
+                "color": "red",
+                "value": "false",
+                "valueType": "bool"
+            },
+            {
+                "color": "green",
+                "value": "true",
+                "valueType": "bool"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "name": "ledacceso6",
+        "x": 1430,
+        "y": 1180,
+        "wires": []
+    },
+    {
+        "id": "dab5ffd1.c9229",
+        "type": "ui_led",
+        "z": "a2afbee5.cf55a",
+        "order": 44,
+        "group": "5e4336fd.55cee8",
+        "width": 1,
+        "height": 1,
+        "label": "",
+        "labelPlacement": "left",
+        "labelAlignment": "left",
+        "colorForValue": [
+            {
+                "color": "red",
+                "value": "false",
+                "valueType": "bool"
+            },
+            {
+                "color": "green",
+                "value": "true",
+                "valueType": "bool"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "name": "ledacceso7",
+        "x": 1430,
+        "y": 1400,
+        "wires": []
+    },
+    {
+        "id": "abbcd8e3.58ca08",
+        "type": "ui_led",
+        "z": "a2afbee5.cf55a",
+        "order": 50,
+        "group": "5e4336fd.55cee8",
+        "width": 1,
+        "height": 1,
+        "label": "",
+        "labelPlacement": "left",
+        "labelAlignment": "left",
+        "colorForValue": [
+            {
+                "color": "red",
+                "value": "false",
+                "valueType": "bool"
+            },
+            {
+                "color": "green",
+                "value": "true",
+                "valueType": "bool"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "name": "led8",
+        "x": 1410,
+        "y": 1620,
+        "wires": []
+    },
+    {
+        "id": "2ae8cfb6.00b6",
+        "type": "rpi-gpio in",
+        "z": "a2afbee5.cf55a",
+        "name": "",
+        "pin": "40",
+        "intype": "tri",
+        "debounce": "25",
+        "read": false,
+        "x": 520,
+        "y": 180,
+        "wires": [
+            [
+                "400bb005.14988"
+            ]
+        ]
+    },
+    {
+        "id": "400bb005.14988",
+        "type": "debug",
+        "z": "a2afbee5.cf55a",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 740,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "78560f90.34281",
+        "type": "rpi-dht22",
+        "z": "a2afbee5.cf55a",
+        "name": "",
+        "topic": "rpi-dht22",
+        "dht": "11",
+        "pintype": "0",
+        "pin": "4",
+        "x": 380,
+        "y": 60,
+        "wires": [
+            [
+                "c8265dcf.49c3d"
+            ]
+        ]
+    },
+    {
+        "id": "cfd81ffc.1a54b",
+        "type": "debug",
+        "z": "a2afbee5.cf55a",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 750,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "4e4df194.560b2",
+        "type": "inject",
+        "z": "a2afbee5.cf55a",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 220,
+        "y": 60,
+        "wires": [
+            [
+                "78560f90.34281"
+            ]
+        ]
+    },
+    {
+        "id": "c8265dcf.49c3d",
+        "type": "function",
+        "z": "a2afbee5.cf55a",
+        "name": "",
+        "func": "msg2={};\nmsg1={payload: msg.payload};\nmsg2.payload = msg.humidity;\nreturn [msg1,msg2];",
+        "outputs": 2,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 540,
+        "y": 60,
+        "wires": [
+            [
+                "cfd81ffc.1a54b"
+            ],
+            [
+                "cfd81ffc.1a54b"
+            ]
+        ]
+    },
+    {
+        "id": "ceb97558.694d78",
+        "type": "inject",
+        "z": "a2afbee5.cf55a",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "2",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 320,
+        "y": 280,
+        "wires": [
+            [
+                "ddee28b2.a86648"
+            ]
+        ]
+    },
+    {
+        "id": "f673a118.e87b",
+        "type": "rpi-gpio out",
+        "z": "a2afbee5.cf55a",
+        "name": "",
+        "pin": "18",
+        "set": true,
+        "level": "0",
+        "freq": "",
+        "out": "out",
+        "x": 740,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "38873408.2a70fc",
+        "type": "rpi-gpio out",
+        "z": "a2afbee5.cf55a",
+        "name": "",
+        "pin": "22",
+        "set": true,
+        "level": "0",
+        "freq": "",
+        "out": "out",
+        "x": 740,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "2fed47c5.ea8268",
+        "type": "ui_switch",
+        "z": "a2afbee5.cf55a",
+        "name": "",
+        "label": "switch 1",
+        "tooltip": "",
+        "group": "bdebc1b0.bded8",
+        "order": 1,
+        "width": 3,
+        "height": 1,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "topic",
+        "topicType": "msg",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "animate": false,
+        "x": 500,
+        "y": 380,
+        "wires": [
+            [
+                "f673a118.e87b",
+                "fc6a7229.2a3fe"
+            ]
+        ]
+    },
+    {
+        "id": "d0ccffa.da702",
+        "type": "ui_switch",
+        "z": "a2afbee5.cf55a",
+        "name": "",
+        "label": "switch 2",
+        "tooltip": "",
+        "group": "bdebc1b0.bded8",
+        "order": 3,
+        "width": 3,
+        "height": 1,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "topic",
+        "topicType": "msg",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "animate": false,
+        "x": 500,
+        "y": 440,
+        "wires": [
+            [
+                "38873408.2a70fc",
+                "1fd29c31.ce92d4"
+            ]
+        ]
+    },
+    {
+        "id": "fd0c3881.0f7118",
+        "type": "ui_led",
+        "z": "a2afbee5.cf55a",
+        "order": 6,
+        "group": "bdebc1b0.bded8",
+        "width": 3,
+        "height": 1,
+        "label": "",
+        "labelPlacement": "left",
+        "labelAlignment": "left",
+        "colorForValue": [
+            {
+                "color": "#ff0000",
+                "value": "false",
+                "valueType": "bool"
+            },
+            {
+                "color": "#008000",
+                "value": "true",
+                "valueType": "bool"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "circle",
+        "showGlow": true,
+        "name": "blink",
+        "x": 730,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "fc6a7229.2a3fe",
+        "type": "ui_led",
+        "z": "a2afbee5.cf55a",
+        "order": 2,
+        "group": "bdebc1b0.bded8",
+        "width": 3,
+        "height": 1,
+        "label": "",
+        "labelPlacement": "left",
+        "labelAlignment": "left",
+        "colorForValue": [
+            {
+                "color": "#ff0000",
+                "value": "false",
+                "valueType": "bool"
+            },
+            {
+                "color": "#008000",
+                "value": "true",
+                "valueType": "bool"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "circle",
+        "showGlow": true,
+        "name": "led1",
+        "x": 730,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "1fd29c31.ce92d4",
+        "type": "ui_led",
+        "z": "a2afbee5.cf55a",
+        "order": 4,
+        "group": "bdebc1b0.bded8",
+        "width": 3,
+        "height": 1,
+        "label": "",
+        "labelPlacement": "left",
+        "labelAlignment": "left",
+        "colorForValue": [
+            {
+                "color": "#ff0000",
+                "value": "false",
+                "valueType": "bool"
+            },
+            {
+                "color": "#008000",
+                "value": "true",
+                "valueType": "bool"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "circle",
+        "showGlow": true,
+        "name": "led2",
+        "x": 730,
+        "y": 540,
+        "wires": []
+    },
+    {
+        "id": "efca5619.b11738",
+        "type": "ui_text",
+        "z": "a2afbee5.cf55a",
+        "group": "bdebc1b0.bded8",
+        "order": 5,
+        "width": 3,
+        "height": 1,
+        "name": "",
+        "label": "Blink",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "x": 490,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "5e4336fd.55cee8",
+        "type": "ui_group",
+        "name": "Light Monitoring System",
+        "tab": "53d54a54.cad2c4",
+        "order": 2,
+        "disp": true,
+        "width": "30",
+        "collapse": false
+    },
+    {
+        "id": "bdebc1b0.bded8",
+        "type": "ui_group",
+        "name": "Raspberry GPIO",
+        "tab": "734f4bb9.f4d844",
+        "order": 1,
+        "disp": true,
+        "width": 6,
+        "collapse": false
+    },
+    {
+        "id": "53d54a54.cad2c4",
+        "type": "ui_tab",
+        "name": "Light Test page",
+        "icon": "lightbulb_outline",
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "734f4bb9.f4d844",
+        "type": "ui_tab",
+        "name": "Test GPIO",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    }
+]

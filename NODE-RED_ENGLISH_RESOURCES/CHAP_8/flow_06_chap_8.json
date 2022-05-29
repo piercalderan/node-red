@@ -1,0 +1,487 @@
+[
+    {
+        "id": "717395f9.be587c",
+        "type": "tab",
+        "label": "GPS PIN ALERT",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "5128c1eb.ea112",
+        "type": "group",
+        "z": "717395f9.be587c",
+        "name": "get/monitor group",
+        "style": {
+            "label": true
+        },
+        "nodes": [
+            "2a302c15.aca044",
+            "c13aff74.83231",
+            "5e51cb6b.5889a4",
+            "35f2af55.fdb72",
+            "ae15458b.be1388"
+        ],
+        "x": 174,
+        "y": 59,
+        "w": 812,
+        "h": 82
+    },
+    {
+        "id": "f1bd362c.0def38",
+        "type": "group",
+        "z": "717395f9.be587c",
+        "name": "Pin Alert group",
+        "style": {
+            "label": true
+        },
+        "nodes": [
+            "c1954eb5.243e1",
+            "f0061b3f.1c49c8",
+            "d5995fc8.3e8c",
+            "c601cbc7.7739c8",
+            "b433574f.a36218",
+            "e5e5372f.c93fe8",
+            "39df1ad0.d8c5a6",
+            "62aedb7d.c68244",
+            "3f6e3ec9.003742",
+            "634c107d.b66a3",
+            "6a54646d.82753c",
+            "1caa622c.477aee",
+            "21988ea.cd52172",
+            "9b1b150b.b6c608",
+            "6e4ce7ef.2e2068",
+            "fb187f6.bc6db8"
+        ],
+        "x": 94,
+        "y": 199,
+        "w": 1172,
+        "h": 402
+    },
+    {
+        "id": "2a302c15.aca044",
+        "type": "http in",
+        "z": "717395f9.be587c",
+        "g": "5128c1eb.ea112",
+        "name": "",
+        "url": "/monitor",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 270,
+        "y": 100,
+        "wires": [
+            [
+                "5e51cb6b.5889a4"
+            ]
+        ]
+    },
+    {
+        "id": "c13aff74.83231",
+        "type": "template",
+        "z": "717395f9.be587c",
+        "g": "5128c1eb.ea112",
+        "name": "CSS",
+        "field": "payload.style",
+        "fieldType": "msg",
+        "format": "html",
+        "syntax": "mustache",
+        "template": "body{\n  font-family: 'Droid Sans', 'Helvetica', Arial, sans-serif;\n  margin:5px;\n}\n#map{\n  display: block;\n  width: 1100px;\n  height: 600px;\n  margin: 0 auto;\n  -moz-box-shadow: 0px 5px 20px #ccc;\n  -webkit-box-shadow: 0px 5px 20px #ccc;\n  box-shadow: 0px 5px 20px #ccc;\n}\n#map.large{\n  height:600px;\n}\n\n.overlay{\n  display:block;\n  text-align:center;\n  color:#fff;\n  font-size:60px;\n  line-height:80px;\n  opacity:0.8;\n  background:#4477aa;\n  border:solid 3px #336699;\n  border-radius:4px;\n  box-shadow:2px 2px 10px #333;\n  text-shadow:1px 1px 1px #666;\n  padding:0 4px;\n}\n\n.overlay_arrow{\n  left:50%;\n  margin-left:-16px;\n  width:0;\n  height:0;\n  position:absolute;\n}\n.overlay_arrow.above{\n  bottom:-15px;\n  border-left:16px solid transparent;\n  border-right:16px solid transparent;\n  border-top:16px solid #336699;\n}\n.overlay_arrow.below{\n  top:-15px;\n  border-left:16px solid transparent;\n  border-right:16px solid transparent;\n  border-bottom:16px solid #336699;\n}\n\n#toast-container > .toast {\n    background-image: none !important;\n}\n\n#toast-container > .toast:before {\n    position: fixed;\n    font-family: FontAwesome;\n    font-size: 24px;\n    line-height: 18px;\n    float: left;\n    color: #FFF;\n    padding-right: 0.5em;\n    margin: auto 0.5em auto -1.5em;\n}        \n#toast-container > .toast-warning:before {\n    content: \"\\f119\";\n}\n#toast-container > .toast-error:before {\n    content: \"\\f119\";\n}\n#toast-container > .toast-info:before {\n    content: \"\\f005\";\n}\n#toast-container > .toast-success:before {\n    content: \"\\f002\";\n}",
+        "x": 630,
+        "y": 100,
+        "wires": [
+            [
+                "ae15458b.be1388"
+            ]
+        ]
+    },
+    {
+        "id": "5e51cb6b.5889a4",
+        "type": "template",
+        "z": "717395f9.be587c",
+        "g": "5128c1eb.ea112",
+        "name": "JavaScript Main",
+        "field": "payload.script",
+        "fieldType": "msg",
+        "format": "javascript",
+        "syntax": "plain",
+        "template": "var loc = window.location;\nvar ws;\nvar wsUri = \"ws:\";\nvar map;\nvar markers = [];\n\nif (loc.protocol === \"https:\") { wsUri = \"wss:\"; }\nwsUri += \"//\" + loc.host + loc.pathname.replace(\"monitor\",\"ws/alert\");\n\n//////////////////////////////////////////////\n//  google map\nfunction pinSymbol(color) {\n    return {\n        path: 'M 0,0 C -2,-20 -10,-22 -10,-30 A 10,10 0 1,1 10,-30 C 10,-22 2,-20 0,0 z M -2,-30 a 2,2 0 1,1 4,0 2,2 0 1,1 -4,0',\n        fillColor: color,\n        fillOpacity: 1,\n        strokeColor: '#000',\n        strokeWeight: 2,\n        scale: 1,\n   };\n}\n\nfunction initMap() {\n    map = new google.maps.Map(document.getElementById('map'), {\n          zoom: 12,\n          center: {lat: 45.8629911, lng: 9.9894473}\n    });\n}\n\nfunction dropMarker (type, addr, la, lo, status) {\n    \n    //clearMarker(addr);\n    //clearMarker();\n    var marker;\n    var state = status;\n    if ( type === 'pin') {\n        marker = new google.maps.Marker({\n        position: {lat: la, lng: lo},\n        title : addr,\n        map: map,\n        label: state,\n        icon: pinSymbol(\"#0F0\"),\n        animation: google.maps.Animation.DROP\n        });\n    }\n    markers.push(marker);\n}\n\n\nfunction clearMarkers() {\n    for ( var i = 0; i < markers.length; i++) {\n        markers[i].setMap(null);\n    }\n}\n\nfunction clearMarker(addr) {\n    for ( var i = 0; i < markers.length; i++) {\n        if ( markers[i].title == addr ) markers[i].setMap(null);\n    }\n}\n\n///////////////////////////////////////////////\n// WebSocket \n\nfunction wsConnect() {\n    console.log(\"connect\",wsUri);\n    ws = new WebSocket(wsUri);\n\n    ws.onopen = function() {\n       console.log(\"connected\");\n    }\n    ws.onclose = function() {\n        setTimeout(wsConnect,5000);\n    }\n    \n    ws.onmessage = function(msg) {\n        var payload = JSON.parse(msg.data);\n        dropMarker(payload.type, payload.addr, payload.la, payload.lo, payload.status);\n    }\n}",
+        "x": 460,
+        "y": 100,
+        "wires": [
+            [
+                "c13aff74.83231"
+            ]
+        ]
+    },
+    {
+        "id": "35f2af55.fdb72",
+        "type": "http response",
+        "z": "717395f9.be587c",
+        "g": "5128c1eb.ea112",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 910,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "ae15458b.be1388",
+        "type": "template",
+        "z": "717395f9.be587c",
+        "g": "5128c1eb.ea112",
+        "name": "HTML",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "<!doctype html>\n<html>\n<head>\n    <!-- Required meta tags -->\n    <meta charset=\"utf-8\">\n    <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1, shrink-to-fit=no\">\n\n    <!-- Bootstrap CSS -->\n    <!-- Latest compiled and minified CSS -->\n    <link rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css\" integrity=\"sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u\" crossorigin=\"anonymous\">\n    <link rel=\"stylesheet\" href=\"https://use.fontawesome.com/releases/v5.1.0/css/all.css\" integrity=\"sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt\" crossorigin=\"anonymous\">\n    <link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.css\" crossorigin=\"anonymous\">\n    <style>{{{payload.style}}}</style>\n    \n    <!-- jQuery first, then Bootstrap JS -->\n    <script src=\"https://code.jquery.com/jquery-2.2.4.js\" integrity=\"sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=\"  crossorigin=\"anonymous\"></script> <!-- Latest compiled and minified JavaScript -->\n    <script src=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js\" integrity=\"sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa\" crossorigin=\"anonymous\"></script>\n    <script src=\"https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js\" crossorigin=\"anonymous\"></script> \n    \n    <script>{{{payload.script}}}</script>\n</head>\n<body onload=\"wsConnect();\" onunload=\"ws.disconnect();\">\n\n<div class=\"container\">\n    <div class=\"page-header\">\n    <small> GPS Pier Test</small></h1>\n    </div>\n</div>\n<div class=\"container\">\n    <div class=\"row justify-content-center\">\n        <div class=\"col-12 col-lg-8 col-md-12\"> \n          <div id=\"map\"></div>     \n        </div>\n    </div>\n    <br>\n    <br>\n</div>\n<script async defer\n    src=\"https://maps.googleapis.com/maps/api/js?key=AIzaSyDoqCYZmw0PKpjoPd_EXyJqr01UdEIcKMQ&callback=initMap\">\n</script>\n    \n</body>\n</html>",
+        "x": 770,
+        "y": 100,
+        "wires": [
+            [
+                "35f2af55.fdb72"
+            ]
+        ]
+    },
+    {
+        "id": "c1954eb5.243e1",
+        "type": "websocket out",
+        "z": "717395f9.be587c",
+        "g": "f1bd362c.0def38",
+        "name": "",
+        "server": "7de544a.8ffa9bc",
+        "client": "",
+        "x": 1170,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "f0061b3f.1c49c8",
+        "type": "function",
+        "z": "717395f9.be587c",
+        "g": "f1bd362c.0def38",
+        "name": "Lat Lon",
+        "func": "msg.location = {};\n\tmsg.location.lat = msg.payload.msg3;\n\tmsg.location.lon = msg.payload.msg4;\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 600,
+        "y": 320,
+        "wires": [
+            [
+                "e5e5372f.c93fe8",
+                "d5995fc8.3e8c"
+            ]
+        ]
+    },
+    {
+        "id": "d5995fc8.3e8c",
+        "type": "function",
+        "z": "717395f9.be587c",
+        "g": "f1bd362c.0def38",
+        "name": "Pin Generator",
+        "func": "var msg1 ={payload:msg.location.lat};\nvar msg2 ={payload:msg.location.lon};\nvar addr = {payload:msg.location.address};\nmsgz={};\nmsgz.payload = flow.get(\"LED\");\n\nmsg={};\n\n  msg.payload = {\n    addr : addr.payload,\n    la : msg1.payload,\n    lo : msg2.payload,\n    type : 'pin',\n    status : msgz.payload,\n  };\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 980,
+        "y": 320,
+        "wires": [
+            [
+                "c1954eb5.243e1"
+            ]
+        ]
+    },
+    {
+        "id": "c601cbc7.7739c8",
+        "type": "ui_template",
+        "z": "717395f9.be587c",
+        "g": "f1bd362c.0def38",
+        "group": "5e4336fd.55cee8",
+        "name": "Map widget",
+        "order": 12,
+        "width": 30,
+        "height": 16,
+        "format": "<iframe \n    id='frame'\n    src='/monitor'\n    width='1200'  \n    height='800'\n>\n</iframe>\n\n<script>\nscope.$watch('msg.payload', function(newv, oldv, scope) \n{\n    $(\"#frame\")[0].contentWindow.postMessage(JSON.stringify(newv), '*');\n});\n</script>",
+        "storeOutMessages": false,
+        "fwdInMessages": false,
+        "resendOnRefresh": false,
+        "templateScope": "local",
+        "x": 410,
+        "y": 380,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b433574f.a36218",
+        "type": "ui_text",
+        "z": "717395f9.be587c",
+        "g": "f1bd362c.0def38",
+        "group": "5e4336fd.55cee8",
+        "order": 1,
+        "width": 30,
+        "height": 1,
+        "name": "",
+        "label": "",
+        "format": "{{msg.payload}}",
+        "layout": "row-left",
+        "x": 970,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "e5e5372f.c93fe8",
+        "type": "google geocoding",
+        "z": "717395f9.be587c",
+        "g": "f1bd362c.0def38",
+        "name": "Google API Pier",
+        "geocodeBy": "coordinates",
+        "address": "",
+        "lat": "",
+        "lon": "",
+        "googleAPI": "",
+        "bounds": "",
+        "language": "",
+        "region": "",
+        "components": "",
+        "x": 760,
+        "y": 400,
+        "wires": [
+            [
+                "d5995fc8.3e8c",
+                "b433574f.a36218",
+                "634c107d.b66a3"
+            ]
+        ]
+    },
+    {
+        "id": "39df1ad0.d8c5a6",
+        "type": "termux-location",
+        "z": "717395f9.be587c",
+        "g": "f1bd362c.0def38",
+        "name": "",
+        "topic": "",
+        "provider": "gps",
+        "request": "once",
+        "x": 220,
+        "y": 300,
+        "wires": [
+            [
+                "3f6e3ec9.003742"
+            ]
+        ]
+    },
+    {
+        "id": "62aedb7d.c68244",
+        "type": "ui_button",
+        "z": "717395f9.be587c",
+        "g": "f1bd362c.0def38",
+        "name": "",
+        "group": "5e4336fd.55cee8",
+        "order": 2,
+        "width": 8,
+        "height": 1,
+        "passthru": false,
+        "label": "LOCATION",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "topic": "",
+        "x": 190,
+        "y": 380,
+        "wires": [
+            [
+                "39df1ad0.d8c5a6"
+            ]
+        ]
+    },
+    {
+        "id": "3f6e3ec9.003742",
+        "type": "function",
+        "z": "717395f9.be587c",
+        "g": "f1bd362c.0def38",
+        "name": "",
+        "func": "var data = msg.payload;\nmsg.payload=JSON.stringify(data);\np=JSON.parse(msg.payload);\n\nvar lat = p.latitude\nvar lon = p.longitude\n\nvar msg1 = lat;\nvar msg2 = lon;\nmsg3={};\nmsg4={};\nmsgx={};\nmsg3.payload=msg1;\nmsg4.payload=msg2;\n\nmsgx.payload= {\n    msg3:lat,\n    msg4:lon\n};\n\nreturn msgx;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 360,
+        "y": 300,
+        "wires": [
+            [
+                "f0061b3f.1c49c8",
+                "c601cbc7.7739c8"
+            ]
+        ]
+    },
+    {
+        "id": "634c107d.b66a3",
+        "type": "function",
+        "z": "717395f9.be587c",
+        "g": "f1bd362c.0def38",
+        "name": "",
+        "func": "var address = msg.payload.address;\nvar location = address.split(\",\");\n\nvar street = location[0]\nvar number = location[1]\nvar city = location[2]\nvar country = location[3]\nmsg.payload = {\n    \"street\": street,\n    \"number\":number,\n    \"city\":city,\n    \"country\":country\n    \n}\n\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 960,
+        "y": 460,
+        "wires": [
+            [
+                "6a54646d.82753c",
+                "1caa622c.477aee",
+                "21988ea.cd52172",
+                "9b1b150b.b6c608",
+                "6e4ce7ef.2e2068"
+            ]
+        ]
+    },
+    {
+        "id": "6a54646d.82753c",
+        "type": "ui_text",
+        "z": "717395f9.be587c",
+        "g": "f1bd362c.0def38",
+        "group": "5e4336fd.55cee8",
+        "order": 4,
+        "width": 8,
+        "height": 1,
+        "name": "",
+        "label": "Street:",
+        "format": "{{msg.payload.street}}",
+        "layout": "row-spread",
+        "x": 1150,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "1caa622c.477aee",
+        "type": "ui_text",
+        "z": "717395f9.be587c",
+        "g": "f1bd362c.0def38",
+        "group": "5e4336fd.55cee8",
+        "order": 6,
+        "width": 8,
+        "height": 1,
+        "name": "",
+        "label": "Number:",
+        "format": "{{msg.payload.number}}",
+        "layout": "row-spread",
+        "x": 1160,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "21988ea.cd52172",
+        "type": "ui_text",
+        "z": "717395f9.be587c",
+        "g": "f1bd362c.0def38",
+        "group": "5e4336fd.55cee8",
+        "order": 8,
+        "width": 8,
+        "height": 1,
+        "name": "",
+        "label": "City:",
+        "format": "{{msg.payload.city}}",
+        "layout": "row-spread",
+        "x": 1150,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "9b1b150b.b6c608",
+        "type": "ui_text",
+        "z": "717395f9.be587c",
+        "g": "f1bd362c.0def38",
+        "group": "5e4336fd.55cee8",
+        "order": 10,
+        "width": 8,
+        "height": 1,
+        "name": "",
+        "label": "Country:",
+        "format": "{{msg.payload.country}}",
+        "layout": "row-spread",
+        "x": 1160,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "6e4ce7ef.2e2068",
+        "type": "debug",
+        "z": "717395f9.be587c",
+        "g": "f1bd362c.0def38",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 850,
+        "y": 560,
+        "wires": []
+    },
+    {
+        "id": "fb187f6.bc6db8",
+        "type": "inject",
+        "z": "717395f9.be587c",
+        "g": "f1bd362c.0def38",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 210,
+        "y": 240,
+        "wires": [
+            [
+                "39df1ad0.d8c5a6"
+            ]
+        ]
+    },
+    {
+        "id": "7de544a.8ffa9bc",
+        "type": "websocket-listener",
+        "path": "/ws/alert",
+        "wholemsg": "false"
+    },
+    {
+        "id": "5e4336fd.55cee8",
+        "type": "ui_group",
+        "name": "GPS Pin Alert",
+        "tab": "53d54a54.cad2c4",
+        "order": 2,
+        "disp": true,
+        "width": "30",
+        "collapse": false
+    },
+    {
+        "id": "53d54a54.cad2c4",
+        "type": "ui_tab",
+        "name": "GPS Pin Alert",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    }
+]

@@ -1,0 +1,427 @@
+[
+    {
+        "id": "130c557e.a4a04b",
+        "type": "tab",
+        "label": "Home Test",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "11a1228b.24eefd",
+        "type": "group",
+        "z": "130c557e.a4a04b",
+        "style": {
+            "stroke": "#999999",
+            "stroke-opacity": "1",
+            "fill": "none",
+            "fill-opacity": "1",
+            "label": true,
+            "label-position": "nw",
+            "color": "#a4a4a4"
+        },
+        "nodes": [
+            "3b85653b.79e63a",
+            "10c42871.8954c8",
+            "d8fe1fe7.a58ff",
+            "cc7eb408.bd50a8",
+            "538bb08e.c2967",
+            "6b0451ea.7730b",
+            "2bcdb227.58d07e",
+            "52238826.827378"
+        ],
+        "x": 374,
+        "y": 59,
+        "w": 472,
+        "h": 362
+    },
+    {
+        "id": "1bfcd49a.c2c65b",
+        "type": "group",
+        "z": "130c557e.a4a04b",
+        "style": {
+            "stroke": "#999999",
+            "stroke-opacity": "1",
+            "fill": "none",
+            "fill-opacity": "1",
+            "label": true,
+            "label-position": "nw",
+            "color": "#a4a4a4"
+        },
+        "nodes": [
+            "dcda0b4a.8b4148",
+            "b2614a79.7ebb68",
+            "5cae8c64.cf45b4",
+            "1ec20fe0.fcbb"
+        ],
+        "x": 374,
+        "y": 439,
+        "w": 452,
+        "h": 142
+    },
+    {
+        "id": "3b85653b.79e63a",
+        "type": "ui_button",
+        "z": "130c557e.a4a04b",
+        "g": "11a1228b.24eefd",
+        "name": "",
+        "group": "779eb689.5941e8",
+        "order": 5,
+        "width": 7,
+        "height": 1,
+        "passthru": false,
+        "label": "check mark symbol celsius degrees",
+        "tooltip": "",
+        "color": "{{myicon}}",
+        "bgcolor": "{{background}}",
+        "icon": "check",
+        "payload": "degrees 33",
+        "payloadType": "str",
+        "topic": "Celsius",
+        "topicType": "str",
+        "x": 600,
+        "y": 100,
+        "wires": [
+            [
+                "10c42871.8954c8",
+                "d8fe1fe7.a58ff",
+                "cc7eb408.bd50a8",
+                "538bb08e.c2967"
+            ]
+        ]
+    },
+    {
+        "id": "10c42871.8954c8",
+        "type": "debug",
+        "z": "130c557e.a4a04b",
+        "g": "11a1228b.24eefd",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 730,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "d8fe1fe7.a58ff",
+        "type": "ui_text",
+        "z": "130c557e.a4a04b",
+        "g": "11a1228b.24eefd",
+        "group": "779eb689.5941e8",
+        "order": 6,
+        "width": 7,
+        "height": 1,
+        "name": "celsius",
+        "label": "{{msg.topic}}",
+        "format": "{{value | uppercase}} &deg;",
+        "layout": "row-spread",
+        "x": 730,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "cc7eb408.bd50a8",
+        "type": "change",
+        "z": "130c557e.a4a04b",
+        "g": "11a1228b.24eefd",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "background",
+                "pt": "msg",
+                "to": "red",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 540,
+        "y": 260,
+        "wires": [
+            [
+                "3b85653b.79e63a"
+            ]
+        ]
+    },
+    {
+        "id": "538bb08e.c2967",
+        "type": "change",
+        "z": "130c557e.a4a04b",
+        "g": "11a1228b.24eefd",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "myicon",
+                "pt": "msg",
+                "to": "black",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "black",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 520,
+        "y": 320,
+        "wires": [
+            [
+                "3b85653b.79e63a"
+            ]
+        ]
+    },
+    {
+        "id": "6b0451ea.7730b",
+        "type": "ui_dropdown",
+        "z": "130c557e.a4a04b",
+        "g": "11a1228b.24eefd",
+        "name": "",
+        "label": "",
+        "tooltip": "",
+        "place": "Select option",
+        "group": "779eb689.5941e8",
+        "order": 9,
+        "width": 7,
+        "height": 1,
+        "passthru": true,
+        "multiple": false,
+        "options": [
+            {
+                "label": "Apple",
+                "value": "Choice 1",
+                "type": "str"
+            },
+            {
+                "label": "Orange",
+                "value": "Choice 2",
+                "type": "str"
+            },
+            {
+                "label": "Strawberry",
+                "value": "Choice 3",
+                "type": "str"
+            }
+        ],
+        "payload": "",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 650,
+        "y": 380,
+        "wires": [
+            [
+                "2bcdb227.58d07e"
+            ]
+        ]
+    },
+    {
+        "id": "2bcdb227.58d07e",
+        "type": "ui_text",
+        "z": "130c557e.a4a04b",
+        "g": "11a1228b.24eefd",
+        "group": "779eb689.5941e8",
+        "order": 11,
+        "width": 7,
+        "height": 1,
+        "name": "txtdropdown",
+        "label": "",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "x": 750,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "52238826.827378",
+        "type": "ui_button",
+        "z": "130c557e.a4a04b",
+        "g": "11a1228b.24eefd",
+        "name": "",
+        "group": "779eb689.5941e8",
+        "order": 7,
+        "width": 7,
+        "height": 1,
+        "passthru": false,
+        "label": "menu options",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 480,
+        "y": 380,
+        "wires": [
+            [
+                "6b0451ea.7730b"
+            ]
+        ]
+    },
+    {
+        "id": "dcda0b4a.8b4148",
+        "type": "ui_slider",
+        "z": "130c557e.a4a04b",
+        "g": "1bfcd49a.c2c65b",
+        "name": "",
+        "label": "horizontal slider",
+        "tooltip": "",
+        "group": "779eb689.5941e8",
+        "order": 2,
+        "width": 7,
+        "height": 1,
+        "passthru": true,
+        "outs": "all",
+        "topic": "topic",
+        "topicType": "msg",
+        "min": "100",
+        "max": "0",
+        "step": 1,
+        "x": 480,
+        "y": 480,
+        "wires": [
+            [
+                "b2614a79.7ebb68"
+            ]
+        ]
+    },
+    {
+        "id": "b2614a79.7ebb68",
+        "type": "ui_text",
+        "z": "130c557e.a4a04b",
+        "g": "1bfcd49a.c2c65b",
+        "group": "779eb689.5941e8",
+        "order": 3,
+        "width": 4,
+        "height": 1,
+        "name": "",
+        "label": "Horizontal value",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "x": 720,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "5cae8c64.cf45b4",
+        "type": "ui_slider",
+        "z": "130c557e.a4a04b",
+        "g": "1bfcd49a.c2c65b",
+        "name": "",
+        "label": "PWM",
+        "tooltip": "",
+        "group": "779eb689.5941e8",
+        "order": 4,
+        "width": 1,
+        "height": 4,
+        "passthru": true,
+        "outs": "all",
+        "topic": "topic",
+        "topicType": "msg",
+        "min": "255",
+        "max": "0",
+        "step": 1,
+        "x": 450,
+        "y": 540,
+        "wires": [
+            [
+                "1ec20fe0.fcbb"
+            ]
+        ]
+    },
+    {
+        "id": "1ec20fe0.fcbb",
+        "type": "ui_text",
+        "z": "130c557e.a4a04b",
+        "g": "1bfcd49a.c2c65b",
+        "group": "779eb689.5941e8",
+        "order": 1,
+        "width": 4,
+        "height": 1,
+        "name": "",
+        "label": "PWM value",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "x": 710,
+        "y": 540,
+        "wires": []
+    },
+    {
+        "id": "7dcf6f80.8df98",
+        "type": "ui_numeric",
+        "z": "130c557e.a4a04b",
+        "name": "",
+        "label": "Degrees (numeric)",
+        "tooltip": "",
+        "group": "779eb689.5941e8",
+        "order": 8,
+        "width": 7,
+        "height": 1,
+        "wrap": false,
+        "passthru": true,
+        "topic": "topic",
+        "topicType": "msg",
+        "format": "<h1>{{value}}°C",
+        "min": 0,
+        "max": "100",
+        "step": 1,
+        "x": 530,
+        "y": 640,
+        "wires": [
+            [
+                "6538bb3a.6b2cd4"
+            ]
+        ]
+    },
+    {
+        "id": "6538bb3a.6b2cd4",
+        "type": "ui_text",
+        "z": "130c557e.a4a04b",
+        "group": "779eb689.5941e8",
+        "order": 10,
+        "width": 7,
+        "height": 1,
+        "name": "",
+        "label": "Degrees",
+        "format": "{{value | uppercase}} &deg;",
+        "layout": "row-spread",
+        "x": 760,
+        "y": 640,
+        "wires": []
+    },
+    {
+        "id": "779eb689.5941e8",
+        "type": "ui_group",
+        "name": "Test",
+        "tab": "f7a977b3.64d568",
+        "order": 1,
+        "disp": true,
+        "width": 15,
+        "collapse": false
+    },
+    {
+        "id": "f7a977b3.64d568",
+        "type": "ui_tab",
+        "name": "Home",
+        "icon": "dashboard",
+        "order": 4,
+        "disabled": false,
+        "hidden": false
+    }
+]

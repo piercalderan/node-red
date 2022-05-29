@@ -1,0 +1,393 @@
+[
+    {
+        "id": "b0ff45bae4148d5e",
+        "type": "tab",
+        "label": "TEST GPIO",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "345d60dbae92d076",
+        "type": "rpi-gpio out",
+        "z": "b0ff45bae4148d5e",
+        "name": "",
+        "pin": "5",
+        "set": true,
+        "level": "0",
+        "freq": "",
+        "out": "out",
+        "bcm": true,
+        "x": 660,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "fbed1876c8e28865",
+        "type": "trigger",
+        "z": "b0ff45bae4148d5e",
+        "name": "",
+        "op1": "true",
+        "op2": "false",
+        "op1type": "bool",
+        "op2type": "bool",
+        "duration": "1",
+        "extend": false,
+        "overrideDelay": false,
+        "units": "s",
+        "reset": "",
+        "bytopic": "all",
+        "topic": "topic",
+        "outputs": 1,
+        "x": 420,
+        "y": 240,
+        "wires": [
+            [
+                "345d60dbae92d076",
+                "e00a031caf0f9ab5"
+            ]
+        ]
+    },
+    {
+        "id": "b08de1a122f24602",
+        "type": "rpi-gpio in",
+        "z": "b0ff45bae4148d5e",
+        "name": "",
+        "pin": "21",
+        "intype": "up",
+        "debounce": "250",
+        "read": true,
+        "bcm": true,
+        "x": 180,
+        "y": 100,
+        "wires": [
+            [
+                "9e833db34df59a65"
+            ]
+        ]
+    },
+    {
+        "id": "4a38aef5f716b760",
+        "type": "inject",
+        "z": "b0ff45bae4148d5e",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "2",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 190,
+        "y": 240,
+        "wires": [
+            [
+                "fbed1876c8e28865"
+            ]
+        ]
+    },
+    {
+        "id": "cefdc9753ab2771e",
+        "type": "rpi-gpio out",
+        "z": "b0ff45bae4148d5e",
+        "name": "",
+        "pin": "6",
+        "set": true,
+        "level": "0",
+        "freq": "",
+        "out": "out",
+        "bcm": true,
+        "x": 660,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "3f0ba48b150d62a7",
+        "type": "rpi-gpio out",
+        "z": "b0ff45bae4148d5e",
+        "name": "",
+        "pin": "19",
+        "set": true,
+        "level": "0",
+        "freq": "",
+        "out": "out",
+        "bcm": true,
+        "x": 660,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "82805be07f3b2c16",
+        "type": "ui_switch",
+        "z": "b0ff45bae4148d5e",
+        "name": "",
+        "label": "switch 1",
+        "tooltip": "",
+        "group": "655217921c724f01",
+        "order": 1,
+        "width": 3,
+        "height": 1,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "topic",
+        "topicType": "msg",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "animate": false,
+        "className": "",
+        "x": 420,
+        "y": 340,
+        "wires": [
+            [
+                "cefdc9753ab2771e",
+                "c629ab0ad958d7ab"
+            ]
+        ]
+    },
+    {
+        "id": "6b0fe6a14bcbd378",
+        "type": "ui_switch",
+        "z": "b0ff45bae4148d5e",
+        "name": "",
+        "label": "switch 2",
+        "tooltip": "",
+        "group": "655217921c724f01",
+        "order": 3,
+        "width": 3,
+        "height": 1,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "topic",
+        "topicType": "msg",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "animate": false,
+        "className": "",
+        "x": 420,
+        "y": 400,
+        "wires": [
+            [
+                "3f0ba48b150d62a7",
+                "aafc4e62a4930157"
+            ]
+        ]
+    },
+    {
+        "id": "e00a031caf0f9ab5",
+        "type": "ui_led",
+        "z": "b0ff45bae4148d5e",
+        "order": 6,
+        "group": "655217921c724f01",
+        "width": 3,
+        "height": 1,
+        "label": "",
+        "labelPlacement": "left",
+        "labelAlignment": "left",
+        "colorForValue": [
+            {
+                "color": "#ff0000",
+                "value": "false",
+                "valueType": "bool"
+            },
+            {
+                "color": "#008000",
+                "value": "true",
+                "valueType": "bool"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "circle",
+        "showGlow": true,
+        "name": "blink",
+        "x": 650,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "c629ab0ad958d7ab",
+        "type": "ui_led",
+        "z": "b0ff45bae4148d5e",
+        "order": 2,
+        "group": "655217921c724f01",
+        "width": 3,
+        "height": 1,
+        "label": "",
+        "labelPlacement": "left",
+        "labelAlignment": "left",
+        "colorForValue": [
+            {
+                "color": "#ff0000",
+                "value": "false",
+                "valueType": "bool"
+            },
+            {
+                "color": "#008000",
+                "value": "true",
+                "valueType": "bool"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "circle",
+        "showGlow": true,
+        "name": "led1",
+        "x": 650,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "aafc4e62a4930157",
+        "type": "ui_led",
+        "z": "b0ff45bae4148d5e",
+        "order": 4,
+        "group": "655217921c724f01",
+        "width": 3,
+        "height": 1,
+        "label": "",
+        "labelPlacement": "left",
+        "labelAlignment": "left",
+        "colorForValue": [
+            {
+                "color": "#ff0000",
+                "value": "false",
+                "valueType": "bool"
+            },
+            {
+                "color": "#008000",
+                "value": "true",
+                "valueType": "bool"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "circle",
+        "showGlow": true,
+        "name": "led2",
+        "x": 650,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "0f9b58a46a03e339",
+        "type": "ui_text",
+        "z": "b0ff45bae4148d5e",
+        "group": "655217921c724f01",
+        "order": 5,
+        "width": 3,
+        "height": 1,
+        "name": "",
+        "label": "Blink",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 410,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "da963d2b92708f09",
+        "type": "ui_led",
+        "z": "b0ff45bae4148d5e",
+        "order": 8,
+        "group": "655217921c724f01",
+        "width": 3,
+        "height": 1,
+        "label": "",
+        "labelPlacement": "left",
+        "labelAlignment": "left",
+        "colorForValue": [
+            {
+                "color": "#ff0000",
+                "value": "false",
+                "valueType": "bool"
+            },
+            {
+                "color": "#008000",
+                "value": "true",
+                "valueType": "bool"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "circle",
+        "showGlow": true,
+        "name": "Button LED",
+        "x": 520,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "67efccb033d9c7de",
+        "type": "ui_text",
+        "z": "b0ff45bae4148d5e",
+        "group": "655217921c724f01",
+        "order": 7,
+        "width": 3,
+        "height": 1,
+        "name": "",
+        "label": "Button State",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 180,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "9e833db34df59a65",
+        "type": "function",
+        "z": "b0ff45bae4148d5e",
+        "name": "",
+        "func": "msg1=msg.payload;\nif (msg1==1) msg.payload = true\nif (msg1==0) msg.payload = false\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 350,
+        "y": 100,
+        "wires": [
+            [
+                "da963d2b92708f09"
+            ]
+        ]
+    },
+    {
+        "id": "655217921c724f01",
+        "type": "ui_group",
+        "name": "Raspberry GPIO",
+        "tab": "1c87b5dacbc3f76b",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "1c87b5dacbc3f76b",
+        "type": "ui_tab",
+        "name": "Raspberry GPIO",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    }
+]

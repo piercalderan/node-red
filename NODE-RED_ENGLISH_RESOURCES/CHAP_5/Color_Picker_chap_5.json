@@ -1,0 +1,162 @@
+[
+    {
+        "id": "58b9ee8e.b4b23",
+        "type": "tab",
+        "label": "COLOR PICKER",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "8264498.fa6c6b8",
+        "type": "ui_colour_picker",
+        "z": "58b9ee8e.b4b23",
+        "name": "color picker 1",
+        "label": "",
+        "group": "b49ab255.c2bc8",
+        "format": "hex",
+        "outformat": "object",
+        "showSwatch": true,
+        "showPicker": true,
+        "showValue": true,
+        "showHue": true,
+        "showAlpha": false,
+        "showLightness": false,
+        "square": "true",
+        "dynOutput": "false",
+        "order": 13,
+        "width": "0",
+        "height": "0",
+        "passthru": true,
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 360,
+        "y": 180,
+        "wires": [
+            [
+                "9a827fc9.d775e"
+            ]
+        ]
+    },
+    {
+        "id": "fc0bd768.11d7d8",
+        "type": "debug",
+        "z": "58b9ee8e.b4b23",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 990,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "3cea10c5.08fcd",
+        "type": "ui_template",
+        "z": "58b9ee8e.b4b23",
+        "group": "b49ab255.c2bc8",
+        "name": "Template color picker 1",
+        "order": 19,
+        "width": "0",
+        "height": "0",
+        "format": "<div style=\"background-color:{{msg.payload}};padding: 50px;\">\n     <br>The background color <br>\n     changes based on <br>\n     to the Color picker\n    </div>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "x": 750,
+        "y": 180,
+        "wires": [
+            [
+                "fc0bd768.11d7d8"
+            ]
+        ]
+    },
+    {
+        "id": "9a827fc9.d775e",
+        "type": "function",
+        "z": "58b9ee8e.b4b23",
+        "name": "Convert RGB",
+        "func": "var color = msg.payload;\ncolor = \"#\"+color;\nmsg1={payload:color};\nreturn msg1;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 530,
+        "y": 180,
+        "wires": [
+            [
+                "3cea10c5.08fcd"
+            ]
+        ]
+    },
+    {
+        "id": "651c9a51.2868d4",
+        "type": "ui_colour_picker",
+        "z": "58b9ee8e.b4b23",
+        "name": "color picker 2",
+        "label": "",
+        "group": "b49ab255.c2bc8",
+        "format": "rgb",
+        "outformat": "object",
+        "showSwatch": true,
+        "showPicker": true,
+        "showValue": true,
+        "showHue": true,
+        "showAlpha": false,
+        "showLightness": false,
+        "square": "true",
+        "dynOutput": "false",
+        "order": 16,
+        "width": "0",
+        "height": "0",
+        "passthru": true,
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 520,
+        "y": 260,
+        "wires": [
+            [
+                "b2999f2e.90257"
+            ]
+        ]
+    },
+    {
+        "id": "b2999f2e.90257",
+        "type": "debug",
+        "z": "58b9ee8e.b4b23",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 720,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "b49ab255.c2bc8",
+        "type": "ui_group",
+        "name": "Color Picker",
+        "tab": "d2c54822.7086d8",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "d2c54822.7086d8",
+        "type": "ui_tab",
+        "name": "Color Picker",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    }
+]

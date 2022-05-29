@@ -1,0 +1,444 @@
+[
+    {
+        "id": "1c24563b.c4b84a",
+        "type": "tab",
+        "label": "INFO SMARTPHONE",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "4ee811f3.cbcbe",
+        "type": "termux-camera-info",
+        "z": "1c24563b.c4b84a",
+        "name": "",
+        "topic": "",
+        "x": 670,
+        "y": 140,
+        "wires": [
+            [
+                "1d1459b3.f1d0a6"
+            ]
+        ]
+    },
+    {
+        "id": "4b4b7433.c2e99c",
+        "type": "ui_button",
+        "z": "1c24563b.c4b84a",
+        "name": "",
+        "group": "67fb21a2.d675c",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "SMS",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "Ciao ",
+        "payloadType": "str",
+        "topic": "Hello my love from Koalino",
+        "x": 490,
+        "y": 180,
+        "wires": [
+            [
+                "e4f46c8b.82ab9"
+            ]
+        ]
+    },
+    {
+        "id": "13a20a2c.ef3846",
+        "type": "termux-tts-speak",
+        "z": "1c24563b.c4b84a",
+        "name": "",
+        "topic": "",
+        "engine": "",
+        "language": "English",
+        "pitch": 1,
+        "rate": 1,
+        "stream": "MUSIC",
+        "text": "Hello",
+        "x": 670,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "f423bf59.a1b6a",
+        "type": "ui_button",
+        "z": "1c24563b.c4b84a",
+        "name": "",
+        "group": "67fb21a2.d675c",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "TTS",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "Hi, I'm talking from my mobile.",
+        "payloadType": "str",
+        "topic": "",
+        "x": 490,
+        "y": 220,
+        "wires": [
+            [
+                "13a20a2c.ef3846"
+            ]
+        ]
+    },
+    {
+        "id": "55645366.75c77c",
+        "type": "ui_button",
+        "z": "1c24563b.c4b84a",
+        "name": "",
+        "group": "67fb21a2.d675c",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "CAMERA INFO",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "",
+        "x": 460,
+        "y": 140,
+        "wires": [
+            [
+                "4ee811f3.cbcbe"
+            ]
+        ]
+    },
+    {
+        "id": "e4f46c8b.82ab9",
+        "type": "termux-sms-send",
+        "z": "1c24563b.c4b84a",
+        "name": "",
+        "topic": "",
+        "numbers": "3282117597",
+        "x": 670,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "f4b0288a.4beef8",
+        "type": "termux-vibrate",
+        "z": "1c24563b.c4b84a",
+        "name": "",
+        "topic": "",
+        "duration": 1000,
+        "force": false,
+        "x": 660,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "987fd110.deba4",
+        "type": "ui_button",
+        "z": "1c24563b.c4b84a",
+        "name": "",
+        "group": "67fb21a2.d675c",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "VIB",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "",
+        "x": 490,
+        "y": 260,
+        "wires": [
+            [
+                "f4b0288a.4beef8"
+            ]
+        ]
+    },
+    {
+        "id": "7e29b422.1e3d7c",
+        "type": "termux-contact-list",
+        "z": "1c24563b.c4b84a",
+        "name": "",
+        "topic": "",
+        "x": 670,
+        "y": 300,
+        "wires": [
+            [
+                "1d1459b3.f1d0a6"
+            ]
+        ]
+    },
+    {
+        "id": "43308830.001b28",
+        "type": "ui_button",
+        "z": "1c24563b.c4b84a",
+        "name": "",
+        "group": "67fb21a2.d675c",
+        "order": 5,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "CONTACT",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "",
+        "x": 470,
+        "y": 300,
+        "wires": [
+            [
+                "7e29b422.1e3d7c"
+            ]
+        ]
+    },
+    {
+        "id": "87a3c175.ee24",
+        "type": "ui_button",
+        "z": "1c24563b.c4b84a",
+        "name": "Clear",
+        "group": "67fb21a2.d675c",
+        "order": 6,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "CLEAR",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "",
+        "x": 490,
+        "y": 420,
+        "wires": [
+            [
+                "1d1459b3.f1d0a6"
+            ]
+        ]
+    },
+    {
+        "id": "1d1459b3.f1d0a6",
+        "type": "ui_template",
+        "z": "1c24563b.c4b84a",
+        "group": "1a069123.fe8fcf",
+        "name": "List",
+        "order": 2,
+        "width": "10",
+        "height": "16",
+        "format": "<div>{{msg.payload}}</div>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "x": 930,
+        "y": 240,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "252b2980.14ce96",
+        "type": "termux-wifi-connectioninfo",
+        "z": "1c24563b.c4b84a",
+        "name": "",
+        "topic": "",
+        "x": 660,
+        "y": 100,
+        "wires": [
+            [
+                "1d1459b3.f1d0a6"
+            ]
+        ]
+    },
+    {
+        "id": "a98a7123.c0b18",
+        "type": "ui_button",
+        "z": "1c24563b.c4b84a",
+        "name": "",
+        "group": "67fb21a2.d675c",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "WIFI INFO",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "",
+        "x": 470,
+        "y": 100,
+        "wires": [
+            [
+                "252b2980.14ce96"
+            ]
+        ]
+    },
+    {
+        "id": "d42778b1.38a5a8",
+        "type": "termux-dialog",
+        "z": "1c24563b.c4b84a",
+        "name": "",
+        "topic": "",
+        "hint": "",
+        "title": "",
+        "textarea": true,
+        "password": false,
+        "x": 650,
+        "y": 340,
+        "wires": [
+            [
+                "1d1459b3.f1d0a6"
+            ]
+        ]
+    },
+    {
+        "id": "c7dc3f75.1a33c",
+        "type": "ui_button",
+        "z": "1c24563b.c4b84a",
+        "name": "",
+        "group": "67fb21a2.d675c",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "DIALOG",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "",
+        "x": 480,
+        "y": 340,
+        "wires": [
+            [
+                "d42778b1.38a5a8"
+            ]
+        ]
+    },
+    {
+        "id": "9ee2e51a.947338",
+        "type": "termux-telephony-cellinfo",
+        "z": "1c24563b.c4b84a",
+        "name": "",
+        "topic": "",
+        "x": 670,
+        "y": 60,
+        "wires": [
+            [
+                "1d1459b3.f1d0a6"
+            ]
+        ]
+    },
+    {
+        "id": "2a8bbce8.4008a4",
+        "type": "ui_button",
+        "z": "1c24563b.c4b84a",
+        "name": "",
+        "group": "67fb21a2.d675c",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "TEL INFO",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "",
+        "x": 480,
+        "y": 60,
+        "wires": [
+            [
+                "9ee2e51a.947338"
+            ]
+        ]
+    },
+    {
+        "id": "6581a5a4.6bcb1c",
+        "type": "ui_button",
+        "z": "1c24563b.c4b84a",
+        "name": "",
+        "group": "67fb21a2.d675c",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "WIFI SCAN",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "",
+        "x": 470,
+        "y": 380,
+        "wires": [
+            [
+                "4927100d.11369"
+            ]
+        ]
+    },
+    {
+        "id": "4927100d.11369",
+        "type": "termux-wifi-scaninfo",
+        "z": "1c24563b.c4b84a",
+        "name": "",
+        "topic": "",
+        "x": 660,
+        "y": 380,
+        "wires": [
+            [
+                "1d1459b3.f1d0a6"
+            ]
+        ]
+    },
+    {
+        "id": "67fb21a2.d675c",
+        "type": "ui_group",
+        "name": "Various Info and functions",
+        "tab": "186d95e.b7bfd6a",
+        "order": 1,
+        "disp": true,
+        "width": "10",
+        "collapse": false
+    },
+    {
+        "id": "1a069123.fe8fcf",
+        "type": "ui_group",
+        "name": "Display",
+        "tab": "186d95e.b7bfd6a",
+        "order": 2,
+        "disp": true,
+        "width": "12",
+        "collapse": false
+    },
+    {
+        "id": "186d95e.b7bfd6a",
+        "type": "ui_tab",
+        "name": "Info Smartphone",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    }
+]

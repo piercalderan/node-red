@@ -1,0 +1,1218 @@
+[
+    {
+        "id": "21695086.daa8d",
+        "type": "tab",
+        "label": "GPS TEST + MISC",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "300ec5f7.a4316a",
+        "type": "group",
+        "z": "21695086.daa8d",
+        "name": "GPS test group",
+        "style": {
+            "label": true
+        },
+        "nodes": [
+            "b7d6efde.ae674",
+            "23883149.7d290e",
+            "292d397b.be2e56",
+            "cc21458d.3c7078",
+            "56be1368.0d7c2c",
+            "9c13e00d.7de39",
+            "fd8bca6e.4f2d18",
+            "6c6be01c.7b893",
+            "7010dfc4.7169d"
+        ],
+        "x": 54,
+        "y": 359,
+        "w": 992,
+        "h": 142
+    },
+    {
+        "id": "3efdc328.d25dfc",
+        "type": "group",
+        "z": "21695086.daa8d",
+        "name": "Time group",
+        "style": {
+            "label": true
+        },
+        "nodes": [
+            "92eaf6c0.6d1508",
+            "8055b557.7faa48",
+            "93bf2335.6c40e",
+            "9e3aa25e.61c56",
+            "f2c385a.f0d3c78",
+            "def756a1.2108a8"
+        ],
+        "x": 314,
+        "y": 39,
+        "w": 712,
+        "h": 122
+    },
+    {
+        "id": "4302e12c.058e3",
+        "type": "group",
+        "z": "21695086.daa8d",
+        "name": "Various examples group",
+        "style": {
+            "label": true
+        },
+        "nodes": [
+            "41747a17.54ffd4",
+            "d682318c.36823",
+            "90bfea22.dd2b98",
+            "e67a0cc.596d4f",
+            "d88dd470.0ac7b8",
+            "874a3d4e.9b666",
+            "7403c68f.21d7c8",
+            "90243cc1.87edc",
+            "59ff2a1.fa600d4",
+            "54c1e70d.ab3e18",
+            "266c286f.d993d8",
+            "ce53954b.31ac68",
+            "288a7c0.fd77584",
+            "7665c67d.899a38",
+            "c1460268.3eba",
+            "24199456.dbe66c",
+            "b3531892.4cace8",
+            "b34dd1af.4cb23",
+            "1052941d.efad6c",
+            "b828f6a6.47d708"
+        ],
+        "x": 54,
+        "y": 759,
+        "w": 952,
+        "h": 362
+    },
+    {
+        "id": "65ab1a2f.f61434",
+        "type": "group",
+        "z": "21695086.daa8d",
+        "name": "GPS Frame test group",
+        "style": {
+            "label": true
+        },
+        "nodes": [
+            "2d04068d.b60c7a",
+            "473d501f.dd947",
+            "72eee02f.4fa9f",
+            "9b3d8b4.d608978",
+            "7e6ca00a.e4ddd",
+            "61e47e2d.14964",
+            "6fe7b8e1.6eea78",
+            "82f6571a.683738",
+            "609aca18.da0f54",
+            "b63aedd0.0fa82"
+        ],
+        "x": 54,
+        "y": 519,
+        "w": 992,
+        "h": 202
+    },
+    {
+        "id": "973b37c1.79c1f8",
+        "type": "group",
+        "z": "21695086.daa8d",
+        "name": "Test group",
+        "style": {
+            "label": true
+        },
+        "nodes": [
+            "25cdfb71.635644",
+            "a345059.798adf8",
+            "13b544bf.275ecb",
+            "fd308a06.887c28",
+            "92f26f49.eb27e",
+            "eef48422.52be98",
+            "b4658591.123bf8",
+            "225720f2.69c12"
+        ],
+        "x": 54,
+        "y": 199,
+        "w": 992,
+        "h": 142
+    },
+    {
+        "id": "41747a17.54ffd4",
+        "type": "http request",
+        "z": "21695086.daa8d",
+        "g": "4302e12c.058e3",
+        "name": "",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "https://jsonplaceholder.typicode.com/posts/{{post}}",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "x": 470,
+        "y": 1080,
+        "wires": [
+            [
+                "d682318c.36823"
+            ]
+        ]
+    },
+    {
+        "id": "d682318c.36823",
+        "type": "debug",
+        "z": "21695086.daa8d",
+        "g": "4302e12c.058e3",
+        "name": "",
+        "active": true,
+        "console": "false",
+        "complete": "payload",
+        "x": 630,
+        "y": 1080,
+        "wires": []
+    },
+    {
+        "id": "90bfea22.dd2b98",
+        "type": "inject",
+        "z": "21695086.daa8d",
+        "g": "4302e12c.058e3",
+        "name": "post id",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": "",
+        "topic": "",
+        "payload": "2",
+        "payloadType": "str",
+        "x": 170,
+        "y": 1080,
+        "wires": [
+            [
+                "e67a0cc.596d4f"
+            ]
+        ]
+    },
+    {
+        "id": "e67a0cc.596d4f",
+        "type": "change",
+        "z": "21695086.daa8d",
+        "g": "4302e12c.058e3",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "post",
+                "pt": "msg",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 310,
+        "y": 1080,
+        "wires": [
+            [
+                "41747a17.54ffd4"
+            ]
+        ]
+    },
+    {
+        "id": "d88dd470.0ac7b8",
+        "type": "inject",
+        "z": "21695086.daa8d",
+        "g": "4302e12c.058e3",
+        "name": "Request",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 180,
+        "y": 940,
+        "wires": [
+            [
+                "874a3d4e.9b666"
+            ]
+        ]
+    },
+    {
+        "id": "874a3d4e.9b666",
+        "type": "http request",
+        "z": "21695086.daa8d",
+        "g": "4302e12c.058e3",
+        "name": "",
+        "method": "GET",
+        "ret": "txt",
+        "url": "https://nodered.org",
+        "tls": "",
+        "x": 370,
+        "y": 940,
+        "wires": [
+            [
+                "90243cc1.87edc"
+            ]
+        ]
+    },
+    {
+        "id": "7403c68f.21d7c8",
+        "type": "debug",
+        "z": "21695086.daa8d",
+        "g": "4302e12c.058e3",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 810,
+        "y": 940,
+        "wires": []
+    },
+    {
+        "id": "90243cc1.87edc",
+        "type": "html",
+        "z": "21695086.daa8d",
+        "g": "4302e12c.058e3",
+        "name": "",
+        "property": "",
+        "outproperty": "",
+        "tag": ".node-red-latest-version",
+        "ret": "text",
+        "as": "single",
+        "x": 590,
+        "y": 940,
+        "wires": [
+            [
+                "7403c68f.21d7c8"
+            ]
+        ]
+    },
+    {
+        "id": "59ff2a1.fa600d4",
+        "type": "http in",
+        "z": "21695086.daa8d",
+        "g": "4302e12c.058e3",
+        "name": "",
+        "url": "/hello",
+        "method": "get",
+        "swaggerDoc": "",
+        "x": 140,
+        "y": 800,
+        "wires": [
+            [
+                "54c1e70d.ab3e18"
+            ]
+        ]
+    },
+    {
+        "id": "54c1e70d.ab3e18",
+        "type": "template",
+        "z": "21695086.daa8d",
+        "g": "4302e12c.058e3",
+        "name": "page",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "<html>\n    <head></head>\n    <body>\n        <h1>Hello World!</h1>\n    </body>\n</html>",
+        "x": 290,
+        "y": 800,
+        "wires": [
+            [
+                "266c286f.d993d8"
+            ]
+        ]
+    },
+    {
+        "id": "266c286f.d993d8",
+        "type": "http response",
+        "z": "21695086.daa8d",
+        "g": "4302e12c.058e3",
+        "name": "",
+        "x": 430,
+        "y": 800,
+        "wires": []
+    },
+    {
+        "id": "ce53954b.31ac68",
+        "type": "http response",
+        "z": "21695086.daa8d",
+        "g": "4302e12c.058e3",
+        "name": "",
+        "x": 490,
+        "y": 880,
+        "wires": []
+    },
+    {
+        "id": "288a7c0.fd77584",
+        "type": "template",
+        "z": "21695086.daa8d",
+        "g": "4302e12c.058e3",
+        "name": "page",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "<html>\n    <head></head>\n    <body>\n        <h1>Name {{req.params.nome}}!</h1>\n    </body>\n</html>",
+        "x": 350,
+        "y": 880,
+        "wires": [
+            [
+                "ce53954b.31ac68"
+            ]
+        ]
+    },
+    {
+        "id": "7665c67d.899a38",
+        "type": "http in",
+        "z": "21695086.daa8d",
+        "g": "4302e12c.058e3",
+        "name": "",
+        "url": "/user/:name",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 160,
+        "y": 880,
+        "wires": [
+            [
+                "288a7c0.fd77584"
+            ]
+        ]
+    },
+    {
+        "id": "c1460268.3eba",
+        "type": "http in",
+        "z": "21695086.daa8d",
+        "g": "4302e12c.058e3",
+        "name": "",
+        "url": "/hello-headers",
+        "method": "get",
+        "swaggerDoc": "",
+        "x": 570,
+        "y": 1020,
+        "wires": [
+            [
+                "24199456.dbe66c"
+            ]
+        ]
+    },
+    {
+        "id": "24199456.dbe66c",
+        "type": "template",
+        "z": "21695086.daa8d",
+        "g": "4302e12c.058e3",
+        "name": "page",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "<html>\n    <head></head>\n    <body>\n        <h1>User agent: {{req.headers.user-agent}}</h1>\n    </body>\n</html>",
+        "x": 770,
+        "y": 1020,
+        "wires": [
+            [
+                "b3531892.4cace8"
+            ]
+        ]
+    },
+    {
+        "id": "b3531892.4cace8",
+        "type": "http response",
+        "z": "21695086.daa8d",
+        "g": "4302e12c.058e3",
+        "name": "",
+        "x": 910,
+        "y": 1020,
+        "wires": []
+    },
+    {
+        "id": "92eaf6c0.6d1508",
+        "type": "inject",
+        "z": "21695086.daa8d",
+        "g": "3efdc328.d25dfc",
+        "name": "",
+        "props": [
+            {
+                "p": "payload",
+                "v": "",
+                "vt": "date"
+            },
+            {
+                "p": "topic",
+                "v": "",
+                "vt": "string"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 420,
+        "y": 80,
+        "wires": [
+            [
+                "8055b557.7faa48"
+            ]
+        ]
+    },
+    {
+        "id": "8055b557.7faa48",
+        "type": "change",
+        "z": "21695086.daa8d",
+        "g": "3efdc328.d25dfc",
+        "name": "Stores the time",
+        "rules": [
+            {
+                "t": "set",
+                "p": "timestamp",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 620,
+        "y": 80,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "93bf2335.6c40e",
+        "type": "http in",
+        "z": "21695086.daa8d",
+        "g": "3efdc328.d25dfc",
+        "name": "",
+        "url": "/time",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 420,
+        "y": 120,
+        "wires": [
+            [
+                "9e3aa25e.61c56"
+            ]
+        ]
+    },
+    {
+        "id": "9e3aa25e.61c56",
+        "type": "change",
+        "z": "21695086.daa8d",
+        "g": "3efdc328.d25dfc",
+        "name": "Retrieves the time",
+        "rules": [
+            {
+                "t": "set",
+                "p": "timestamp",
+                "pt": "msg",
+                "to": "timestamp",
+                "tot": "flow"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 630,
+        "y": 120,
+        "wires": [
+            [
+                "f2c385a.f0d3c78"
+            ]
+        ]
+    },
+    {
+        "id": "f2c385a.f0d3c78",
+        "type": "template",
+        "z": "21695086.daa8d",
+        "g": "3efdc328.d25dfc",
+        "name": "page",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "<html>\n    <head></head>\n    <body>\n        <h1>Tempo (timestamp in formato Epoch): {{ timestamp }}</h1>\n    </body>\n</html>",
+        "x": 810,
+        "y": 120,
+        "wires": [
+            [
+                "def756a1.2108a8"
+            ]
+        ]
+    },
+    {
+        "id": "def756a1.2108a8",
+        "type": "http response",
+        "z": "21695086.daa8d",
+        "g": "3efdc328.d25dfc",
+        "name": "",
+        "x": 950,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "25cdfb71.635644",
+        "type": "function",
+        "z": "21695086.daa8d",
+        "g": "973b37c1.79c1f8",
+        "name": "",
+        "func": "msg.payload={\n    date:\"Monday\",\n    name:\"Tom\"}\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 500,
+        "y": 240,
+        "wires": [
+            [
+                "a345059.798adf8"
+            ]
+        ]
+    },
+    {
+        "id": "b63aedd0.0fa82",
+        "type": "ui_template",
+        "z": "21695086.daa8d",
+        "g": "65ab1a2f.f61434",
+        "group": "54f07650.4b3358",
+        "name": "",
+        "order": 4,
+        "width": 10,
+        "height": 7,
+        "format": "<iframe \n    id='frame'\n    src='/gps'\n    width='100%'  \n    height='100%'\n>\n</iframe>\n\n<script>\nscope.$watch('msg.payload', function(newv, oldv, scope) {\n    $(\"#frame\")[0].contentWindow.postMessage(JSON.stringify(newv), '*');\n});\n</script>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "x": 500,
+        "y": 680,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "a345059.798adf8",
+        "type": "change",
+        "z": "21695086.daa8d",
+        "g": "973b37c1.79c1f8",
+        "name": "Stores payload",
+        "rules": [
+            {
+                "t": "set",
+                "p": "timestamp",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 680,
+        "y": 240,
+        "wires": [
+            [
+                "fd308a06.887c28"
+            ]
+        ]
+    },
+    {
+        "id": "13b544bf.275ecb",
+        "type": "inject",
+        "z": "21695086.daa8d",
+        "g": "973b37c1.79c1f8",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 160,
+        "y": 240,
+        "wires": [
+            [
+                "25cdfb71.635644"
+            ]
+        ]
+    },
+    {
+        "id": "fd308a06.887c28",
+        "type": "debug",
+        "z": "21695086.daa8d",
+        "g": "973b37c1.79c1f8",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 930,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "b34dd1af.4cb23",
+        "type": "template",
+        "z": "21695086.daa8d",
+        "g": "4302e12c.058e3",
+        "name": "page",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "<html>\n    <head></head>\n    <body>\n        <h1>Hello {{req.query.nome}}!</h1>\n    </body>\n</html>",
+        "x": 790,
+        "y": 800,
+        "wires": [
+            [
+                "b828f6a6.47d708"
+            ]
+        ]
+    },
+    {
+        "id": "1052941d.efad6c",
+        "type": "http in",
+        "z": "21695086.daa8d",
+        "g": "4302e12c.058e3",
+        "name": "",
+        "url": "/hello-query",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 620,
+        "y": 800,
+        "wires": [
+            [
+                "b34dd1af.4cb23"
+            ]
+        ]
+    },
+    {
+        "id": "b828f6a6.47d708",
+        "type": "http response",
+        "z": "21695086.daa8d",
+        "g": "4302e12c.058e3",
+        "name": "",
+        "x": 930,
+        "y": 800,
+        "wires": []
+    },
+    {
+        "id": "92f26f49.eb27e",
+        "type": "template",
+        "z": "21695086.daa8d",
+        "g": "973b37c1.79c1f8",
+        "name": "html",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "<h1>\nMy name is: {{payload.name}} <br>\nThe day is: {{payload.date}}\n</h1>\n\n\n",
+        "output": "str",
+        "x": 650,
+        "y": 300,
+        "wires": [
+            [
+                "b4658591.123bf8"
+            ]
+        ]
+    },
+    {
+        "id": "eef48422.52be98",
+        "type": "http in",
+        "z": "21695086.daa8d",
+        "g": "973b37c1.79c1f8",
+        "name": "",
+        "url": "/test",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 160,
+        "y": 300,
+        "wires": [
+            [
+                "225720f2.69c12"
+            ]
+        ]
+    },
+    {
+        "id": "b4658591.123bf8",
+        "type": "http response",
+        "z": "21695086.daa8d",
+        "g": "973b37c1.79c1f8",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 830,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "225720f2.69c12",
+        "type": "change",
+        "z": "21695086.daa8d",
+        "g": "973b37c1.79c1f8",
+        "name": "Retrieves payload",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "timestamp",
+                "tot": "flow"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 430,
+        "y": 300,
+        "wires": [
+            [
+                "92f26f49.eb27e"
+            ]
+        ]
+    },
+    {
+        "id": "b7d6efde.ae674",
+        "type": "function",
+        "z": "21695086.daa8d",
+        "g": "300ec5f7.a4316a",
+        "name": "",
+        "func": "var data = msg.payload;\nmsg.payload=JSON.stringify(data);\np=JSON.parse(msg.payload);\n\nmsg.payload={\n    latitude:p.latitude,\n    longitude:p.longitude}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 500,
+        "y": 400,
+        "wires": [
+            [
+                "23883149.7d290e"
+            ]
+        ]
+    },
+    {
+        "id": "23883149.7d290e",
+        "type": "change",
+        "z": "21695086.daa8d",
+        "g": "300ec5f7.a4316a",
+        "name": "Stores payload",
+        "rules": [
+            {
+                "t": "set",
+                "p": "timestamp",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 680,
+        "y": 400,
+        "wires": [
+            [
+                "cc21458d.3c7078"
+            ]
+        ]
+    },
+    {
+        "id": "292d397b.be2e56",
+        "type": "inject",
+        "z": "21695086.daa8d",
+        "g": "300ec5f7.a4316a",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 160,
+        "y": 400,
+        "wires": [
+            [
+                "7010dfc4.7169d"
+            ]
+        ]
+    },
+    {
+        "id": "cc21458d.3c7078",
+        "type": "debug",
+        "z": "21695086.daa8d",
+        "g": "300ec5f7.a4316a",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 930,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "56be1368.0d7c2c",
+        "type": "template",
+        "z": "21695086.daa8d",
+        "g": "300ec5f7.a4316a",
+        "name": "html",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "<h1>\nLatitudine: {{payload.latitude}}<br>\nLongitudine: {{payload.longitude}}\n</h1>\n\n\n",
+        "output": "str",
+        "x": 650,
+        "y": 460,
+        "wires": [
+            [
+                "fd8bca6e.4f2d18"
+            ]
+        ]
+    },
+    {
+        "id": "9c13e00d.7de39",
+        "type": "http in",
+        "z": "21695086.daa8d",
+        "g": "300ec5f7.a4316a",
+        "name": "",
+        "url": "/gps",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 160,
+        "y": 460,
+        "wires": [
+            [
+                "6c6be01c.7b893"
+            ]
+        ]
+    },
+    {
+        "id": "fd8bca6e.4f2d18",
+        "type": "http response",
+        "z": "21695086.daa8d",
+        "g": "300ec5f7.a4316a",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 830,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "6c6be01c.7b893",
+        "type": "change",
+        "z": "21695086.daa8d",
+        "g": "300ec5f7.a4316a",
+        "name": "Retrieves payload",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "timestamp",
+                "tot": "flow"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 430,
+        "y": 460,
+        "wires": [
+            [
+                "56be1368.0d7c2c"
+            ]
+        ]
+    },
+    {
+        "id": "7010dfc4.7169d",
+        "type": "termux-location",
+        "z": "21695086.daa8d",
+        "g": "300ec5f7.a4316a",
+        "name": "",
+        "topic": "",
+        "provider": "gps",
+        "request": "once",
+        "x": 320,
+        "y": 400,
+        "wires": [
+            [
+                "b7d6efde.ae674"
+            ]
+        ]
+    },
+    {
+        "id": "2d04068d.b60c7a",
+        "type": "function",
+        "z": "21695086.daa8d",
+        "g": "65ab1a2f.f61434",
+        "name": "",
+        "func": "var data = msg.payload;\nmsg.payload=JSON.stringify(data);\np=JSON.parse(msg.payload);\n\nmsg.payload={\n    latitude:p.latitude,\n    longitude:p.longitude}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 500,
+        "y": 560,
+        "wires": [
+            [
+                "473d501f.dd947"
+            ]
+        ]
+    },
+    {
+        "id": "473d501f.dd947",
+        "type": "change",
+        "z": "21695086.daa8d",
+        "g": "65ab1a2f.f61434",
+        "name": "Stores payload",
+        "rules": [
+            {
+                "t": "set",
+                "p": "timestamp",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 680,
+        "y": 560,
+        "wires": [
+            [
+                "72eee02f.4fa9f"
+            ]
+        ]
+    },
+    {
+        "id": "72eee02f.4fa9f",
+        "type": "debug",
+        "z": "21695086.daa8d",
+        "g": "65ab1a2f.f61434",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 930,
+        "y": 560,
+        "wires": []
+    },
+    {
+        "id": "9b3d8b4.d608978",
+        "type": "template",
+        "z": "21695086.daa8d",
+        "g": "65ab1a2f.f61434",
+        "name": "html",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "<h1>\nLatitudine: {{payload.latitude}}<br>\nLongitudine: {{payload.longitude}}\n</h1>\n\n\n",
+        "output": "str",
+        "x": 650,
+        "y": 620,
+        "wires": [
+            [
+                "61e47e2d.14964"
+            ]
+        ]
+    },
+    {
+        "id": "7e6ca00a.e4ddd",
+        "type": "http in",
+        "z": "21695086.daa8d",
+        "g": "65ab1a2f.f61434",
+        "name": "",
+        "url": "/gps",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 160,
+        "y": 620,
+        "wires": [
+            [
+                "6fe7b8e1.6eea78"
+            ]
+        ]
+    },
+    {
+        "id": "61e47e2d.14964",
+        "type": "http response",
+        "z": "21695086.daa8d",
+        "g": "65ab1a2f.f61434",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 830,
+        "y": 620,
+        "wires": []
+    },
+    {
+        "id": "6fe7b8e1.6eea78",
+        "type": "change",
+        "z": "21695086.daa8d",
+        "g": "65ab1a2f.f61434",
+        "name": "Retrieves payload",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "timestamp",
+                "tot": "flow"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 430,
+        "y": 620,
+        "wires": [
+            [
+                "9b3d8b4.d608978"
+            ]
+        ]
+    },
+    {
+        "id": "82f6571a.683738",
+        "type": "termux-location",
+        "z": "21695086.daa8d",
+        "g": "65ab1a2f.f61434",
+        "name": "",
+        "topic": "",
+        "provider": "gps",
+        "request": "once",
+        "x": 320,
+        "y": 560,
+        "wires": [
+            [
+                "2d04068d.b60c7a"
+            ]
+        ]
+    },
+    {
+        "id": "609aca18.da0f54",
+        "type": "ui_button",
+        "z": "21695086.daa8d",
+        "g": "65ab1a2f.f61434",
+        "name": "",
+        "group": "54f07650.4b3358",
+        "order": 2,
+        "width": 4,
+        "height": 1,
+        "passthru": false,
+        "label": "LOCATION",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "date",
+        "topic": "",
+        "x": 150,
+        "y": 560,
+        "wires": [
+            [
+                "82f6571a.683738"
+            ]
+        ]
+    },
+    {
+        "id": "54f07650.4b3358",
+        "type": "ui_group",
+        "name": "GPS FRAME",
+        "tab": "663d739a.a3baec",
+        "order": 1,
+        "disp": true,
+        "width": 10,
+        "collapse": false
+    },
+    {
+        "id": "663d739a.a3baec",
+        "type": "ui_tab",
+        "name": "GPS TEST",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    }
+]

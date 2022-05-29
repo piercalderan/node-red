@@ -1,0 +1,20 @@
+{
+  "name": "node-red-contrib-example-lowercase",
+  "version": "1.0.0",
+  "description": "Sample node to convert characters to lowercase.",
+  "main": "index.js",
+  "scripts": {
+    "test": "ctrl+l"
+  },
+  "repository": {
+  "type": "git",
+  "url": "https://github.com/piercalderan"
+  },
+  "author": "Pier Calderan",
+  "license": "ISC",
+      "node-red" : {
+        "nodes": {
+            "lower-case": "lower-case.js"
+        }
+    }
+}

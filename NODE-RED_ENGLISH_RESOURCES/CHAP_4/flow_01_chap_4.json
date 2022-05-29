@@ -1,0 +1,73 @@
+[
+    {
+        "id": "d6047b92.1206f8",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "3a117580.0117da",
+        "type": "inject",
+        "z": "d6047b92.1206f8",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 860,
+        "y": 160,
+        "wires": [
+            [
+                "c4ea7c75.2ae09"
+            ]
+        ]
+    },
+    {
+        "id": "1aac3dee.57ddc2",
+        "type": "debug",
+        "z": "d6047b92.1206f8",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1270,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "c4ea7c75.2ae09",
+        "type": "function",
+        "z": "d6047b92.1206f8",
+        "name": "",
+        "func": "// Crea un oggetto Date object dal payload\nvar date = new Date(msg.payload);\n// Cambia il payload in una stringa Date formattata\nmsg.payload = date.toString();\n// Restituisce il messaggio in modo che possa essere visualizzato\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1070,
+        "y": 180,
+        "wires": [
+            [
+                "1aac3dee.57ddc2"
+            ]
+        ]
+    }
+]

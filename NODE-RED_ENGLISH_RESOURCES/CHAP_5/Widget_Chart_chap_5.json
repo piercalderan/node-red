@@ -1,0 +1,144 @@
+[
+    {
+        "id": "bf957f2a.56f6",
+        "type": "tab",
+        "label": "Widget Chart",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "f3c8f4c9.834fb8",
+        "type": "ui_chart",
+        "z": "bf957f2a.56f6",
+        "name": "",
+        "group": "8a85c771.86e008",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "label": "Graphic",
+        "chartType": "line",
+        "legend": "true",
+        "xformat": "auto",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": "1",
+        "removeOlderPoints": "",
+        "removeOlderUnit": "60",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "x": 880,
+        "y": 140,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "1cb746a2.b91f59",
+        "type": "inject",
+        "z": "bf957f2a.56f6",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "4",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 390,
+        "y": 140,
+        "wires": [
+            [
+                "dee0e64f.456408"
+            ]
+        ]
+    },
+    {
+        "id": "e5c5fe15.8eb18",
+        "type": "function",
+        "z": "bf957f2a.56f6",
+        "name": "",
+        "func": "var m = [\n    {label:\"A\", payload:msg.payload, series:\"X\"},\n    {label:\"B\", payload:msg.payload+1, series:\"Y\"},\n    ];\nreturn [m];",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 720,
+        "y": 140,
+        "wires": [
+            [
+                "f3c8f4c9.834fb8"
+            ]
+        ]
+    },
+    {
+        "id": "dee0e64f.456408",
+        "type": "trigger",
+        "z": "bf957f2a.56f6",
+        "name": "",
+        "op1": "1",
+        "op2": "0",
+        "op1type": "num",
+        "op2type": "num",
+        "duration": "2",
+        "extend": false,
+        "overrideDelay": false,
+        "units": "s",
+        "reset": "",
+        "bytopic": "all",
+        "topic": "topic",
+        "outputs": 1,
+        "x": 560,
+        "y": 140,
+        "wires": [
+            [
+                "e5c5fe15.8eb18"
+            ]
+        ]
+    },
+    {
+        "id": "8a85c771.86e008",
+        "type": "ui_group",
+        "name": "Chart",
+        "tab": "af09e3c5.c950c",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "af09e3c5.c950c",
+        "type": "ui_tab",
+        "name": "Widget Chart",
+        "icon": "dashboard",
+        "order": 7,
+        "disabled": false,
+        "hidden": false
+    }
+]

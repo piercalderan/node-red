@@ -1,0 +1,230 @@
+[
+    {
+        "id": "83e9c41e14685ceb",
+        "type": "tab",
+        "label": "TEST GPIO DHT",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "8727484c6a99fefd",
+        "type": "rpi-dht22",
+        "z": "83e9c41e14685ceb",
+        "name": "",
+        "topic": "rpi-dht11",
+        "dht": "11",
+        "pintype": "0",
+        "pin": "4",
+        "x": 380,
+        "y": 60,
+        "wires": [
+            [
+                "5ed902a52ed87d53"
+            ]
+        ]
+    },
+    {
+        "id": "5ed902a52ed87d53",
+        "type": "function",
+        "z": "83e9c41e14685ceb",
+        "name": "",
+        "func": "msg2={};\nmsg1={payload: msg.payload};\nmsg2.payload = msg.humidity;\nreturn [msg1,msg2];",
+        "outputs": 2,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 540,
+        "y": 60,
+        "wires": [
+            [
+                "618f7a6ecb7ab026",
+                "d882f9394bbfa9f2",
+                "b0c70cb036dfa955"
+            ],
+            [
+                "7c0de1a33374b5e4",
+                "5e164ee0c74098cd"
+            ]
+        ]
+    },
+    {
+        "id": "ae8d2cfa28c0558d",
+        "type": "ui_button",
+        "z": "83e9c41e14685ceb",
+        "name": "",
+        "group": "3572695cd4b49442",
+        "order": 8,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "DHT reading",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 210,
+        "y": 60,
+        "wires": [
+            [
+                "8727484c6a99fefd"
+            ]
+        ]
+    },
+    {
+        "id": "618f7a6ecb7ab026",
+        "type": "ui_text",
+        "z": "83e9c41e14685ceb",
+        "group": "3572695cd4b49442",
+        "order": 9,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Temperature",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 750,
+        "y": 20,
+        "wires": []
+    },
+    {
+        "id": "7c0de1a33374b5e4",
+        "type": "ui_text",
+        "z": "83e9c41e14685ceb",
+        "group": "3572695cd4b49442",
+        "order": 9,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Humidity",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 560,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "d882f9394bbfa9f2",
+        "type": "ui_gauge",
+        "z": "83e9c41e14685ceb",
+        "name": "",
+        "group": "3572695cd4b49442",
+        "order": 11,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Temp",
+        "label": "units",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "50",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "className": "",
+        "x": 930,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "5e164ee0c74098cd",
+        "type": "ui_gauge",
+        "z": "83e9c41e14685ceb",
+        "name": "",
+        "group": "3572695cd4b49442",
+        "order": 11,
+        "width": 0,
+        "height": 0,
+        "gtype": "wave",
+        "title": "Hum",
+        "label": "units",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "50",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "className": "",
+        "x": 930,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "b0c70cb036dfa955",
+        "type": "mqtt out",
+        "z": "83e9c41e14685ceb",
+        "name": "",
+        "topic": "temp",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "9eb51994a269014d",
+        "x": 1050,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "3572695cd4b49442",
+        "type": "ui_group",
+        "name": "Raspberry GPIO DHT",
+        "tab": "734f4bb9.f4d844",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "9eb51994a269014d",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "192.168.1.189",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "sessionExpiry": ""
+    },
+    {
+        "id": "734f4bb9.f4d844",
+        "type": "ui_tab",
+        "name": "Raspberry GPIO DHT",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    }
+]

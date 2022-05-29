@@ -1,0 +1,211 @@
+[
+    {
+        "id": "27ac84bf.5321cc",
+        "type": "tab",
+        "label": "NEW TTN",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "b6661bb1.bde7b8",
+        "type": "function",
+        "z": "27ac84bf.5321cc",
+        "name": "Extract Data",
+        "func": "var obj = \n{\n    0:msg.payload.uplink_message.decoded_payload.bytes[0],\n    1:msg.payload.uplink_message.decoded_payload.bytes[1],\n}\n\n\nvar res_temp = obj[0]\nvar res_hum = obj[1]\n\nvar msg1 = { payload:res_temp };\nvar msg2 = { payload:res_hum };\n\nreturn [msg1,msg2]",
+        "outputs": 2,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 670,
+        "y": 100,
+        "wires": [
+            [
+                "ff8767ca.d107d8",
+                "7ea7f2c8.11a89c"
+            ],
+            [
+                "19f0a6a4.bc7f59",
+                "a7a62c4e.50e63"
+            ]
+        ]
+    },
+    {
+        "id": "ad73f06a.b586e",
+        "type": "json",
+        "z": "27ac84bf.5321cc",
+        "name": "",
+        "x": 470,
+        "y": 80,
+        "wires": [
+            [
+                "b6661bb1.bde7b8",
+                "fffdd809.3e2078"
+            ]
+        ]
+    },
+    {
+        "id": "b79cdd59.5ad96",
+        "type": "mqtt in",
+        "z": "27ac84bf.5321cc",
+        "name": "MQTT TTN UPLINK",
+        "topic": "#",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "61fa88b3.959e48",
+        "nl": false,
+        "rap": false,
+        "x": 290,
+        "y": 80,
+        "wires": [
+            [
+                "ad73f06a.b586e"
+            ]
+        ]
+    },
+    {
+        "id": "ff8767ca.d107d8",
+        "type": "debug",
+        "z": "27ac84bf.5321cc",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1010,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "19f0a6a4.bc7f59",
+        "type": "debug",
+        "z": "27ac84bf.5321cc",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1010,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "fffdd809.3e2078",
+        "type": "debug",
+        "z": "27ac84bf.5321cc",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 670,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "7ea7f2c8.11a89c",
+        "type": "ui_gauge",
+        "z": "27ac84bf.5321cc",
+        "name": "Temp",
+        "group": "d7fbb66a.e286c8",
+        "order": 1,
+        "width": "5",
+        "height": "5",
+        "gtype": "gage",
+        "title": "Temp",
+        "label": "Degrees",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "50",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "x": 990,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "a7a62c4e.50e63",
+        "type": "ui_gauge",
+        "z": "27ac84bf.5321cc",
+        "name": "Hum",
+        "group": "d7fbb66a.e286c8",
+        "order": 2,
+        "width": "5",
+        "height": "5",
+        "gtype": "wave",
+        "title": "Hum",
+        "label": "%",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "x": 990,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "61fa88b3.959e48",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "eu1.cloud.thethings.network",
+        "port": "1883",
+        "clientid": "",
+        "usetls": false,
+        "compatmode": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "sessionExpiry": ""
+    },
+    {
+        "id": "d7fbb66a.e286c8",
+        "type": "ui_group",
+        "name": "Device 001",
+        "tab": "835c0eeb.9730b",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "835c0eeb.9730b",
+        "type": "ui_tab",
+        "name": "NEW TTN",
+        "icon": "dashboard",
+        "order": 2,
+        "disabled": false,
+        "hidden": false
+    }
+]

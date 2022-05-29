@@ -1,0 +1,365 @@
+[
+    {
+        "id": "35fc5929.b03b96",
+        "type": "tab",
+        "label": "GOOGLE MAP",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "f3f9abcd.af5038",
+        "type": "group",
+        "z": "35fc5929.b03b96",
+        "name": "Google Map Group",
+        "style": {
+            "label": true
+        },
+        "nodes": [
+            "cfbe4813.b1a488",
+            "e1b4cd96.c2b89",
+            "871fc47.008cc38",
+            "235f504b.8f2b9",
+            "6a48bfc6.6c3db",
+            "3a314471.e5d9dc",
+            "3771d18e.afb12e",
+            "30445a89.6512b6",
+            "a04da31a.a7525",
+            "b413fdbd.cd2b6",
+            "7250aa60.7fd104",
+            "f1bc8401.7c3fe8",
+            "cac15b3f.d51468",
+            "772ec379.a465ec"
+        ],
+        "x": 84,
+        "y": 39,
+        "w": 962,
+        "h": 302
+    },
+    {
+        "id": "a5995477.e9a258",
+        "type": "template",
+        "z": "35fc5929.b03b96",
+        "name": "html",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "<html>\n<head>\n  <title>GPS Google Map</title>\n  <script type=\"text/javascript\" src=\"http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js\"></script>\n  <script type=\"text/javascript\" src=\"http://maps.google.com/maps/api/js?sensor=true\"></script>\n  <script type=\"text/javascript\" src=\"http://yourjavascript.com/4594301102/gmaps.js\"></script>\n  <style type=\"text/css\" media=\"screen\">\n    #map {\n    height: 100%;\n    position:absolute;\n    top: 0; bottom: 0; left: 0; right: 0;\n    }\n  </style>\n</head>\n<body>\n  <div id=\"map\"></div>\n  <script type=\"text/javascript\">\n  var socketaddy = \"ws://192.168.1.101:1880/ws/location\";\n    var map;\n    var sock;\n    $(document).ready(function(){\n      \n      map = new GMaps({\n        div: '#map',\n        lat: {{payload.latitude}},\n        lng: {{payload.longitude}}\n      });\n      \n      sock = new WebSocket(socketaddy);\n      sock.onopen = function(){ console.log(\"Connected websocket\");\n\t      console.log(\"Sending ping..\");\n\t      sock.send(\"Ping!\");\n\t      console.log(\"Ping sent..\");\n      };\n      sock.onerror = function(){ console.log(\"Websocket error\"); };\n      sock.onmessage = function(evt){\n        var latlng = JSON.parse(evt.data);\n        var array = $.map(latlng, function(el) {\n  \t\t\treturn [[45.8871, 9.9497]];\n\t\t\t});\n  \n        map.removeMarkers();\n        map.removePolylines();\n       \tconsole.log(\"Got marker at \" + latlng[0].lat + \", \" + latlng[0].lng, latlng);\n        map.setZoom(27);\n        \n       \tmap.setCenter(latlng[0].lat, latlng[0].lng);\n        map.addMarkers(latlng);\n  \n  \n      \tmap.drawPolyline({\n\t\t  path: array,\n\t\t  strokeColor: '#FF00FF',\n\t\t  strokeOpacity: 0.6,\n\t\t  strokeWeight: 6\n\t\t});\n      }\n    });\n  </script> \n\n</body>\n</html>",
+        "output": "str",
+        "x": 1150,
+        "y": 260,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "cfbe4813.b1a488",
+        "type": "ui_template",
+        "z": "35fc5929.b03b96",
+        "g": "f3f9abcd.af5038",
+        "group": "898d68ad.775b08",
+        "name": "",
+        "order": 6,
+        "width": 19,
+        "height": 14,
+        "format": "<iframe \n    id='frame'\n    src='/google'\n    width='1000px'  \n    height='600px'\n>\n</iframe>\n\n<script>\nscope.$watch('msg.payload', function(newv, oldv, scope) {\n    $(\"#frame\")[0].contentWindow.postMessage(JSON.stringify(newv), '*');\n});\n</script>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "x": 560,
+        "y": 300,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "e1b4cd96.c2b89",
+        "type": "termux-location",
+        "z": "35fc5929.b03b96",
+        "g": "f3f9abcd.af5038",
+        "name": "",
+        "topic": "",
+        "provider": "gps",
+        "request": "once",
+        "x": 360,
+        "y": 180,
+        "wires": [
+            [
+                "3771d18e.afb12e",
+                "235f504b.8f2b9"
+            ]
+        ]
+    },
+    {
+        "id": "871fc47.008cc38",
+        "type": "ui_button",
+        "z": "35fc5929.b03b96",
+        "g": "f3f9abcd.af5038",
+        "name": "",
+        "group": "898d68ad.775b08",
+        "order": 2,
+        "width": 5,
+        "height": 1,
+        "passthru": false,
+        "label": "LOCATION",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "topic": "",
+        "x": 190,
+        "y": 180,
+        "wires": [
+            [
+                "e1b4cd96.c2b89"
+            ]
+        ]
+    },
+    {
+        "id": "235f504b.8f2b9",
+        "type": "function",
+        "z": "35fc5929.b03b96",
+        "g": "f3f9abcd.af5038",
+        "name": "",
+        "func": "var data = msg.payload;\nmsg.payload=JSON.stringify(data);\np=JSON.parse(msg.payload);\n\nmsg1={payload:p.latitude}\nmsg2={payload:p.longitude}\n\nreturn [msg1,msg2];",
+        "outputs": 2,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 540,
+        "y": 100,
+        "wires": [
+            [
+                "cac15b3f.d51468"
+            ],
+            [
+                "f1bc8401.7c3fe8"
+            ]
+        ]
+    },
+    {
+        "id": "6a48bfc6.6c3db",
+        "type": "change",
+        "z": "35fc5929.b03b96",
+        "g": "f3f9abcd.af5038",
+        "name": "Memorizza il payload",
+        "rules": [
+            {
+                "t": "set",
+                "p": "timestamp",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 720,
+        "y": 180,
+        "wires": [
+            [
+                "30445a89.6512b6"
+            ]
+        ]
+    },
+    {
+        "id": "3a314471.e5d9dc",
+        "type": "change",
+        "z": "35fc5929.b03b96",
+        "g": "f3f9abcd.af5038",
+        "name": "Retrieves payload",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "timestamp",
+                "tot": "flow"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 570,
+        "y": 260,
+        "wires": [
+            [
+                "772ec379.a465ec"
+            ]
+        ]
+    },
+    {
+        "id": "3771d18e.afb12e",
+        "type": "function",
+        "z": "35fc5929.b03b96",
+        "g": "f3f9abcd.af5038",
+        "name": "",
+        "func": "var data = msg.payload;\nmsg.payload=JSON.stringify(data);\np=JSON.parse(msg.payload);\n\nmsg.payload={\n    latitude:p.latitude,\n    longitude:p.longitude}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 520,
+        "y": 180,
+        "wires": [
+            [
+                "6a48bfc6.6c3db"
+            ]
+        ]
+    },
+    {
+        "id": "30445a89.6512b6",
+        "type": "debug",
+        "z": "35fc5929.b03b96",
+        "g": "f3f9abcd.af5038",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 930,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "a04da31a.a7525",
+        "type": "inject",
+        "z": "35fc5929.b03b96",
+        "g": "f3f9abcd.af5038",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 190,
+        "y": 240,
+        "wires": [
+            [
+                "e1b4cd96.c2b89"
+            ]
+        ]
+    },
+    {
+        "id": "b413fdbd.cd2b6",
+        "type": "http in",
+        "z": "35fc5929.b03b96",
+        "g": "f3f9abcd.af5038",
+        "name": "",
+        "url": "/google",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 370,
+        "y": 260,
+        "wires": [
+            [
+                "3a314471.e5d9dc"
+            ]
+        ]
+    },
+    {
+        "id": "7250aa60.7fd104",
+        "type": "http response",
+        "z": "35fc5929.b03b96",
+        "g": "f3f9abcd.af5038",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 950,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "f1bc8401.7c3fe8",
+        "type": "ui_text",
+        "z": "35fc5929.b03b96",
+        "g": "f3f9abcd.af5038",
+        "group": "898d68ad.775b08",
+        "order": 5,
+        "width": 19,
+        "height": 1,
+        "name": "",
+        "label": "LOCATION LONGITUDE",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "x": 730,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "cac15b3f.d51468",
+        "type": "ui_text",
+        "z": "35fc5929.b03b96",
+        "g": "f3f9abcd.af5038",
+        "group": "898d68ad.775b08",
+        "order": 4,
+        "width": 19,
+        "height": 1,
+        "name": "",
+        "label": "LOCATION LATITUDE",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "x": 720,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "772ec379.a465ec",
+        "type": "template",
+        "z": "35fc5929.b03b96",
+        "g": "f3f9abcd.af5038",
+        "name": "Google Map API",
+        "field": "payload",
+        "fieldType": "msg",
+        "syntax": "mustache",
+        "template": "<html>\n<head>\n  <title>GPS Google Map Test </title>\n  <script src=\"https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js\"></script>\n  <script src=\"https://maps.googleapis.com/maps/api/js?key=AIzaSyDoqCYZmw0PKpjoPd_EXyJqr01UdEIcKMQ\"></script>\n  <script src=\"https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js\"></script>\n\n  <style type=\"text/css\" media=\"screen\">\n    #map {\n      position:absolute;\n      top: 0; bottom: 0; left: 0; right: 0;\n    }\n  </style>\n</head>\n<body>\n  <div id=\"map\"></div>\n  <script type=\"text/javascript\">\n\n<!-- FUNZIONE PER LA CREAZIONE DELLA MAPPA-->\n$(document).ready(function(){\n  var MAP_ZOOM = 15 \n  var MARKER_SIZE = 14 \n  \n  var map = new google.maps.Map(document.getElementById('map'), {\n      zoom: MAP_ZOOM,\n      center: {lat: {{payload.latitude}}, lng: {{payload.longitude}}}\n    });\n    \n  var markers = []\n  \n  window.onmessage = function(evt){\n    for (var i = 0; i < markers.length; i++) {\n      markers[i].setMap(null);\n    }\n    \n    var data = JSON.parse(evt.data);\n    map.setZoom(MAP_ZOOM);\n    \n    markers = data.map(function(el, i) {\n      var marker = new google.maps.Marker({\n        position: el,\n        icon: {\n          url: el.iconUrl,\n          scaledSize: new google.maps.Size(MARKER_SIZE, MARKER_SIZE)\n        },\n        map:map\n      });\n      google.maps.event.addListener(marker , 'click', function(){\n        var infowindow = new google.maps.InfoWindow({\n          content:el.description,\n          position: el,\n        });\n        infowindow.open(map);\n        setTimeout(function () { infowindow.close(); }, 2000);\n      });\n      return marker\n    });\n  }\n});\n  </script>\n</body>\n</html>\n",
+        "x": 780,
+        "y": 260,
+        "wires": [
+            [
+                "7250aa60.7fd104"
+            ]
+        ]
+    },
+    {
+        "id": "898d68ad.775b08",
+        "type": "ui_group",
+        "name": "Google Map",
+        "tab": "2719375e.f103a8",
+        "order": 1,
+        "disp": true,
+        "width": 19,
+        "collapse": false
+    },
+    {
+        "id": "2719375e.f103a8",
+        "type": "ui_tab",
+        "name": "GPS Map Home",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    }
+]
